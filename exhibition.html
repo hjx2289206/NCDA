@@ -102,7 +102,9 @@
       const exhibitionTitle = document.querySelector('.exhibition-title');
       const introBox = document.querySelector('.intro-box');
 
-      // 先让内容淡出
+      // 先让内容和介绍框淡出
+      introBox.style.opacity = '0';
+      introBox.style.transform = 'translateX(-50px)';
       [title, desc, exhibitionTitle].forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(-10px)';
@@ -111,18 +113,20 @@
       // 更新指示器
       indicator.textContent = `${currentIndex + 1}/8`;
 
-      // 延迟更新内容，等待淡出动画完成
+      // 延迟更新内容，等待图片轮播完成
       setTimeout(() => {
         // 更新标题和描述
         title.textContent = slides[currentIndex].title;
         desc.textContent = slides[currentIndex].desc;
 
-        // 让内容淡入
+        // 让介绍框和内容淡入
+        introBox.style.opacity = '1';
+        introBox.style.transform = 'translateX(0)';
         [title, desc, exhibitionTitle].forEach(el => {
           el.style.opacity = '1';
           el.style.transform = 'translateY(0)';
         });
-      }, 250);
+      }, 500);
 
       // 更新图片和类名
       imageBoxes.forEach((box, index) => {

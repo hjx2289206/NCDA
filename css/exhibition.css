@@ -104,7 +104,9 @@ body {
   /* 30px / 900px * 100%, 25px / 1440px * 100% */
   box-sizing: border-box;
   overflow: hidden;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: transform 0.8s ease, opacity 0.8s ease;
 }
 
 .exhibition-title {
