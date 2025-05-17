@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>兰花展览介绍</title>
+  <link rel="stylesheet" href="css\exhibition.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="boxes-wrapper">
+      <div class="image-box active">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="image-box next">
+        <img src="" alt="图片">
+      </div>
+      <div class="intro-box">
+        <h1 class="exhibition-title">展览</h1>
+        <h2 class="flower-title">兰花扣</h2>
+        <p class="flower-desc">开花时不与百花争艳，独自绽放的兰花寓意是典雅、高洁、爱国、坚贞不渝，象征崇高的友情、手足情谊和爱国民族之情</p>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <button class="carousel-btn" onclick="prevSlide()">&lt;</button>
+      <span class="carousel-indicator">1/8</span>
+      <button class="carousel-btn" onclick="nextSlide()">&gt;</button>
+    </div>
+  </div>
+
+  <script>
+    const slides = [
+      {
+        image: 'images/flower1.jpg',
+        title: '兰花扣',
+        desc: '开花时不与百花争艳，独自绽放的兰花寓意是典雅、高洁、爱国、坚贞不渝，象征崇高的友情、手足情谊和爱国民族之情'
+      },
+      {
+        image: 'images/flower2.jpg',
+        title: '兰花2',
+        desc: '兰花品种繁多，形态各异，但都保持着高雅脱俗的气质'
+      },
+      {
+        image: 'images/flower3.jpg',
+        title: '兰花3',
+        desc: '兰花具有独特的香气，清新淡雅，令人心旷神怡'
+      },
+      {
+        image: 'images/flower4.jpg',
+        title: '兰花4',
+        desc: '兰花的栽培历史悠久，是中国传统园艺文化的重要组成部分'
+      },
+      {
+        image: 'images/flower5.jpg',
+        title: '兰花5',
+        desc: '兰花象征着君子的品格，正直、谦逊、坚韧'
+      },
+      {
+        image: 'images/flower6.jpg',
+        title: '兰花6',
+        desc: '兰花在艺术创作中常被用作题材，展现出独特的东方美学'
+      },
+      {
+        image: 'images/flower7.jpg',
+        title: '兰花7',
+        desc: '兰花的生长需要精心照料，体现了培育者的耐心与专注'
+      },
+      {
+        image: 'images/flower8.jpg',
+        title: '兰花8',
+        desc: '兰花不仅是观赏植物，在传统医学中也具有重要价值'
+      }
+    ];
+
+    let currentIndex = 0;
+
+    function updateSlides() {
+      const imageBoxes = document.querySelectorAll('.image-box');
+      const indicator = document.querySelector('.carousel-indicator');
+      const title = document.querySelector('.flower-title');
+      const desc = document.querySelector('.flower-desc');
+      const exhibitionTitle = document.querySelector('.exhibition-title');
+      const introBox = document.querySelector('.intro-box');
+
+      // 先让内容淡出
+      [title, desc, exhibitionTitle].forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(-10px)';
+      });
+
+      // 更新指示器
+      indicator.textContent = `${currentIndex + 1}/8`;
+
+      // 延迟更新内容，等待淡出动画完成
+      setTimeout(() => {
+        // 更新标题和描述
+        title.textContent = slides[currentIndex].title;
+        desc.textContent = slides[currentIndex].desc;
+
+        // 让内容淡入
+        [title, desc, exhibitionTitle].forEach(el => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        });
+      }, 250);
+
+      // 更新图片和类名
+      imageBoxes.forEach((box, index) => {
+        const img = box.querySelector('img');
+        if (index === currentIndex) {
+          box.className = 'image-box active';
+          img.src = slides[currentIndex].image;
+        } else if (index < currentIndex) {
+          box.className = 'image-box prev';
+        } else {
+          box.className = 'image-box next';
+        }
+      });
+    }
+
+    function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateSlides();
+    }
+
+    function prevSlide() {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateSlides();
+    }
+
+    // 初始化轮播图
+    updateSlides();
+  </script>
+</body>
+
+</html>
