@@ -4,14 +4,14 @@
 }
 
 @font-face {
-  font-family: '黄令东齐伋复刻';
-  src: url('../fonts/黄令东齐伋复刻.ttf') format('truetype');
+  font-family: 'S_1';
+  src: url('../../assets/fonts/S_1.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: '黄令东齐伋复刻', sans-serif;
+  font-family: 'S_1', sans-serif;
   background-color: #f8f8f8;
   margin: 0;
   display: flex;
@@ -206,7 +206,7 @@ body {
 }
 
 .carousel-indicator {
-  font-family: '黄令东齐伋复刻', sans-serif;
+  font-family: 'S_1', sans-serif;
   font-size: 1.11vw;
   /* 16px / 1440px * 100% */
   color: #3a7a6f;
