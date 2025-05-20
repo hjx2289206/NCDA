@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新风貌与新使命 - 20世纪50年代</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <style>
+    /* 页面特定样式 */
+    :root {
+      font-size: 16px;
+    }
+    
+    /* 响应式字体大小 */
+    @media (max-width: 1200px) {
+      :root {
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        font-size: 12px;
+      }
+    }
+    
+    @media (min-width: 1600px) {
+      :root {
+        font-size: 18px;
+      }
+    }
+    
+    /* 页面基础样式设置 */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      overflow-x: hidden;
+    }
+    
+    /* 返回按钮样式 - 固定在左上角 */
+    .back-button {
+      position: absolute;
+      top: 5vh;
+      left: 4vw;
+      font-size: 3rem;
+      color: #333333;
+      text-decoration: none;
+      z-index: 10;
+    }
+    
+    /* 主要内容容器 - 使用弹性布局实现三栏布局 */
+    .qipao-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1400px;
+      margin: 5vh auto;
+      padding: 3vh 0;
+      border-radius: 1.25rem;
+    }
+    
+    /* 文本区域样式 - 文字改为垂直排列 */
+    .text-section {
+      flex: 1;
+      padding: 3vh 0 3vh 1vw;
+      position: relative;
+      max-width: 40%;
+    }
+    
+    /* 图片区域样式 - 占据右侧空间并居中显示 */
+    .image-section {
+      flex: 1;
+      text-align: center;
+      padding: 2vh 0;
+      max-width: 45%;
+    }
+    
+    /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
+    .qipao-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* 标题区域样式 - 固定在页面左上方 */
+    .title-section {
+      margin-bottom: 4vh;
+      position: fixed;
+      left: 8vw;
+      top: 8vh;
+      padding: 1vh 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 5;
+    }
+    
+    /* 主标题样式 */
+    .main-title {
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 1vh;
+    }
+    
+    /* 年代标题样式 */
+    .era-title {
+      font-size: 2rem;
+      margin-bottom: 2vh;
+      color: #333;
+    }
+    
+    /* 描述文本样式 - 设置合适的行高和边距，改为垂直排列 */
+    .description {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+      margin-bottom: 3vh;
+      margin-top: 15vh;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      height: 45vh;
+      overflow: auto;
+      max-height: 60vh;
+    }
+    
+    /* 装饰线条容器 - 垂直居中对齐 */
+    .decoration-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 1vw;
+      height: 30vh;
+      flex-shrink: 0;
+    }
+    
+    /* 装饰线条样式 - 改为垂直方向 */
+    .decoration-line .line {
+      width: 0.125rem;
+      background-color: #151616;
+      height: 3rem;
+    }
+    
+    /* 装饰圆点样式 */
+    .decoration-line .circle {
+      width: 0.75rem;
+      height: 0.75rem;
+      border: 0.125rem solid #151616;
+      border-radius: 50%;
+      margin: 1rem 0;
+    }
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .qipao-content {
+        flex-direction: column;
+        padding: 2vh 3vw;
+      }
+      
+      .text-section, .image-section {
+        width: 90%;
+        max-width: 100%;
+        padding: 2vh 0;
+      }
+      
+      .title-section {
+        position: fixed;
+        left: 5vw;
+        top: 5vh;
+        margin-bottom: 3vh;
+      }
+      
+      .main-title {
+        font-size: 2rem;
+      }
+      
+      .era-title {
+        font-size: 1.5rem;
+      }
+      
+      .description {
+        font-size: 1rem;
+        margin-top: 0;
+        writing-mode: horizontal-tb;
+        height: auto;
+        overflow: visible;
+      }
+      
+      .decoration-line {
+        flex-direction: row;
+        width: 80%;
+        height: auto;
+        margin: 2vh 0;
+      }
+      
+      .decoration-line .line {
+        width: 3rem;
+        height: 0.125rem;
+      }
+      
+      .decoration-line .circle {
+        margin: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 返回按钮 -->
+  <a href="time.html" class="back-button">&lt;</a>
+  
+  <!-- 主要内容区域 -->
+  <div class="content">
+    <div class="qipao-content">
+      <div class="text-section">
+        <div class="title-section">
+          <h1 class="main-title">新风貌与新使命</h1>
+          <h2 class="era-title">20世纪50年代</h2>
+        </div>
+        <p class="description">
+          宋庆龄作为重要的外交人物，经常身着旗袍出席各类外交场合。她所穿的旗袍款式端庄、大气，色彩典雅与形展现了中国女性的优雅气质，又代表了中国传统文化的魅力，向世界展示了新中国女性的风采。旗袍在国际舞台上成为了中国女性的代表性服饰。
+        </p>
+      </div>
+      
+      <!-- 垂直装饰线条 -->
+      <div class="decoration-line">
+        <div class="line"></div>
+        <div class="circle"></div>
+        <div class="line"></div>
+      </div>
+      
+      <div class="image-section">
+        <img src="../../assets/images/qipao_50s.jpg" alt="50年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=旗袍图片'">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
