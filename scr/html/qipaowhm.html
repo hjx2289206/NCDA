@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新风貌与新使命 - 20世纪50年代</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <style>
+    /* 页面特定样式 */
+    :root {
+      font-size: 16px;
+    }
+    
+    /* 响应式字体大小 */
+    @media (max-width: 1200px) {
+      :root {
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      :root {
+        font-size: 12px;
+      }
+    }
+    
+    @media (min-width: 1600px) {
+      :root {
+        font-size: 18px;
+      }
+    }
+    
+    /* 页面基础样式设置 */
+    body {
+      height: 100%;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F2D6DF 83%);
+    }
+    
+    /* 返回按钮样式 - 固定在左上角 */
+    .back-button {
+      position: absolute;
+      top: 5vh;
+      left: 4vw;
+      font-size: 3rem;
+      color: #333333;
+      text-decoration: none;
+      z-index: 10;
+    }
+    
+    /* 主要内容容器 - 使用弹性布局实现两栏布局 */
+    .qipao-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 90vw;
+      margin: 5vh auto;
+      padding: 3vh 3vw;
+      border-radius: 1.25rem;
+    }
+    
+    /* 文本区域样式 - 占据左侧空间 */
+    .text-section {
+      flex: 1;
+      padding: 3vh 3vw;
+      position: relative;
+    }
+    
+    /* 图片区域样式 - 占据右侧空间并居中显示 */
+    .image-section {
+      flex: 1;
+      text-align: center;
+      padding: 2vh 2vw;
+    }
+    
+    /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
+    .qipao-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* 标题区域样式 - 固定在页面左上方 */
+    .title-section {
+      margin-bottom: 4vh;
+      position: fixed;
+      left: 8vw;
+      top: 8vh;
+      padding: 1vh 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 5;
+    }
+    
+    /* 主标题样式 */
+    .main-title {
+      font-size: 3rem;
+      color: #333;
+      margin-bottom: 1vh;
+    }
+    
+    /* 年代标题样式 */
+    .era-title {
+      font-size: 2rem;
+      margin-bottom: 2vh;
+      color: #333;
+    }
+    
+    /* 描述文本样式 - 设置合适的行高和边距 */
+    .description {
+      font-size: 1.5rem;
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+      margin-bottom: 3vh;
+      margin-top: 18vh;
+    }
+    
+    
+    
+    /* 响应式设计 */
+    @media (max-width: 768px) {
+      .qipao-content {
+        flex-direction: column;
+        padding: 2vh 3vw;
+      }
+      
+      .text-section, .image-section {
+        width: 100%;
+        padding: 2vh 3vw;
+      }
+      
+      .title-section {
+        position: fixed;
+        left: 5vw;
+        top: 5vh;
+        margin-bottom: 3vh;
+      }
+      
+      .main-title {
+        font-size: 2rem;
+      }
+      
+      .era-title {
+        font-size: 1.5rem;
+      }
+      
+      .description {
+        font-size: 1rem;
+        margin-top: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 返回按钮 -->
+  <a href="time.html" class="back-button">&lt;</a>
+  
+  <!-- 主要内容区域 -->
+  <div class="content">
+    <div class="qipao-content">
+      <div class="image-section">
+        <img src="../../assets/images/qipao_50s.jpg" alt="50年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=旗袍图片'">
+      </div>
+      
+      <div class="text-section">
+        <div class="title-section">
+          <h1 class="main-title">传统与创新的交融</h1>
+          <h2 class="era-title">现代</h2>
+        </div>
+        <p class="description">
+          伍红梅1997年就读服装学校时初见旗袍便心生热爱，20多年来一直从事旗袍制版工作。2019年“沙磁旗袍手工制作技艺”立项为非遗项目，2021年她成为代表性传承人。她将传统技艺与现代化数字工具结合，不断创新，使旗袍符合现代审美。她还开展传承制作工艺实践与课程，通过多种平台展示技艺，为外来务工、高校毕业生免费培训，带动创业就业，让旗袍制作传播到国外。
+        </p>
+        
+      </div>
+    </div>
+  </div>
+</body>
+</html>
