@@ -1,0 +1,139 @@
+// 定义导航栏Web组件
+class NavBar extends HTMLElement {
+  constructor() {
+    super();
+    // 创建Shadow DOM
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    // 组件被添加到DOM时调用
+    this.render();
+  }
+
+  render() {
+    // 创建样式
+    const style = document.createElement('style');
+    style.textContent = `
+      /* 导航栏容器样式 */
+      .nav-bar {
+        display: flex; /* 使用弹性布局 */
+        justify-content: space-between; /* 两端对齐 */
+        align-items: center; /* 垂直居中对齐 */
+        padding: 1rem 2rem; /* 上下内边距为1rem，左右为2rem */
+        background: transparent; /* 背景透明 */
+        width: 100%; /* 宽度100% */
+        box-sizing: border-box; /* 盒模型设置 */
+      }
+
+      /* 左侧导航区域样式 */
+      .nav-left {
+        display: flex; /* 使用弹性布局 */
+        align-items: center; /* 垂直居中对齐 */
+      }
+
+      /* 右侧导航区域样式 */
+      .nav-right {
+        display: flex; /* 使用弹性布局 */
+        align-items: center; /* 垂直居中对齐 */
+      }
+
+      /* Logo样式 */
+      .logo {
+        display: block; /* 设置为块级元素 */
+        text-decoration: none; /* 移除文本装饰 */
+      }
+
+      /* Logo图片样式 */
+      .logo-img {
+        height: 40px; /* 设置高度 */
+        width: auto; /* 宽度自动 */
+      }
+
+      /* 导航菜单样式 */
+      .nav-menu {
+        display: flex; /* 使用弹性布局 */
+        gap: 2rem; /* 设置项目之间的间距为2rem */
+        list-style: none; /* 移除列表项标记 */
+        padding: 0; /* 移除内边距 */
+        margin: 0; /* 移除外边距 */
+      }
+
+      /* 导航项目样式 */
+      .nav-item {
+        position: relative; /* 设置相对定位，便于子元素绝对定位 */
+        padding: 0.4rem 2rem; /* 增加水平内边距，使按钮更宽 */
+        width: 3rem; /* 设置固定宽度，使按钮更宽 */
+        text-align: center; /* 文本居中对齐 */
+        cursor: pointer; /* 鼠标悬停时显示手型光标 */
+        text-decoration: none; /* 移除文本装饰（下划线） */
+        color: #333; /* 设置文本颜色为深灰色 */
+        font-size: 1.2rem; /* 设置字体大小 */
+        transition: transform 0.3s ease; /* 添加平滑过渡效果 */
+        background: #f5c9d2; /* 设置粉色背景 */
+        border-radius: 20px 20px 20px 20px; /* 设置圆角边框 */
+        display: block; /* 设置为块级元素 */
+      }
+
+      /* 导航项目悬停效果 */
+      .nav-item:hover {
+        transform: translateY(-3px); /* 悬停时向上移动3像素 */
+        color: #3a7a6f; /* 悬停时文本颜色变为青绿色 */
+      }
+    `;
+
+    // 创建HTML结构
+    const navBar = document.createElement('nav');
+    navBar.className = 'nav-bar';
+
+    // 左侧按钮
+    const navLeft = document.createElement('div');
+    navLeft.className = 'nav-left';
+    const leftLink = document.createElement('a');
+    leftLink.href = '#';
+    leftLink.className = 'nav-item';
+    leftLink.textContent = '作 坊';
+    navLeft.appendChild(leftLink);
+
+    // 中间导航菜单列表
+    const navMenu = document.createElement('ul');
+    navMenu.className = 'nav-menu';
+    
+    // 导航项目
+    const menuItems = ['扣', '秀', '线'];
+    menuItems.forEach(item => {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.className = 'nav-item';
+      a.textContent = item;
+      li.appendChild(a);
+      navMenu.appendChild(li);
+    });
+
+    // 右侧logo
+    const navRight = document.createElement('div');
+    navRight.className = 'nav-right';
+    const logoLink = document.createElement('a');
+    logoLink.href = '#';
+    logoLink.className = 'logo';
+    const logoImg = document.createElement('img');
+    logoImg.src = '#';
+    logoImg.alt = 'Logo';
+    logoImg.className = 'logo-img';
+    logoLink.appendChild(logoImg);
+    navRight.appendChild(logoLink);
+
+    // 将所有元素添加到导航栏
+    navBar.appendChild(navLeft);
+    navBar.appendChild(navMenu);
+    navBar.appendChild(navRight);
+
+    // 将样式和导航栏添加到Shadow DOM
+    this.shadowRoot.appendChild(style);
+    this.shadowRoot.appendChild(navBar);
+  }
+}
+
+// 注册自定义元素
+customElements.define('nav-bar', NavBar);

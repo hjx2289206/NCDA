@@ -1,0 +1,30 @@
+/* 自定义字体声明 */
+@font-face {
+  font-family: "S_1"; /* 定义字体名称 */
+  src: url("../../assets/fonts/S_1.ttf") format("truetype"); /* 指定字体文件路径和格式 */
+  font-weight: normal; /* 设置字体粗细 */
+  font-style: normal; /* 设置字体样式 */
+}
+
+/* 全局页面样式 */
+body {
+  font-family: "S_1", sans-serif; /* 使用自定义字体，如果不可用则使用无衬线字体 */
+  margin: 0; /* 移除默认外边距 */
+  padding: 0; /* 移除默认内边距 */
+  background-color: #f8f8f8; /* 设置浅灰色背景 */
+}
+
+/* 内容区域样式 */
+.content {
+  max-width: 1200px; /* 设置最大宽度 */
+  margin: 2rem auto; /* 上下外边距为2rem，左右自动（居中） */
+  padding: 1rem; /* 内边距为1rem */
+}
+
+/* 标题样式 */
+h1 {
+  text-align: center; /* 文本居中对齐 */
+  font-size: 2.5rem; /* 设置字体大小 */
+  color: #333; /* 设置文本颜色为深灰色 */
+  margin-bottom: 2rem; /* 下外边距为2rem */
+}

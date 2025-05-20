@@ -1,9 +1,10 @@
 :root {
   /* 基于1440px宽度的设计稿，设置基准单位 */
-  font-size: 16px;
+  font-size: 16px; /* 设置网站基础字体大小为16px */
 }
 
 @font-face {
+  /* 定义自定义字体S_1，用于整个网站的文字显示 */
   font-family: 'S_1';
   src: url('../../assets/fonts/S_1.ttf') format('truetype');
   font-weight: normal;
@@ -11,205 +12,224 @@
 }
 
 body {
-  font-family: 'S_1', sans-serif;
-  background-color: #f8f8f8;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  /* 设置页面基础样式，使用自定义字体，居中内容 */
+  font-family: 'S_1', sans-serif; /* 使用自定义字体，如果不可用则使用无衬线字体 */
+  background-color: #f8f8f8; /* 设置浅灰色背景 */
+  margin: 0; /* 移除默认边距 */
+  display: flex; /* 使用弹性布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  min-height: 100vh; /* 最小高度为视口高度，确保内容居中 */
 }
 
 .container {
-  position: relative;
-  width: 55.56vw;
+  /* 主容器，控制整个展示区域的大小和位置 */
+  position: relative; /* 相对定位，作为子元素的定位参考 */
+  width: 55.56vw; /* 宽度为视口宽度的55.56%，基于设计稿800px/1440px计算 */
   /* 800px / 1440px * 100% */
-  height: 55.56vh;
+  height: 55.56vh; /* 高度为视口高度的55.56%，基于设计稿500px/900px计算 */
   /* 500px / 900px * 100% */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: flex; /* 使用弹性布局 */
+  flex-direction: column; /* 垂直排列子元素 */
+  justify-content: center; /* 垂直居中 */
+  align-items: center; /* 水平居中 */
 }
 
 .boxes-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  /* 包裹所有展示框的容器 */
+  position: relative; /* 相对定位，作为子元素的定位参考 */
+  width: 100%; /* 占满容器宽度 */
+  height: 100%; /* 占满容器高度 */
 }
 
 .image-box {
-  position: absolute;
-  width: 18.26vw;
+  /* 图片展示框的基础样式 */
+  position: absolute; /* 绝对定位，可以精确控制位置 */
+  width: 18.26vw; /* 宽度为视口宽度的18.26%，基于设计稿263px/1440px计算 */
   /* 263px / 1440px * 100% */
-  height: 46.56vh;
+  height: 46.56vh; /* 高度为视口高度的46.56%，基于设计稿419px/900px计算 */
   /* 419px / 900px * 100% */
-  background: linear-gradient(180deg, #F2DAE1 0%, #FFFFFF 100%);
-  border-radius: 1.39vw;
+  background: linear-gradient(180deg, #F2DAE1 0%, #FFFFFF 100%); /* 粉色到白色的渐变背景 */
+  border-radius: 1.39vw; /* 圆角边框，基于设计稿20px/1440px计算 */
   /* 20px / 1440px * 100% */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  transition: all 0.5s ease;
-  transform: translateX(calc((18.26vw - 7.22vw)/2));
-  opacity: 0.6;
-  z-index: 1;
+  display: flex; /* 使用弹性布局 */
+  justify-content: center; /* 水平居中内容 */
+  align-items: center; /* 垂直居中内容 */
+  overflow: hidden; /* 隐藏溢出内容 */
+  transition: all 0.5s ease; /* 添加过渡效果，使变化更平滑 */
+  transform: translateX(calc((18.26vw - 7.22vw)/2)); /* 水平移动位置，使元素居中 */
+  opacity: 0.6; /* 默认透明度为60% */
+  z-index: 1; /* 设置层级，确保正确的叠放顺序 */
 }
 
 .image-box.active {
-  opacity: 1;
-  z-index: 2;
-  box-shadow: 0.28vw 0.28vw 0.28vw 0px rgba(0, 0, 0, 0.25);
+  /* 当前激活的图片框样式 */
+  opacity: 1; /* 完全不透明 */
+  z-index: 2; /* 提高层级，显示在其他元素之上 */
+  box-shadow: 0.28vw 0.28vw 0.28vw 0px rgba(0, 0, 0, 0.25); /* 添加阴影效果，增强立体感 */
   /* 4px / 1440px * 100% */
 }
 
 .image-box.prev, .image-box.next {
-  width: 23.26vw;
+  /* 前一个和后一个图片框的共同样式 */
+  width: 23.26vw; /* 宽度为视口宽度的23.26%，基于设计稿335px/1440px计算 */
   /* 335px / 1440px * 100% */
-  height: 37.78vh;
+  height: 37.78vh; /* 高度为视口高度的37.78%，基于设计稿340px/900px计算 */
   /* 340px / 900px * 100% */
-  background: linear-gradient(180deg, #FFFFFF 0%, #DDC6D5 100%);
-  border-radius: 1.39vw;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DDC6D5 100%); /* 白色到浅紫色的渐变背景 */
+  border-radius: 1.39vw; /* 保持相同的圆角 */
 }
 
 .image-box.prev {
-  transform: translateX(calc(-25.26vw)) scale(0.8);
+  /* 前一个图片框的位置 */
+  transform: translateX(calc(-25.26vw)) scale(0.8); /* 向左移动并缩小 */
 }
 
 .image-box.next {
-  transform: translateX(calc(55.95vw + (18.26vw - 7.22vw)/2)) scale(0.8);
+  /* 后一个图片框的位置 */
+  transform: translateX(calc(55.95vw + (18.26vw - 7.22vw)/2)) scale(0.8); /* 向右移动并缩小 */
 }
 
 .image-box.prev img, .image-box.next img {
-  max-width: 80%;
-  max-height: 80%;
+  /* 前一个和后一个图片框中图片的样式 */
+  max-width: 80%; /* 限制图片最大宽度为容器的80% */
+  max-height: 80%; /* 限制图片最大高度为容器的80% */
 }
 
 .intro-box {
-  position: absolute;
-  width: 34.86vw;
+  /* 介绍框的样式 */
+  position: absolute; /* 绝对定位 */
+  width: 34.86vw; /* 宽度为视口宽度的34.86%，基于设计稿502px/1440px计算 */
   /* 502px / 1440px * 100% */
-  height: 46.11vh;
+  height: 46.11vh; /* 高度为视口高度的46.11%，基于设计稿415px/900px计算 */
   /* 415px / 900px * 100% */
-  background: linear-gradient(146deg, #FFFFFF 0%, #D1E7E0 100%);
-  border-radius: 1.39vw;
+  background: linear-gradient(146deg, #FFFFFF 0%, #D1E7E0 100%); /* 白色到浅绿色的渐变背景 */
+  border-radius: 1.39vw; /* 圆角边框 */
   /* 20px / 1440px * 100% */
-  z-index: 1;
-  left: calc(7.22vw + (18.26vw - 7.22vw)/2);
+  z-index: 1; /* 设置层级 */
+  left: calc(7.22vw + (18.26vw - 7.22vw)/2); /* 水平位置计算，确保正确对齐 */
   /* 向右移动一半的距离 */
-  top: 6.22vh;
+  top: 6.22vh; /* 垂直位置，基于设计稿56px/900px计算 */
   /* 56px / 900px * 100% */
-  padding: 3.33vh 1.74vw;
+  padding: 3.33vh 1.74vw; /* 内边距，基于设计稿30px/900px和25px/1440px计算 */
   /* 30px / 900px * 100%, 25px / 1440px * 100% */
-  box-sizing: border-box;
-  overflow: hidden;
-  opacity: 0;
-  transform: translateX(-50px);
-  transition: transform 0.8s ease, opacity 0.8s ease;
+  box-sizing: border-box; /* 边框盒模型，确保padding不增加元素尺寸 */
+  overflow: hidden; /* 隐藏溢出内容 */
+  opacity: 0; /* 默认不可见 */
+  transform: translateX(-50px); /* 默认向左偏移 */
+  transition: transform 0.8s ease, opacity 0.8s ease; /* 添加过渡效果 */
 }
 
 .exhibition-title {
-  position: absolute;
-  font-size: 1.94vw;
+  /* 展览标题样式 */
+  position: absolute; /* 绝对定位 */
+  font-size: 1.94vw; /* 字体大小，基于设计稿28px/1440px计算 */
   /* 28px / 1440px * 100% */
-  left: calc(18.26vw - 7.22vw + 0.35vw);
+  left: calc(18.26vw - 7.22vw + 0.35vw); /* 水平位置计算 */
   /* (263px - 104px + 5px) / 1440px * 100% */
-  top: 4.44vh;
+  top: 4.44vh; /* 垂直位置，基于设计稿40px/900px计算 */
   /* 40px / 900px * 100% */
-  margin: 0;
-  font-weight: 500;
-  color: #555555;
-  letter-spacing: 0.14vw;
+  margin: 0; /* 移除默认边距 */
+  font-weight: 500; /* 设置字体粗细 */
+  color: #555555; /* 设置字体颜色为深灰色 */
+  letter-spacing: 0.14vw; /* 字间距，基于设计稿2px/1440px计算 */
   /* 2px / 1440px * 100% */
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  opacity: 1;
-  transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease; /* 添加过渡效果 */
+  opacity: 1; /* 默认可见 */
+  transform: translateY(0); /* 默认位置 */
 }
 
 .flower-title {
-  position: absolute;
-  font-size: 2.5vw;
+  /* 花卉标题样式 */
+  position: absolute; /* 绝对定位 */
+  font-size: 2.5vw; /* 字体大小，基于设计稿36px/1440px计算 */
   /* 36px / 1440px * 100% */
-  left: calc(18.26vw - 7.22vw + 1.39vw);
+  left: calc(18.26vw - 7.22vw + 1.39vw); /* 水平位置计算 */
   /* (263px - 104px + 20px) / 1440px * 100% */
-  top: 11.11vh;
+  top: 11.11vh; /* 垂直位置，基于设计稿100px/900px计算 */
   /* 100px / 900px * 100% */
-  margin: 0;
-  font-weight: 600;
-  color: #3a7a6f;
-  letter-spacing: 0.07vw;
+  margin: 0; /* 移除默认边距 */
+  font-weight: 600; /* 设置字体粗细 */
+  color: #3a7a6f; /* 设置字体颜色为深绿色 */
+  letter-spacing: 0.07vw; /* 字间距，基于设计稿1px/1440px计算 */
   /* 1px / 1440px * 100% */
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  opacity: 1;
-  transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease; /* 添加过渡效果 */
+  opacity: 1; /* 默认可见 */
+  transform: translateY(0); /* 默认位置 */
 }
 
 .flower-desc {
-  position: absolute;
-  font-size: 1.25vw;
+  /* 花卉描述样式 */
+  position: absolute; /* 绝对定位 */
+  font-size: 1.25vw; /* 字体大小，基于设计稿18px/1440px计算 */
   /* 18px / 1440px * 100% */
-  left: calc(18.26vw - 7.22vw + 1.39vw);
+  left: calc(18.26vw - 7.22vw + 1.39vw); /* 水平位置计算 */
   /* (263px - 104px + 20px) / 1440px * 100% */
-  top: 18.89vh;
+  top: 18.89vh; /* 垂直位置，基于设计稿170px/900px计算 */
   /* 170px / 900px * 100% */
-  width: calc(34.86vw - 1.11vw - (18.26vw - 7.22vw + 1.39vw));
+  width: calc(34.86vw - 1.11vw - (18.26vw - 7.22vw + 1.39vw)); /* 宽度计算，确保文本不超出容器 */
   /* (502px - 16px - (263px - 104px + 20px)) / 1440px * 100% */
-  margin: 0;
-  line-height: 1.6;
-  text-align: justify;
-  color: #555555;
-  letter-spacing: 0.035vw;
+  margin: 0; /* 移除默认边距 */
+  line-height: 1.6; /* 设置行高 */
+  text-align: justify; /* 文本两端对齐 */
+  color: #555555; /* 设置字体颜色为深灰色 */
+  letter-spacing: 0.035vw; /* 字间距，基于设计稿0.5px/1440px计算 */
   /* 0.5px / 1440px * 100% */
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  opacity: 1;
-  transform: translateY(0);
+  transition: transform 0.5s ease, opacity 0.5s ease; /* 添加过渡效果 */
+  opacity: 1; /* 默认可见 */
+  transform: translateY(0); /* 默认位置 */
 }
 
 .image-box img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
+  /* 图片框中图片的基础样式 */
+  max-width: 90%; /* 限制图片最大宽度为容器的90% */
+  max-height: 90%; /* 限制图片最大高度为容器的90% */
+  object-fit: contain; /* 保持图片比例，确保完全显示 */
 }
 
 .image-box.active img {
-  max-width: 90%;
-  max-height: 90%;
+  /* 当前激活的图片框中图片的样式 */
+  max-width: 90%; /* 限制图片最大宽度为容器的90% */
+  max-height: 90%; /* 限制图片最大高度为容器的90% */
 }
 
 .carousel-nav {
-  position: absolute;
-  bottom: -5.56vh;
+  /* 轮播导航区域样式 */
+  position: absolute; /* 绝对定位 */
+  bottom: -5.56vh; /* 底部位置，基于设计稿-50px/900px计算 */
   /* -50px / 900px * 100% */
-  display: flex;
-  gap: 1.39vw;
+  display: flex; /* 使用弹性布局 */
+  gap: 1.39vw; /* 元素间距，基于设计稿20px/1440px计算 */
   /* 20px / 1440px * 100% */
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
 }
 
 .carousel-btn {
-  padding: 0.69vw;
+  /* 轮播按钮样式 */
+  padding: 0.69vw; /* 内边距，基于设计稿10px/1440px计算 */
   /* 10px / 1440px * 100% */
-  background: transparent;
-  color: #3a7a6f;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: 2.08vw;
+  background: transparent; /* 透明背景 */
+  color: #3a7a6f; /* 设置按钮颜色为深绿色 */
+  border: none; /* 移除边框 */
+  cursor: pointer; /* 鼠标悬停时显示手型光标 */
+  font-family: inherit; /* 继承父元素字体 */
+  font-size: 2.08vw; /* 字体大小，基于设计稿30px/1440px计算 */
   /* 30px / 1440px * 100% */
-  transition: color 0.3s;
+  transition: color 0.3s; /* 添加颜色过渡效果 */
 }
 
 .carousel-btn:hover {
-  color: #2c5d54;
+  /* 轮播按钮悬停状态 */
+  color: #2c5d54; /* 悬停时颜色变深 */
 }
 
 .carousel-indicator {
-  font-family: 'S_1', sans-serif;
-  font-size: 1.11vw;
+  /* 轮播指示器样式 */
+  font-family: 'S_1', sans-serif; /* 使用自定义字体 */
+  font-size: 1.11vw; /* 字体大小，基于设计稿16px/1440px计算 */
   /* 16px / 1440px * 100% */
-  color: #3a7a6f;
-  margin: 0 0.69vw;
+  color: #3a7a6f; /* 设置文字颜色为深绿色 */
+  margin: 0 0.69vw; /* 水平边距，基于设计稿10px/1440px计算 */
   /* 0 10px / 1440px * 100% */
 }
