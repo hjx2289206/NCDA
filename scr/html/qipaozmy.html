@@ -35,7 +35,6 @@
       margin: 0;
       padding: 0;
       background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
-      overflow-x: hidden;
     }
     
     /* 返回按钮样式 - 固定在左上角 */
@@ -49,32 +48,29 @@
       z-index: 10;
     }
     
-    /* 主要内容容器 - 使用弹性布局实现三栏布局 */
+    /* 主要内容容器 - 使用弹性布局实现两栏布局 */
     .qipao-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 90%;
-      max-width: 1400px;
+      max-width: 90vw;
       margin: 5vh auto;
-      padding: 3vh 0;
+      padding: 3vh 3vw;
       border-radius: 1.25rem;
     }
     
-    /* 文本区域样式 - 文字改为垂直排列 */
+    /* 文本区域样式 - 占据左侧空间 */
     .text-section {
       flex: 1;
-      padding: 3vh 0 3vh 1vw;
+      padding: 3vh 3vw;
       position: relative;
-      max-width: 40%;
     }
     
     /* 图片区域样式 - 占据右侧空间并居中显示 */
     .image-section {
       flex: 1;
       text-align: center;
-      padding: 2vh 0;
-      max-width: 45%;
+      padding: 2vh 2vw;
     }
     
     /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
@@ -85,15 +81,15 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
-    /* 标题区域样式 - 固定在页面左上方 */
+    /* 标题区域样式 - 固定在页面右上方，文字竖直排列，数字横向排列 */
     .title-section {
       margin-bottom: 4vh;
       position: fixed;
-      left: 8vw;
+      right: 8vw;
       top: 8vh;
       padding: 1vh 0;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: flex-start;
       z-index: 5;
     }
@@ -102,47 +98,49 @@
     .main-title {
       font-size: 3rem;
       color: #333;
-      margin-bottom: 1vh;
+      margin-right: 2vh;
+      writing-mode: vertical-rl;
     }
     
     /* 年代标题样式 */
     .era-title {
       font-size: 2rem;
-      margin-bottom: 2vh;
       color: #333;
+      writing-mode: vertical-rl;
     }
     
-    /* 描述文本样式 - 设置合适的行高和边距，改为垂直排列 */
+    /* 年代数字样式 - 横向排列 */
+    .era-number {
+      writing-mode: horizontal-tb;
+      display: inline-block;
+    }
+    
+    /* 描述文本样式 - 设置合适的行高和边距 */
     .description {
       font-size: 1.5rem;
       line-height: 1.8;
       color: #333;
       text-align: justify;
       margin-bottom: 3vh;
-      margin-top: 15vh;
-      writing-mode: vertical-lr;
-      text-orientation: mixed;
-      height: 47vh;
-      overflow: auto;
-      max-height: 60vh;
+      margin-top: 18vh;
     }
     
-    /* 装饰线条容器 - 垂直居中对齐 */
+    /* 装饰线条容器 - 调整到文字介绍上方并与文本左侧对齐 */
     .decoration-line {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      margin: 0 1vw;
-      height: 30vh;
-      flex-shrink: 0;
+      width: auto;
+      position: absolute;
+      top: 18vh;
+      margin-top: -2vh;
+      left: 3vw; /* 确保与文本内容左侧对齐 */
     }
     
-    /* 装饰线条样式 - 改为垂直方向 */
+    /* 装饰线条样式 */
     .decoration-line .line {
-      width: 0.125rem;
+      height: 0.125rem;
       background-color: #151616;
-      height: 3rem;
+      width: 3rem;
     }
     
     /* 装饰圆点样式 */
@@ -151,7 +149,7 @@
       height: 0.75rem;
       border: 0.125rem solid #151616;
       border-radius: 50%;
-      margin: 1rem 0;
+      margin: 0 1rem;
     }
     
     /* 响应式设计 */
@@ -162,48 +160,47 @@
       }
       
       .text-section, .image-section {
-        width: 90%;
-        max-width: 100%;
-        padding: 2vh 0;
+        width: 100%;
+        padding: 2vh 3vw;
       }
       
       .title-section {
-        position: fixed;
-        left: 5vw;
-        top: 5vh;
+        position: static;
+        writing-mode: horizontal-tb;
         margin-bottom: 3vh;
+      }
+      
+      .main-title {
+        writing-mode: horizontal-tb;
+        margin: 0 0 1vh 0;
+      }
+      
+      @media (max-width: 768px) {
+        .era-title {
+          writing-mode: horizontal-tb;
+          margin: 0 0 1vh 0;
+        }
+        
+        .era-number {
+          writing-mode: horizontal-tb;
+        }
       }
       
       .main-title {
         font-size: 2rem;
       }
       
-      .era-title {
+      .era-title, .era-number {
         font-size: 1.5rem;
       }
       
       .description {
         font-size: 1rem;
-        margin-top: 0;
-        writing-mode: horizontal-tb;
-        height: auto;
-        overflow: visible;
+        margin-top: 2vh;
       }
       
       .decoration-line {
-        flex-direction: row;
-        width: 80%;
-        height: auto;
         margin: 2vh 0;
-      }
-      
-      .decoration-line .line {
-        width: 3rem;
-        height: 0.125rem;
-      }
-      
-      .decoration-line .circle {
-        margin: 0 1rem;
       }
     }
   </style>
@@ -216,20 +213,20 @@
   <div class="content">
     <div class="qipao-content">
       <div class="text-section">
+        <!-- 装饰线条放在文字介绍上方 -->
+        <div class="decoration-line">
+          <div class="line"></div>
+          <div class="circle"></div>
+        </div>
         <div class="title-section">
-          <h1 class="main-title">时尚新风潮</h1>
-          <h2 class="era-title">20世纪20年代</h2>
+          <h1 class="main-title">黄金时代的传奇</h1>
+          <h2 class="era-title">
+            <span class="era-number">20</span>世纪<span class="era-number">30</span>年代
+          </h2>
         </div>
         <p class="description">
-          张爱玲是民国时期的传奇才女，她对旗袍情有独钟。她不仅在小说中细腻地描写旗袍，自己也常穿着旗袍出席，她喜欢用一些大胆的色彩和独特的图案，将自己的才情与个性融入其中，她所穿的旗袍也成为了当时海派时尚的代表，展现出民国女性追求自由与个性的精神。
+          电影《花样年华》中，张曼玉饰演的苏丽珍身着多套旗袍，将旗袍的美展现得淋漓尽致。影片中的旗袍色彩鲜艳、图案精美，款式修身，凸显出女性的身材曲线。这部电影引发了人们对旗袍的关注和喜爱，掀起了一股旗袍热潮，让旗袍再次成为时尚界的宠儿，也让更多女性重新认识到旗袍所蕴含的独特魅力。
         </p>
-      </div>
-      
-      <!-- 垂直装饰线条 -->
-      <div class="decoration-line">
-        <div class="line"></div>
-        <div class="circle"></div>
-        <div class="line"></div>
       </div>
       
       <div class="image-section">
