@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新风貌与新使命 - 20世纪50年代</title>
+  <title>清末民初—觉醒的萌芽 - 20世纪20年代</title>
   <link rel="stylesheet" href="../css/global.css">
   <style>
     /* 页面特定样式 */
@@ -31,10 +31,20 @@
     }
     
     /* 页面基础样式设置 */
+    html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
     body {
+      min-height: 100vh;
+      height: 100%;
       margin: 0;
       padding: 0;
       background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      overflow: hidden;
     }
     
     /* 返回按钮样式 - 固定在左上角 */
@@ -53,6 +63,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 90%;
       max-width: 90vw;
       margin: 5vh auto;
       padding: 3vh 3vw;
@@ -67,7 +78,8 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      min-height: 60vh;
+      min-height: 50vh;
+      max-height: 80vh;
       align-items: center;
     }
     
@@ -77,6 +89,7 @@
       text-align: center;
       padding: 2vh 2vw;
       order: -1;
+      max-width: 45%;
     }
     
     /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
@@ -90,12 +103,13 @@
     /* 标题区域样式 - 竖排固定在左侧 */
     .title-section {
       position: fixed;
-      left: 8vw;
+      left: 5vw;
       top: 50%;
       transform: translateY(-50%);
       writing-mode: vertical-lr;
       text-orientation: upright;
       z-index: 5;
+      width: auto;
     }
     
     /* 主标题样式 */
@@ -119,6 +133,18 @@
       color: #333;
       text-align: justify;
       margin-bottom: 3vh;
+      width: 100%;
+      max-width: 90%;
+    }
+    
+    /* 内容容器样式 */
+    .content {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     /* 响应式设计 */
@@ -126,11 +152,15 @@
       .qipao-content {
         flex-direction: column;
         padding: 2vh 3vw;
+        width: 95%;
+        max-width: 95%;
       }
       
       .text-section, .image-section {
         width: 100%;
         padding: 2vh 3vw;
+        max-width: 100%;
+        min-height: auto;
       }
       
       .title-section {
@@ -138,6 +168,7 @@
         writing-mode: horizontal-tb;
         transform: none;
         margin-bottom: 3vh;
+        width: 100%;
       }
       
       .main-title {
@@ -150,6 +181,11 @@
       
       .description {
         font-size: 1rem;
+        max-width: 100%;
+      }
+      
+      .image-section {
+        max-width: 100%;
       }
     }
   </style>
@@ -162,13 +198,13 @@
   <div class="content">
     <div class="qipao-content">
       <div class="image-section">
-        <img src="../../assets/images/qipao_50s.jpg" alt="50年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=旗袍图片'">
+        <img src="../../assets/images/qipao_20s.jpg" alt="20年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=20年代旗袍'">
       </div>
       
       <div class="text-section">
         <div class="title-section">
           <h1 class="main-title">清末民初—觉醒的萌芽</h1>
-          <h2 class="era-title">21世纪20年代</h2>
+          <h2 class="era-title">20世纪20年代</h2>
         </div>
         <p class="description">
           秋瑾是清末著名的女革命家。她虽常着男装以表达对封建礼教的反抗和追求男女平等的决心，但在一些场合也会穿着旗袍。秋瑾的旗袍多为素色，款式较为简洁，没有过多的装饰。对她来说，旗袍不仅是一种服饰，更象征着女性的觉醒和反抗精神。她穿着旗袍奔走于革命活动中，展现出了新时代女性的风采，激励着更多女性投身于革命事业和社会变革。

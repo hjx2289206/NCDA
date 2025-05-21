@@ -11,6 +11,10 @@
   font-style: normal;
 }
 
+html, body {
+  overflow: hidden; /* 禁止滚动条出现 */
+}
+
 body {
   /* 设置页面基础样式，使用自定义字体，居中内容 */
   font-family: 'S_1', sans-serif; /* 使用自定义字体，如果不可用则使用无衬线字体 */
@@ -20,6 +24,7 @@ body {
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   min-height: 100vh; /* 最小高度为视口高度，确保内容居中 */
+  overflow: hidden; /* 禁止滚动条出现 */
 }
 
 .container {
