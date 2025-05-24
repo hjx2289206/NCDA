@@ -31,14 +31,23 @@
     }
     
     /* 页面基础样式设置 */
-    body {
+    html {
       height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
       min-height: 100vh;
+      height: 100%;
       margin: 0;
       padding: 0;
       background: linear-gradient(180deg, #FFFFFF 0%, #F2D6DF 83%);
+      background-attachment: fixed;  /* 固定背景，防止滚动时出现空白 */
+      overflow: hidden;  /* 防止出现滚动条 */
+      position: relative;
     }
-    
+
     /* 返回按钮样式 - 固定在左上角 */
     .back-button {
       position: absolute;
@@ -50,8 +59,41 @@
       z-index: 10;
     }
     
+    /* 背景图片容器 */
+    .background-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* 背景图片1 - 左上角 */
+    .background-1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 35vw;  /* 图片大小 */
+      height: auto;
+      z-index: 1;
+    }
+
+    /* 背景图片2 - 右下角 */
+    .background-2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30vw;  /* 图片大小 */
+      height: auto;
+      z-index: 1;
+    }
+    
     /* 主要内容容器 - 使用弹性布局实现两栏布局 */
     .qipao-content {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -59,6 +101,7 @@
       margin: 5vh auto;
       padding: 3vh 3vw;
       border-radius: 1.25rem;
+      background: none;  /* 确保背景透明 */
     }
     
     /* 文本区域样式 - 占据左侧空间 */
@@ -73,14 +116,16 @@
       flex: 1;
       text-align: center;
       padding: 2vh 2vw;
+      background: none;  /* 确保背景透明 */
     }
     
-    /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
+    /* 旗袍图片样式 - 自适应大小 */
     .qipao-image {
       max-width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      height: 50vh;  /* 使用简单的vh单位 */
+      object-fit: contain;  /* 保持图片比例 */
+      border-radius: 1.5vmin;
+      transition: all 0.3s ease;
     }
     
     /* 标题区域样式 - 固定在页面左上方 */
@@ -157,6 +202,12 @@
   </style>
 </head>
 <body>
+  <!-- 背景图片容器 -->
+  <div class="background-container">
+    <img src="../../../assets/images/stories/whm/background1.svg" alt="背景装饰1" class="background-1">
+    <img src="../../../assets/images/stories/whm/background2.svg" alt="背景装饰2" class="background-2">
+  </div>
+
   <!-- 返回按钮 -->
   <a href="time.html" class="back-button">&lt;</a>
   
@@ -164,7 +215,7 @@
   <div class="content">
     <div class="qipao-content">
       <div class="image-section">
-        <img src="../../assets/images/qipao_50s.jpg" alt="50年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=旗袍图片'">
+        <img src="../../../assets/images/stories/whm/character.svg" alt="人物图片" class="qipao-image">
       </div>
       
       <div class="text-section">
@@ -173,7 +224,7 @@
           <h2 class="era-title">现代</h2>
         </div>
         <p class="description">
-          伍红梅1997年就读服装学校时初见旗袍便心生热爱，20多年来一直从事旗袍制版工作。2019年“沙磁旗袍手工制作技艺”立项为非遗项目，2021年她成为代表性传承人。她将传统技艺与现代化数字工具结合，不断创新，使旗袍符合现代审美。她还开展传承制作工艺实践与课程，通过多种平台展示技艺，为外来务工、高校毕业生免费培训，带动创业就业，让旗袍制作传播到国外。
+          伍红梅1997年就读服装学校时初见旗袍便心生热爱，20多年来一直从事旗袍制版工作。2019年"沙磁旗袍手工制作技艺"立项为非遗项目，2021年她成为代表性传承人。她将传统技艺与现代化数字工具结合，不断创新，使旗袍符合现代审美。她还开展传承制作工艺实践与课程，通过多种平台展示技艺，为外来务工、高校毕业生免费培训，带动创业就业，让旗袍制作传播到国外。
         </p>
         
       </div>

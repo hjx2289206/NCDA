@@ -16,17 +16,37 @@
       :root {
         font-size: 14px;
       }
+      .qipao-image {
+        width: calc(25vw + 80px);
+      }
     }
     
     @media (max-width: 768px) {
       :root {
         font-size: 12px;
       }
+      .qipao-image {
+        width: calc(50vw + 50px);
+        max-height: 50vh;
+      }
     }
     
     @media (min-width: 1600px) {
       :root {
         font-size: 18px;
+      }
+      .qipao-image {
+        width: calc(35vw + 120px);
+      }
+    }
+    
+    /* 超高分辨率屏幕 */
+    @media (min-width: 2000px) {
+      :root {
+        font-size: 20px;
+      }
+      .qipao-image {
+        width: calc(40vw + 150px);
       }
     }
     
@@ -45,6 +65,81 @@
       padding: 0;
       background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
       overflow: hidden;
+      position: relative;
+    }
+    
+    /* 背景图片容器 */
+    .background-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* 背景图片1 - 左侧竖直居中 */
+    /* 可以通过修改 width 值调整图片大小 */
+    .background-1 {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 10vw;  /* 从25vw改为20vw，使图片更小 */
+      height: auto;
+      z-index: 1;
+      transition: width 0.3s ease;  /* 添加过渡效果 */
+    }
+
+    /* 背景图片2 - 中间偏上 */
+    /* 可以通过修改 width 和 top 值调整图片大小和位置 */
+    .background-2 {
+      position: absolute;
+      top: 10vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28vw;  /* 从20vw改为28vw，使图片更大 */
+      height: auto;
+      z-index: 1;
+      transition: width 0.3s ease;  /* 添加过渡效果 */
+    }
+
+    /* 背景图片3 - 右下角 */
+    /* 可以通过修改 width 值调整图片大小 */
+    .background-3 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 40vw;
+      height: auto;
+      z-index: 1;
+      transition: width 0.3s ease;  /* 添加过渡效果 */
+    }
+    
+    /* 响应式设计 - 背景图片大小调整 */
+    @media (max-width: 1200px) {
+      .background-1 {
+        width: 18vw;  /* 中等屏幕下稍微缩小 */
+      }
+      .background-2 {
+        width: 25vw;
+      }
+      .background-3 {
+        width: 22vw;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .background-1 {
+        width: 15vw;  /* 小屏幕下进一步缩小 */
+      }
+      .background-2 {
+        width: 22vw;
+      }
+      .background-3 {
+        width: 20vw;
+      }
     }
     
     /* 返回按钮样式 - 固定在左上角 */
@@ -52,14 +147,17 @@
       position: absolute;
       top: 5vh;
       left: 4vw;
-      font-size: 3rem;
+      font-size: calc(2rem + 1vw);
       color: #333333;
       text-decoration: none;
       z-index: 10;
+      transition: font-size 0.3s ease;
     }
     
     /* 主要内容容器 - 使用弹性布局实现两栏布局 */
     .qipao-content {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -68,6 +166,7 @@
       margin: 5vh auto;
       padding: 3vh 3vw;
       border-radius: 1.25rem;
+      background: none;  /* 移除背景 */
     }
     
     /* 文本区域样式 - 占据右侧空间并垂直居中 */
@@ -90,14 +189,17 @@
       padding: 2vh 2vw;
       order: -1;
       max-width: 45%;
+      background: none;  /* 移除背景 */
     }
     
-    /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
+    /* 人物图片样式 */
+    /* 可以通过修改 width 和 height 值调整图片大小 */
     .qipao-image {
       max-width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      height: 50vh;  /* 图片高度为视窗高度的50% */
+      object-fit: contain;  /* 保持图片比例 */
+      border-radius: 1.5vmin;
+      transition: all 0.3s ease;
     }
     
     /* 标题区域样式 - 竖排固定在左侧 */
@@ -110,31 +212,38 @@
       text-orientation: upright;
       z-index: 5;
       width: auto;
+      letter-spacing: 0.2vmin;
     }
     
     /* 主标题样式 */
     .main-title {
-      font-size: 2.5rem;
+      font-size: calc(1.5rem + 1vw);
       color: #333;
       margin-bottom: 1vh;
+      text-shadow: 0.1vmin 0.1vmin 0.2vmin rgba(0, 0, 0, 0.1);
+      transition: font-size 0.3s ease;
     }
     
     /* 年代标题样式 */
     .era-title {
-      font-size: 2rem;
+      font-size: calc(1.2rem + 0.8vw);
       margin-bottom: 2vh;
       color: #333;
+      text-shadow: 0.1vmin 0.1vmin 0.2vmin rgba(0, 0, 0, 0.1);
+      transition: font-size 0.3s ease;
     }
     
     /* 描述文本样式 - 设置合适的行高和边距 */
     .description {
-      font-size: 1.5rem;
+      font-size: calc(1rem + 0.5vw);
       line-height: 1.8;
       color: #333;
       text-align: justify;
       margin-bottom: 3vh;
       width: 100%;
       max-width: 90%;
+      padding: 0 1.5vw;
+      transition: font-size 0.3s ease;
     }
     
     /* 内容容器样式 */
@@ -145,6 +254,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background: none;  /* 移除背景 */
     }
     
     /* 响应式设计 */
@@ -169,28 +279,50 @@
         transform: none;
         margin-bottom: 3vh;
         width: 100%;
+        letter-spacing: normal;
       }
       
       .main-title {
-        font-size: 2rem;
+        font-size: calc(1.2rem + 2vw);
+        margin-bottom: 1.5vmin;
       }
       
       .era-title {
-        font-size: 1.5rem;
+        font-size: calc(1rem + 1.5vw);
+        margin-bottom: 3vmin;
       }
       
       .description {
-        font-size: 1rem;
+        font-size: calc(0.9rem + 1vw);
         max-width: 100%;
+        padding: 0 2vw;
+        line-height: 1.6;
       }
       
       .image-section {
         max-width: 100%;
+        margin-bottom: 3vh;
+      }
+      
+      .qipao-image {
+        width: 85%;
+        max-height: 45vh;
+      }
+      
+      .back-button {
+        font-size: calc(1.5rem + 1.5vw);
       }
     }
   </style>
 </head>
 <body>
+  <!-- 背景图片容器 -->
+  <div class="background-container">
+    <img src="../../../assets/images/stories/qj/background1.svg" alt="背景装饰1" class="background-1">
+    <img src="../../../assets/images/stories/qj/background2.svg" alt="背景装饰2" class="background-2">
+    <img src="../../../assets/images/stories/qj/background3.svg" alt="背景装饰3" class="background-3">
+  </div>
+
   <!-- 返回按钮 -->
   <a href="time.html" class="back-button">&lt;</a>
   
@@ -198,7 +330,7 @@
   <div class="content">
     <div class="qipao-content">
       <div class="image-section">
-        <img src="../../assets/images/qipao_20s.jpg" alt="20年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=20年代旗袍'">
+        <img src="../../../assets/images/stories/qj/character.svg" alt="人物图片" class="qipao-image">
       </div>
       
       <div class="text-section">

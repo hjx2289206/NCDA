@@ -35,6 +35,9 @@
       margin: 0;
       padding: 0;
       background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;  /* 防止出现滚动条 */
     }
     
     /* 返回按钮样式 - 固定在左上角 */
@@ -48,8 +51,41 @@
       z-index: 10;
     }
     
+    /* 背景图片容器 */
+    .background-container {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    /* 背景图片1 - 左上角 */
+    .background-1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25vw;
+      height: auto;
+      z-index: 1;
+    }
+    
+    /* 背景图片2 - 右下角 */
+    .background-2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 30vw;
+      height: auto;
+      z-index: 1;
+    }
+    
     /* 主要内容容器 - 使用弹性布局实现两栏布局 */
     .qipao-content {
+      position: relative;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,6 +107,8 @@
       flex: 1;
       text-align: center;
       padding: 2vh 2vw;
+      position: relative;
+      z-index: 2;
     }
     
     /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
@@ -178,6 +216,12 @@
   </style>
 </head>
 <body>
+  <!-- 背景图片容器 -->
+  <div class="background-container">
+    <img src="../../../assets/images/stories/sql/background1.svg" alt="背景装饰1" class="background-1">
+    <img src="../../../assets/images/stories/sql/background2.svg" alt="背景装饰2" class="background-2">
+  </div>
+
   <!-- 返回按钮 -->
   <a href="time.html" class="back-button">&lt;</a>
   
@@ -201,7 +245,7 @@
       </div>
       
       <div class="image-section">
-        <img src="../../assets/images/qipao_50s.jpg" alt="50年代旗袍" class="qipao-image" onerror="this.src='https://via.placeholder.com/400x500?text=旗袍图片'">
+        <img src="../../../assets/images/stories/sql/character.svg" alt="人物图片" class="qipao-image">
       </div>
     </div>
   </div>
