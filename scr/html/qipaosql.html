@@ -6,56 +6,38 @@
   <title>新风貌与新使命 - 20世纪50年代</title>
   <link rel="stylesheet" href="../css/global.css">
   <style>
-    /* 页面特定样式 */
+    /* 设计基准尺寸：1920x1080 */
     :root {
+      --design-width: 1920;
+      --design-height: 1080;
       font-size: 16px;
     }
     
-    /* 响应式字体大小 */
-    @media (max-width: 1200px) {
-      :root {
-        font-size: 14px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      :root {
-        font-size: 12px;
-      }
-    }
-    
-    @media (min-width: 1600px) {
-      :root {
-        font-size: 18px;
-      }
-    }
-    
     /* 页面基础样式设置 */
+    html {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    
     body {
+      height: 100vh;
       margin: 0;
       padding: 0;
       background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      overflow: hidden;
       position: relative;
-      min-height: 100vh;
-      overflow: hidden;  /* 防止出现滚动条 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
-    /* 返回按钮样式 - 固定在左上角 */
-    .back-button {
-      position: absolute;
-      top: 5vh;
-      left: 4vw;
-      font-size: 3rem;
-      color: #333333;
-      text-decoration: none;
-      z-index: 10;
-    }
-    
-    /* 背景图片容器 */
+    /* 背景图片容器 - 独立于主容器，直接贴屏幕边缘 */
     .background-container {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       top: 0;
       left: 0;
       z-index: 1;
@@ -68,6 +50,8 @@
       top: 0;
       left: 0;
       width: 25vw;
+      min-width: 200px;
+      max-width: 400px;
       height: auto;
       z-index: 1;
     }
@@ -78,8 +62,30 @@
       bottom: 0;
       right: 0;
       width: 30vw;
+      min-width: 250px;
+      max-width: 500px;
       height: auto;
       z-index: 1;
+    }
+    
+    /* 主容器 - 固定为设计尺寸，通过transform缩放 */
+    .main-container {
+      width: 1920px;
+      height: 1080px;
+      position: relative;
+      transform-origin: center center;
+      z-index: 2;
+    }
+    
+    /* 返回按钮样式 - 固定在屏幕左上角，不随主容器缩放 */
+    .back-button {
+      position: fixed;
+      top: 5vh;
+      left: 4vw;
+      font-size: clamp(24px, 3vw, 48px);
+      color: #333333;
+      text-decoration: none;
+      z-index: 10;
     }
     
     /* 主要内容容器 - 使用弹性布局实现两栏布局 */
@@ -89,71 +95,94 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 90vw;
-      margin: 5vh auto;
-      padding: 3vh 3vw;
-      border-radius: 1.25rem;
+      width: 90%;
+      max-width: 1728px; /* 90% of 1920px */
+      margin: 54px auto; /* 5vh at 1080px */
+      padding: 32px 58px; /* 3vh 3vw converted */
+      border-radius: 20px;
+      background: none;
     }
     
     /* 文本区域样式 - 占据左侧空间 */
     .text-section {
       flex: 1;
-      padding: 3vh 3vw;
+      padding: 32px 58px;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 540px; /* 50vh at 1080px */
+      max-height: 864px; /* 80vh at 1080px */
     }
     
     /* 图片区域样式 - 占据右侧空间并居中显示 */
     .image-section {
       flex: 1;
       text-align: center;
-      padding: 2vh 2vw;
-      position: relative;
-      z-index: 2;
+      padding: 22px 38px; /* 2vh 2vw converted */
+      max-width: 45%;
+      background: none;
     }
     
     /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
     .qipao-image {
       max-width: 100%;
-      height: auto;
-      border-radius: 20px;
+      height: 540px; /* 50vh at 1080px */
+      object-fit: contain;
+      border-radius: 16px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
-    /* 标题区域样式 - 固定在页面左上方 */
+    /* 标题区域样式 - 固定在屏幕左侧，独立于主容器 */
     .title-section {
-      margin-bottom: 4vh;
       position: fixed;
-      left: 8vw;
-      top: 8vh;
-      padding: 1vh 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      left: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      writing-mode: vertical-lr;
+      text-orientation: upright;
       z-index: 5;
+      width: auto;
+      letter-spacing: 0.2vw;
     }
     
     /* 主标题样式 */
     .main-title {
-      font-size: 3rem;
+      font-size: clamp(24px, 2.5vw, 40px);
       color: #333;
       margin-bottom: 1vh;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
     
     /* 年代标题样式 */
     .era-title {
-      font-size: 2rem;
+      font-size: clamp(20px, 2vw, 32px);
       margin-bottom: 2vh;
       color: #333;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
     
     /* 描述文本样式 - 设置合适的行高和边距 */
     .description {
-      font-size: 1.5rem;
+      font-size: 24px; /* 1.5rem at 16px base */
       line-height: 1.8;
       color: #333;
       text-align: justify;
-      margin-bottom: 3vh;
-      margin-top: 18vh;
+      margin-bottom: 32px; /* 3vh at 1080px */
+      width: 100%;
+      max-width: 90%;
+      padding: 0 29px; /* 1.5vw at 1920px */
+    }
+    
+    /* 内容容器样式 */
+    .content {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
     }
     
     /* 装饰线条容器 - 水平居中对齐 */
@@ -161,93 +190,154 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 3vh 0;
+      margin: 32px 0;
       width: 100%;
     }
     
     /* 装饰线条样式 */
     .decoration-line .line {
-      height: 0.125rem;
+      height: 2px;
       background-color: #151616;
-      width: 3rem;
+      width: 48px;
     }
     
     /* 装饰圆点样式 */
     .decoration-line .circle {
-      width: 0.75rem;
-      height: 0.75rem;
-      border: 0.125rem solid #151616;
+      width: 12px;
+      height: 12px;
+      border: 2px solid #151616;
       border-radius: 50%;
-      margin: 0 1rem;
+      margin: 0 16px;
     }
-    
-    /* 响应式设计 */
+
+    /* 小屏幕适配 */
     @media (max-width: 768px) {
-      .qipao-content {
-        flex-direction: column;
-        padding: 2vh 3vw;
+      .background-1 {
+        width: 20vw;
+        min-width: 120px;
+        max-width: 200px;
       }
       
-      .text-section, .image-section {
-        width: 100%;
-        padding: 2vh 3vw;
+      .background-2 {
+        width: 35vw;
+        min-width: 180px;
+        max-width: 300px;
+      }
+      
+      .back-button {
+        font-size: clamp(20px, 4vw, 36px);
+        top: 3vh;
+        left: 3vw;
       }
       
       .title-section {
         position: fixed;
-        left: 5vw;
-        top: 5vh;
-        margin-bottom: 3vh;
+        left: 3vw;
+        top: 15vh;
+        transform: none;
+        writing-mode: horizontal-tb;
+        text-orientation: mixed;
+        letter-spacing: normal;
+        width: 90vw;
+        text-align: center;
       }
       
-      .main-title {
-        font-size: 2rem;
+      .main-container {
+        /* 小屏幕下调整布局 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
       
-      .era-title {
-        font-size: 1.5rem;
+      .qipao-content {
+        flex-direction: column;
+        width: 95%;
+        padding: 20px;
+      }
+      
+      .image-section, .text-section {
+        max-width: 100%;
+        width: 100%;
+        padding: 15px;
+      }
+      
+      .qipao-image {
+        height: auto;
+        max-height: 300px;
+        width: 80%;
       }
       
       .description {
-        font-size: 1rem;
         margin-top: 0;
       }
     }
   </style>
 </head>
 <body>
-  <!-- 背景图片容器 -->
+  <!-- 背景图片容器 - 独立定位，贴屏幕边缘 -->
   <div class="background-container">
     <img src="../../../assets/images/stories/sql/background1.svg" alt="背景装饰1" class="background-1">
     <img src="../../../assets/images/stories/sql/background2.svg" alt="背景装饰2" class="background-2">
   </div>
 
-  <!-- 返回按钮 -->
+  <!-- 返回按钮 - 固定在屏幕左上角 -->
   <a href="time.html" class="back-button">&lt;</a>
   
-  <!-- 主要内容区域 -->
-  <div class="content">
-    <div class="qipao-content">
-      <div class="text-section">
-        <div class="title-section">
-          <h1 class="main-title">新风貌与新使命</h1>
-          <h2 class="era-title">20世纪50年代</h2>
+  <!-- 标题区域 - 固定在屏幕左侧 -->
+  <div class="title-section">
+    <h1 class="main-title">新风貌与新使命</h1>
+    <h2 class="era-title">20世纪50年代</h2>
+  </div>
+
+  <!-- 主容器 - 固定尺寸，通过JS控制缩放 -->
+  <div class="main-container" id="mainContainer">
+    <!-- 主要内容区域 -->
+    <div class="content">
+      <div class="qipao-content">
+        <div class="text-section">
+          <p class="description">
+            宋庆龄作为重要的外交人物，经常身着旗袍出席各类外交场合。她所穿的旗袍款式端庄、大气，色彩典雅与形展现了中国女性的优雅气质，又代表了中国传统文化的魅力，向世界展示了新中国女性的风采。旗袍在国际舞台上成为了中国女性的代表性服饰。
+          </p>
+          <!-- 水平线-圆-水平线装饰 -->
+          <div class="decoration-line">
+            <div class="line"></div>
+            <div class="circle"></div>
+            <div class="line"></div>
+          </div>
         </div>
-        <p class="description">
-          宋庆龄作为重要的外交人物，经常身着旗袍出席各类外交场合。她所穿的旗袍款式端庄、大气，色彩典雅与形展现了中国女性的优雅气质，又代表了中国传统文化的魅力，向世界展示了新中国女性的风采。旗袍在国际舞台上成为了中国女性的代表性服饰。
-        </p>
-        <!-- 水平线-圆-水平线装饰 -->
-        <div class="decoration-line">
-          <div class="line"></div>
-          <div class="circle"></div>
-          <div class="line"></div>
+        
+        <div class="image-section">
+          <img src="../../../assets/images/stories/sql/character.svg" alt="人物图片" class="qipao-image">
         </div>
-      </div>
-      
-      <div class="image-section">
-        <img src="../../../assets/images/stories/sql/character.svg" alt="人物图片" class="qipao-image">
       </div>
     </div>
   </div>
+
+  <script>
+    function updateScale() {
+      const container = document.getElementById('mainContainer');
+      const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      
+      // 计算缩放比例，取宽高比例中的较小值以确保完整显示
+      const scaleX = windowWidth / 1920;
+      const scaleY = windowHeight / 1080;
+      const scale = Math.min(scaleX, scaleY);
+      
+      // 应用缩放
+      container.style.transform = `scale(${scale})`;
+    }
+
+    // 页面加载时执行
+    window.addEventListener('load', updateScale);
+    
+    // 防抖函数，避免频繁触发
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateScale, 100);
+    });
+  </script>
 </body>
 </html>

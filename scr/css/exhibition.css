@@ -92,7 +92,7 @@ body {
 
 .image-box.next {
   /* 后一个图片框的位置 */
-  transform: translateX(calc(55.95vw + (18.26vw - 7.22vw)/2)) scale(0.8); /* 向右移动并缩小 */
+  transform: translateX(calc(52vw + (18.26vw - 7.22vw)/2)) scale(0.8); /* 向右移动 */
 }
 
 .image-box.prev img, .image-box.next img {
