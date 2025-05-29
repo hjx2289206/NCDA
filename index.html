@@ -1,131 +1,310 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
+    <!-- 设置文档字符编码为UTF-8 -->
     <meta charset="UTF-8">
+    <!-- 设置视口以确保页面在不同设备上正确显示 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>兰花文化展示</title>
+    <link rel="stylesheet" href="scr\css\global.css"><!-- 引入全局CSS样式表 -->
+    <!-- 页面标题 -->
+    <title>NCDA</title>
     <style>
-        @font-face {
-            font-family: '黄令东齐伋复刻';
-            src: url('fonts/黄令东齐伋复刻.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
-        }
-
-        body {
-            font-family: '黄令东齐伋复刻', sans-serif;
+        /* 全局样式重置，确保所有元素没有默认边距和内边距 */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f8f8f8;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            box-sizing: border-box;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 3rem;
-            color: #333;
-            margin-bottom: 2rem;
-            animation: fadeIn 1s ease-in;
-        }
-
-        .nav-menu {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .nav-item {
-            position: relative;
-            width: 300px;
-            height: 400px;
-            background: linear-gradient(180deg, #FFFFFF 0%, #DDC6D5 100%);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .nav-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .nav-item img {
+        
+        /* 主体样式 */
+        body {
             width: 100%;
-            height: 70%;
-            object-fit: cover;
+            min-height: 100vh; /* 确保至少占满整个视口高度 */
+            background: linear-gradient(180deg, #E7F6F1 6%, #ADE0D1 100%); /* 从浅绿色到深绿色的渐变背景 */
+            position: relative; /* 为绝对定位的子元素提供参考 */
+            overflow: hidden; /* 🎯 完全禁用滚动条（水平和垂直） */
         }
-
-        .nav-item-content {
-            padding: 1.5rem;
+        
+        /* 背景元素响应式定位 - 微调指南 */
+        
+        /* 背景1样式 - 位于页面左下角 */
+        .background1 {
+            position: absolute;
+            left: 0; /* 左对齐 */
+            bottom: 0; /* 底部对齐 */
+            width: 40vw;
+            height: auto; /* 保持宽高比 */
+            z-index: -1; /* 置于内容层之下 */
         }
-
-        .nav-item h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #333;
+        
+        /* 背景2样式 - 位于页面右上角 */
+        .background2 {
+            position: absolute;
+            right: 0; /* 右对齐 */
+            top: 0; /* 顶部对齐 */
+            width: 40vw; /* 与background1保持相同大小比例 */
+            height: auto;
+            z-index: -1;
         }
-
-        .nav-item p {
-            margin: 0.5rem 0 0;
-            font-size: 1rem;
-            color: #666;
+        
+        /* 背景3样式 - 位于页面左侧偏上 */
+        .background3 {
+            position: absolute;
+            left: 3vw;
+            top: 15vh;
+            width: 13vw;
+            height: auto;
+            z-index: 0;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+        
+        /* Vector 13样式 - 位于页面右侧（右侧文字的背景） */
+        .vector13 {
+            position: absolute;
+            right: 8vw;
+            top: 20vh;
+            height: 60vh;
+            width: auto;
+            z-index: -1;
         }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
+        
+        /* Vector 14样式 - 位于页面下方偏左 */
+        .vector14 {
+            position: absolute;
+            left: 5vw; /* 🎯 图片水平位置：5vw表示距离左边5%屏幕宽度，增大向右移，减小向左移 */
+            bottom: 0; /* 🎯 图片垂直位置：0表示贴底部，改为5vh等正值会向上移动 */
+            width: 35vw;
+            height: auto;
+            z-index: -1;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* 更平滑的过渡效果 */
+        }
+        
+        /* Vector 14的容器，用于鼠标悬停效果 */
+        .vector14-container {
+            position: absolute;
+            left: 5vw; /* 🎯 容器位置：与内部元素保持一致 */
+            bottom: 0;
+            width: 35vw;
+            height: auto;
+            z-index: 0; /* 确保容器可以接收鼠标事件 */
+        }
+        
+        .vector14-container:hover .vector14 {
+            transform: scale(1.35) translate(20%, -2%); /* 放大并向右上方移动 */
+            z-index: 10; /* 置顶显示 */
+        }
+        
+        /* 动态边框SVG样式 */
+        .dynamic-border {
+            position: absolute;
+            left: 5vw;
+            bottom: 0;
+            width: 35vw;
+            height: auto;
+            z-index: 11; /* 在放大的vector14之上 */
+            opacity: 0;
+            /* 🎯 关键改动：边框也要跟随背景图的变换 */
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            pointer-events: none; /* 不阻挡鼠标事件 */
+        }
+        
+        /* 🎯 新增：边框跟随背景图变换 */
+        .vector14-container:hover .dynamic-border {
+            opacity: 1;
+            transform: scale(1.35) translate(20%, -2%); /* 与背景图相同的变换 */
+        }
+        
+        /* SVG路径样式 */
+        .dynamic-border path {
+            stroke: #ff6b6b;
+            stroke-width: 3;
+            fill: none;
+            stroke-dasharray: 0; /* 初始状态 */
+            stroke-dashoffset: 0;
+            filter: drop-shadow(0 0 5px rgba(255, 107, 107, 0.5)); /* 添加发光效果 */
+        }
+        
+        /* 🎯 关键改动：延迟边框动画，等待变换完成 */
+        .vector14-container:hover .dynamic-border path {
+            animation: drawBorder 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.5s, /* 延迟0.5秒开始 */
+                       pulse 3s ease-in-out infinite 3s; /* 延迟3秒开始脉冲 */
+        }
+        
+        /* 边框绘制动画关键帧 */
+        @keyframes drawBorder {
+            0% {
+                stroke-dasharray: 0 5000;
+                stroke-dashoffset: 0;
+                stroke: #ff6b6b;
             }
-
-            .nav-item {
-                width: 90%;
-                height: 300px;
+            50% {
+                stroke-dasharray: 2500 2500;
+                stroke-dashoffset: 0;
+                stroke: #ff9f43;
             }
+            100% {
+                stroke-dasharray: 5000 0;
+                stroke-dashoffset: 0;
+                stroke: #00d2d3;
+            }
+        }
+        
+        /* 脉冲效果 */
+        @keyframes pulse {
+            0%, 100% {
+                stroke-width: 3;
+                filter: drop-shadow(0 0 5px rgba(0, 210, 211, 0.5));
+            }
+            50% {
+                stroke-width: 4;
+                filter: drop-shadow(0 0 10px rgba(0, 210, 211, 0.8));
+            }
+        }
+        
+        /* 🎯 新增：鼠标离开时重置边框动画 */
+        .vector14-container:not(:hover) .dynamic-border path {
+            animation: none;
+            stroke-dasharray: 0 5000;
+            stroke: #ff6b6b;
+        }
+        
+        /* 竖向文本样式 - 通用样式 */
+        .vertical-text {
+            writing-mode: vertical-rl; /* 设置文本垂直排列，从右到左 */
+            text-orientation: upright; /* 确保每个字符都是直立的 */
+            white-space: nowrap; /* 防止文本换行 */
+            font-family: "S_1", sans-serif; /* 使用项目自定义字体 */
+            letter-spacing: clamp(0.05em, 0.15em, 0.3em);
+            line-height: clamp(1.1, 1.3, 1.5);
+        }
+        
+        /* 旖袍录文本 - 相对于Vector 13定位 */
+        .text-vector13 {
+            position: absolute;
+            right: calc(8vw + clamp(0.5vw, 1.5vw, 3vw));
+            top: calc(20vh + clamp(8vh, 13vh, 18vh));
+            font-size: 6.5vw;
+            color: #333; /* 文字颜色 */
+            z-index: 1; /* 确保文字在图片上层 */
+            transform-origin: center; /* 设置缩放中心点 */
+        }
+        
+        /* 古韵流芳文本 - 位于左侧 */
+        .text-left-1 {
+            position: absolute;
+            left: 9vw;
+            top: 28vh;
+            font-size: 5vw;
+            color: #333; /* 文字颜色 */
+            z-index: 1; /* 确保文字在图片上层 */
+        }
+        
+        /* 雅韵生香文本 - 位于左侧 */
+        .text-left-2 {
+            position: absolute;
+            left: 16vw;
+            top: 28vh;
+            font-size: 5vw;
+            color: #333; /* 文字颜色 */
+            z-index: 1; /* 确保文字在图片上层 */
+        }
 
-            h1 {
-                font-size: 2rem;
+        /* 添加页面加载时的自动动画 */
+        .auto-animate {
+            animation: autoDrawBorder 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 1s;
+        }
+
+        @keyframes autoDrawBorder {
+            0% {
+                opacity: 0;
+                stroke-dasharray: 0 5000;
+                stroke-dashoffset: 0;
+                stroke: #ff6b6b;
+            }
+            10% {
+                opacity: 1;
+            }
+            50% {
+                stroke-dasharray: 2500 2500;
+                stroke-dashoffset: 0;
+                stroke: #ff9f43;
+            }
+            100% {
+                stroke-dasharray: 5000 0;
+                stroke-dashoffset: 0;
+                stroke: #00d2d3;
+                opacity: 0.7;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>兰花文化展示</h1>
-        <div class="nav-menu">
-            <a href="scr\html\exhibition.html" class="nav-item">
-                <img src="images/flower1.jpg" alt="">
-                <div class="nav-item-content">
-                    <h2>展览</h2>
-                    <p>ababababab</p>
-                </div>
-            </a>
-            <a href="#" class="nav-item">
-                <img src="images/flower2.jpg" alt="">
-                <div class="nav-item-content">
-                    <h2>ababab</h2>
-                    <p>ababababab</p>
-                </div>
-            </a>
-        </div>
+    <!-- 背景元素 -->
+    <!-- 背景1：位于页面左下角 -->
+    <img src="assets/images/index/background1.svg" alt="背景1" class="background1">
+    <!-- 背景2：位于页面右上角 -->
+    <img src="assets/images/index/background2.svg" alt="背景2" class="background2">
+    <!-- 背景3：位于页面左侧偏上 -->
+    <img src="assets/images/index/background3.svg" alt="背景3" class="background3">
+    <!-- Vector 13：位于页面右侧 -->
+    <img src="assets/images/index/Vector 13.svg" alt="Vector 13" class="vector13">
+    <!-- Vector 14：位于页面下方偏左 -->
+     <a href="scr/html/time.html">
+    <div class="vector14-container">
+        <img src="assets/images/index/Vector 14.svg" alt="Vector 14" class="vector14">
+        <!-- 动态边框SVG -->
+        <svg class="dynamic-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 658 804">
+            <path id="animatePath"
+                d="M254.104 6.22897C254.104 6.22897 250.04 8.7131 247.436 10.3048M247.436 10.3048C268.033 24.1755 300.179 45.8229 300.179 45.8229L318.366 65.6198L325.641 88.9103L334.734 62.1262L356.559 42.9115L387.477 24.8614L404.452 10.3048C404.452 10.3048 401.42 6.81104 400.208 2.7354C398.996 -1.34025 404.452 3.4194 408.089 6.22897C411.727 9.03855 416.152 28.3968 420.214 42.9115C423.181 53.5113 424.279 59.5907 426.883 70.2779M247.436 10.3048C240.096 33.7258 235.981 46.857 228.642 70.2779M426.883 70.2779C448.664 80.283 482.657 95.8975 482.657 95.8975L592.386 130.251C592.386 130.251 611.18 136.656 615.424 144.225C619.667 151.795 629.367 176.25 629.367 176.25C629.367 176.25 658.466 214.679 656.042 223.413C653.617 232.147 645.129 237.387 645.129 237.387L615.424 257.184L561.468 283.968C561.468 283.968 545.382 341.96 534.187 378.877C527.066 402.36 521.769 415.17 515.394 438.85C507.885 466.742 502.098 482.339 499.632 511.051C497.996 530.087 497.556 540.965 499.632 559.961C502.328 584.643 507.57 598.028 515.394 621.681C526.538 655.373 541.275 671.239 552.375 704.945C562.682 736.244 566.211 754.563 571.168 787.044C578.317 833.884 576.624 908.154 576.624 908.154L562.074 1164.35H95.2693L88.6007 1024.02C88.6007 1024.02 79.74 936.061 81.3258 879.623C82.3441 843.379 81.9615 822.736 88.6007 787.044C94.6919 754.297 100.873 736.366 112.244 704.945C124.328 671.553 138.837 655.595 149.225 621.681C156.458 598.065 160.535 584.501 162.562 559.961C165.421 525.339 161.177 505.39 153.468 471.457C147.435 444.898 139.7 431.139 131.644 405.079C123.6 379.059 112.244 338.119 112.244 338.119M426.883 70.2779C416.466 80.283 400.208 95.8975 400.208 95.8975C400.208 95.8975 376.561 103.882 361.409 108.998M112.244 338.119L100.119 283.968L42.5264 253.691C42.5264 253.691 3.72682 233.894 1.90827 225.16C0.0897236 216.426 24.3802 193.989 37.6765 173.338C47.7779 157.649 49.8013 144.808 62.5323 132.58C75.2634 120.353 105.008 119.678 131.644 109.872C160.758 99.1526 204.999 79.5941 204.999 79.5941C204.999 79.5941 220.155 70.2779 228.642 70.2779M112.244 338.119C112.244 338.119 113.131 277.849 131.644 245.539C141.165 228.923 148.906 220.81 162.562 207.11C177.445 192.178 186.957 184.609 204.999 173.338M228.642 70.2779C235.981 77.5543 247.436 88.9103 247.436 88.9103C247.436 88.9103 266.649 97.4273 278.96 102.885M278.96 102.885C281.564 97.4273 280.223 91.9245 285.629 88.9103C292.818 84.9014 298.148 92.4267 305.635 95.8975C310.792 98.2882 312.722 101.952 318.366 102.885C321.166 103.347 322.8 102.885 325.641 102.885C329.192 102.885 334.734 102.885 334.734 102.885C334.734 102.885 343.971 102.885 349.89 102.885C354.389 102.885 359.233 99.1033 361.409 102.885C362.611 104.974 365.046 105.796 361.409 108.998M278.96 102.885C285.589 105.613 289.306 107.143 295.935 109.872C302.564 112.6 307.027 106.937 312.91 109.872C315.815 111.321 317.339 112.576 319.275 115.112M361.409 108.998C361.409 108.998 362.611 113.022 361.409 115.112C359.233 118.894 349.89 115.112 349.89 115.112C349.89 115.112 340.354 113.329 334.734 115.112C330.802 116.36 329.724 121.018 325.641 120.353C322.413 119.826 321.761 117.159 319.275 115.112M319.275 115.112C301.802 119.628 292.149 123.13 275.929 130.833C256.151 140.227 245.533 146.895 228.642 160.529M228.642 160.529C222.094 158.433 218.493 156.358 213.486 151.795C209.433 148.101 210.217 142.651 204.999 140.732C198.264 138.254 191.335 141.565 188.024 147.719C185.633 152.163 185.339 156.242 188.024 160.529C191.578 166.203 202.393 159.057 204.999 165.187C206.252 168.134 206.252 170.391 204.999 173.338M228.642 160.529C226.597 163.624 226.24 166.361 227.43 169.845C229.067 174.642 236.016 172.887 238.342 177.414C240.542 181.696 240.331 185.265 238.342 189.642C236.996 192.604 235.978 194.771 232.886 196.047C226.869 198.529 220.155 185.566 220.155 185.566C220.155 185.566 223.791 193.912 220.155 196.047C217.933 197.351 216.009 196.669 213.486 196.047C209.404 195.039 206.312 193.489 204.999 189.642C203.137 184.188 216.451 182.397 213.486 177.414C211.648 174.324 208.313 174.93 204.999 173.338" />
+        </svg>
     </div>
+    </a>
+    
+    <!-- 竖向排列的文本元素 -->
+    <!-- 旖袍录：位于Vector 13内 -->
+    <div class="vertical-text text-vector13">旖袍录</div>
+    
+    <!-- 古韵流芳和雅韵生香：左右排列在左侧 -->
+    <div class="vertical-text text-left-1">古韵流芳</div>
+    <div class="vertical-text text-left-2">雅韵生香</div>
+
+    <!-- JavaScript：处理动态边框的绘制效果 -->
+    <script>
+        // 等待页面加载完成后设置动态边框和自动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = document.getElementById("animatePath");
+            if (path) {
+                // 获取路径的真实长度
+                const length = path.getTotalLength();
+                
+                // 设置初始状态
+                path.style.strokeDasharray = `0 ${length}`;
+                path.style.strokeDashoffset = '0';
+                
+                // 添加自动动画类，页面加载后自动播放一次动画
+                path.classList.add('auto-animate');
+                
+                // 可选：添加点击重播功能
+                const container = document.querySelector('.vector14-container');
+                let canClick = true;
+                
+                container.addEventListener('click', function() {
+                    if (canClick) {
+                        canClick = false;
+                        // 重置动画
+                        path.style.animation = 'none';
+                        // 强制重绘
+                        path.offsetHeight;
+                        // 重新应用动画（延迟0.5秒等待变换完成）
+                        path.style.animation = 'drawBorder 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.5s, pulse 3s ease-in-out infinite 3s';
+                        
+                        // 3.5秒后允许再次点击（包含延迟时间）
+                        setTimeout(() => {
+                            canClick = true;
+                        }, 3500);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>

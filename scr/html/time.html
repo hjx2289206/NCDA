@@ -14,9 +14,379 @@
     <nav-bar></nav-bar>
   </header>
   
-  <!-- 主要内容区域 -->
-  <div class="content">
-    <!-- 这里添加时间线内容 -->
+  <!-- 固定比例容器包装器 -->
+  <div class="fixed-scale-wrapper">
+    <!-- 主要内容区域 -->
+    <div class="content">
+      <h1>发展时间线</h1>
+      
+      <!-- 时间线容器 -->
+      <div class="timeline-container">
+        <!-- 藤蔓背景 -->
+        <div class="vine-background">
+          <img src="../../assets/images/time/vine.svg" alt="藤蔓" class="vine">
+          
+          <!-- ========== 叶子垂直位置调整区域 ========== -->
+          <!-- 
+               每个叶子的主要垂直位置通过 style="top: x%" 控制
+               可以调整的数值范围：0% - 100%
+               - 0% = 藤蔓最顶部
+               - 50% = 藤蔓中间位置  
+               - 100% = 藤蔓最底部
+          -->
+          
+          <div class="timeline-points">
+            <div class="timeline-point" style="top: 10%">
+              <a href="qipaoqj.html" class="blade-link">
+                <img src="../../assets/images/time/blade1.svg" alt="叶子1" class="blade blade1">
+              </a>
+              <div class="text-box text-box1 text-box-left">
+                <img src="../../assets/images/time/Vector 15.svg" alt="文本框背景" class="text-bg">
+                <div class="text-content">
+                  <p class="vertical-text">清末民初—觉醒的萌芽</p>
+                  <p class="vertical-text">21世纪20年代</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="timeline-point" style="top: 30%">
+              <a href="#" class="blade-link">
+                <img src="../../assets/images/time/blade2.svg" alt="叶子2" class="blade blade2">
+              </a>
+              <div class="text-box text-box2 text-box-right">
+                <img src="../../assets/images/time/Vector 15.svg" alt="文本框背景" class="text-bg">
+                <div class="text-content">
+                  <p class="vertical-text">文本内容3</p>
+                  <p class="vertical-text">文本内容4</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="timeline-point" style="top: 50%">
+              <a href="#" class="blade-link">
+                <img src="../../assets/images/time/blade3.svg" alt="叶子3" class="blade blade3">
+              </a>
+              <div class="text-box text-box3 text-box-left">
+                <img src="../../assets/images/time/Vector 15.svg" alt="文本框背景" class="text-bg">
+                <div class="text-content">
+                  <p class="vertical-text">文本内容5</p>
+                  <p class="vertical-text">文本内容6</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="timeline-point" style="top: 70%">
+              <a href="#" class="blade-link">
+                <img src="../../assets/images/time/blade4.svg" alt="叶子4" class="blade blade4">
+              </a>
+              <div class="text-box text-box4 text-box-left">
+                <img src="../../assets/images/time/Vector 15.svg" alt="文本框背景" class="text-bg">
+                <div class="text-content">
+                  <p class="vertical-text">文本内容7</p>
+                  <p class="vertical-text">文本内容8</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="timeline-point" style="top: 90%">
+              <a href="#" class="blade-link">
+                <img src="../../assets/images/time/blade5.svg" alt="叶子5" class="blade blade5">
+              </a>
+              <div class="text-box text-box5 text-box-right">
+                <img src="../../assets/images/time/Vector 15.svg" alt="文本框背景" class="text-bg">
+                <div class="text-content">
+                  <p class="vertical-text">文本内容9</p>
+                  <p class="vertical-text">文本内容10</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+  
+  <style>
+    /* 固定比例容器样式 */
+    .fixed-scale-wrapper {
+      /* 设计基准尺寸 */
+      --design-width: 1920;
+      --design-height: 1080;
+      
+      /* 当前屏幕尺寸 - 通过JavaScript动态设置 */
+      --screen-width: 1920;
+      --screen-height: 1080;
+      
+      /* 计算缩放比例 */
+      --scale-x: calc(var(--screen-width) / var(--design-width));
+      --scale-y: calc(var(--screen-height) / var(--design-height));
+      --scale: min(var(--scale-x), var(--scale-y));
+      
+      /* 固定容器为设计基准尺寸 */
+      width: calc(var(--design-width) * 1px);
+      height: calc(var(--design-height) * 1px);
+      
+      /* 应用缩放变换 */
+      transform: scale(var(--scale));
+      transform-origin: top left;
+      
+      /* 页面滚动容器 */
+      overflow: visible;
+      position: relative;
+    }
+
+    /* 时间线容器样式 */
+    .timeline-container {
+      position: relative;
+      margin: 80px auto; /* 固定像素值 */
+      padding: 40px 0;
+      width: 80%;
+      min-height: 1500px; /* 固定像素值 */
+    }
+    
+    /* 藤蔓背景样式 */
+    .vine-background {
+      position: absolute; /* 绝对定位 */
+      top: 400px; /* 固定像素值 */
+      left: 50%; /* 水平居中 */
+      transform: translateX(-50%); /* 水平居中微调 */
+      height: 90%; /* 高度 */
+      width: 100%; /* 设置宽度以便子元素可以相对定位 */
+    }
+    
+    .vine {
+      height: 100%; /* 高度占满父容器 */
+      max-height: 1500px; /* 固定像素值，不再使用vh */
+      display: block;
+      margin: 0 auto; /* 水平居中 */
+      position: relative;
+      z-index: 3; /* 提高藤蔓的层级，使其在叶子上方 */
+    }
+    
+    /* 时间点样式 */
+    .timeline-points {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* 降低叶子的层级，使其在藤蔓下方 */
+    }
+    
+    .timeline-point {
+      position: absolute;
+      width: 100%;
+      /* 不再使用margin，改用top百分比定位 */
+      display: flex;
+      align-items: center;
+    }
+    
+    /* 叶子公共样式 */
+    .blade {
+      height: auto; /* 高度自动，保持宽高比 */
+      position: absolute; /* 绝对定位，方便调整位置 */
+      transition: all 0.3s ease; /* 添加平滑过渡效果 */
+      cursor: pointer; /* 鼠标悬停时显示指针 */
+    }
+    
+    /* 添加鼠标悬停放大效果 */
+    .blade:hover {
+      transform: scale(1.1); /* 鼠标悬停时放大1.1倍 */
+      z-index: 2; /* 悬停时提高层级，确保放大的叶子显示在最上层 */
+    }
+    
+    /* ========== 每个叶子的独立大小和位置调整区域 ========== */
+    
+    .blade1 {
+      /* 叶子1 - 独立大小和位置设置 */
+      width: 800px;           /* 叶子1的独立宽度 */
+      left: -10%;               /* 水平位置 */
+      top: -500px;            /* 垂直微调 */
+      /* transform: rotate(5deg); */ /* 如需旋转角度，取消注释并调整 */
+    }
+    
+    .blade2 {
+      /* 叶子2 - 独立大小和位置设置 */
+      width: 500px;           /* 叶子2的独立宽度（比叶子1小） */
+      right: 4%;             /* 水平位置 */
+      top: -330px;            /* 垂直微调 */
+      /* transform: rotate(-3deg); */ /* 如需旋转角度，取消注释并调整 */
+    }
+    
+    .blade3 {
+      /* 叶子3 - 独立大小和位置设置 */
+      width: 450px;           /* 叶子3的独立宽度（比叶子1大） */
+      left: -4%;             /* 水平位置 */
+      top: -345px;            /* 垂直微调 */
+      /* transform: rotate(2deg); */ /* 如需旋转角度，取消注释并调整 */
+    }
+    
+    .blade4 {
+      /* 叶子4 - 独立大小和位置设置 */
+      width: 500px;           /* 叶子4的独立宽度（最小） */
+      right: 44%;             /* 水平位置 */
+      top: -160px;            /* 垂直微调 */
+      /* transform: rotate(-5deg); */ /* 如需旋转角度，取消注释并调整 */
+    }
+    
+    .blade5 {
+      /* 叶子5 - 独立大小和位置设置 */
+      width: 570px;           /* 叶子5的独立宽度（最大） */
+      left: 48%;              /* 水平位置 */
+      top: -420px;            /* 垂直微调 */
+      /* transform: rotate(8deg); */ /* 如需旋转角度，取消注释并调整 */
+    }
+
+    /* 为页面添加滚动容器 */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: auto; /* 允许水平滚动 */
+      overflow-y: auto; /* 允许垂直滚动 */
+      min-height: 100vh;
+    }
+    
+    /* 文本框公共样式 */
+    .text-box {
+      position: absolute;
+      z-index: 2;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      transform: translateY(20px) scale(0.98);
+    }
+    .timeline-point:hover .text-box,
+    .blade-link:focus + .text-box {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+    
+    /* 基础左右位置样式 */
+    .text-box-left {
+      right: 100%; /* 放在叶子左侧 */
+    }
+    
+    .text-box-right {
+      left: 100%; /* 放在叶子右侧 */
+    }
+    
+    /* ========== 每个文本框的独立大小和位置调整区域 ========== */
+    
+    .text-box1 {
+      /* 文本框1 - 独立大小和位置设置 */
+      width: 300px;           /* 文本框1宽度 */
+      height: 400px;          /* 文本框1高度 */
+      margin-right: -100px;     /* 与叶子1的距离 */
+      top: -390px;               /* 相对于叶子的垂直偏移 */
+      /* transform: translateY(-20px); */ /* 如需垂直微调，取消注释 */
+    }
+    
+    .text-box2 {
+      /* 文本框2 - 独立大小和位置设置 */
+      width: 280px;           /* 文本框2宽度（稍小） */
+      height: 380px;          /* 文本框2高度（稍小） */
+      margin-left: -160px;      /* 与叶子2的距离 */
+      top: -300px;             /* 相对于叶子的垂直偏移 */
+      /* transform: translateY(10px); */ /* 如需垂直微调，取消注释 */
+    }
+    
+    .text-box3 {
+      /* 文本框3 - 独立大小和位置设置 */
+      width: 320px;           /* 文本框3宽度（稍大） */
+      height: 420px;          /* 文本框3高度（稍大） */
+      margin-right: -80px;     /* 与叶子3的距离 */
+      top: -400px;              /* 相对于叶子的垂直偏移 */
+      /* transform: translateY(-30px); */ /* 如需垂直微调，取消注释 */
+    }
+    
+    .text-box4 {
+      /* 文本框4 - 独立大小和位置设置 */
+      width: 320px;           /* 文本框4宽度（最小） */
+      height: 420px;          /* 文本框4高度（最小） */
+      margin-right: -140px;      /* 与叶子4的距离 */
+      top: -160px;              /* 相对于叶子的垂直偏移 */
+      /* transform: translateY(15px); */ /* 如需垂直微调，取消注释 */
+    }
+    
+    .text-box5 {
+      /* 文本框5 - 独立大小和位置设置 */
+      width: 340px;           /* 文本框5宽度（最大） */
+      height: 440px;          /* 文本框5高度（最大） */
+      margin-left: -90px;     /* 与叶子5的距离 */
+      top: -400px;             /* 相对于叶子的垂直偏移 */
+      /* transform: translateY(-10px); */ /* 如需垂直微调，取消注释 */
+    }
+    
+    .text-bg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    
+    .text-content {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 0;
+    }
+    
+    .vertical-text {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      font-size: 34px;
+      color: #333;
+      margin: 0;
+    }
+  </style>
+
+  <script>
+    // 固定比例缩放函数
+    function updateFixedScale() {
+      const wrapper = document.querySelector('.fixed-scale-wrapper');
+      if (!wrapper) return;
+      
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      
+      // 更新CSS变量
+      wrapper.style.setProperty('--screen-width', screenWidth);
+      wrapper.style.setProperty('--screen-height', screenHeight);
+      
+      // 计算缩放比例
+      const designWidth = 1920;
+      const designHeight = 1080;
+      const scaleX = screenWidth / designWidth;
+      const scaleY = screenHeight / designHeight;
+      const scale = Math.min(scaleX, scaleY);
+      
+      // 计算居中位置
+      const scaledWidth = designWidth * scale;
+      const scaledHeight = designHeight * scale;
+      const offsetX = Math.max(0, (screenWidth - scaledWidth) / 2);
+      const offsetY = Math.max(0, (screenHeight - scaledHeight) / 2);
+      
+      // 应用居中位置
+      wrapper.style.marginLeft = offsetX + 'px';
+      wrapper.style.marginTop = offsetY + 'px';
+      
+    }
+    
+    // 页面加载时调用
+    window.addEventListener('load', updateFixedScale);
+    
+    // 窗口大小改变时调用 - 添加防抖处理
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(updateFixedScale, 100);
+    });
+  </script>
 </body>
 </html>
