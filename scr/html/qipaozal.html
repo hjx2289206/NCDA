@@ -6,279 +6,294 @@
   <title>新风貌与新使命 - 20世纪50年代</title>
   <link rel="stylesheet" href="../css/global.css">
   <style>
-    /* 页面特定样式 */
-    :root {
-      font-size: 16px;
+    /* 全局基础设置 - 创建完全响应式的页面容器 */
+    * {
+      box-sizing: border-box;
     }
     
-    /* 响应式字体大小 */
-    @media (max-width: 1200px) {
-      :root {
-        font-size: 14px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      :root {
-        font-size: 12px;
-      }
-    }
-    
-    @media (min-width: 1600px) {
-      :root {
-        font-size: 18px;
-      }
-    }
-    
-    /* 页面基础样式设置 */
-    body {
+    html, body {
+      width: 100vw;
+      height: 100vh;
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
-      overflow: hidden;  /* 防止出现滚动条 */
+      overflow: hidden;
       position: relative;
     }
     
-    /* 背景图片容器 */
-    .background-container {
-      position: fixed;
-      width: 100%;
-      height: 100%;
+    /* 页面主体 - 设置渐变背景和基础定位 */
+    body {
+      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      font-family: inherit; /* 继承全局字体样式 */
+    }
+    
+    /* 页面容器 - 创建全屏画布 */
+    .page-canvas {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+    
+    /* 背景层 - 管理所有背景装饰元素 */
+    .background-layer {
+      position: absolute;
       top: 0;
       left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 1;
       pointer-events: none;
     }
     
-    /* 背景图片1 - 屏幕下方 */
-    .background-1 {
+    /* 底部背景装饰 - 贴合屏幕底部 */
+    .bg-decoration-bottom {
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100vw;  /* 图片大小 */
+      width: 100vw;
       height: auto;
-      z-index: 1;
+      display: block;
     }
     
-    /* 背景图片2 - 中间偏左 */
-    .background-2 {
+    /* 侧边背景装饰 - 居中左侧定位 */
+    .bg-decoration-side {
       position: absolute;
-      top: 50%;
-      left: 15vw;  /* 水平位置 */
-      transform: translateY(-50%);
-      width: 25vw;  /* 图片大小 */
+      top: 50vh;
+      left: 15vw;
+      width: 25vw;
       height: auto;
-      z-index: 1;
+      transform: translateY(-50%);
+      display: block;
     }
     
-    /* 返回按钮样式 - 固定在左上角 */
-    .back-button {
+    /* 导航层 - 返回按钮区域 */
+    .navigation-layer {
       position: absolute;
       top: 5vh;
       left: 4vw;
-      font-size: 3rem;
-      color: #333333;
-      text-decoration: none;
       z-index: 10;
     }
     
-    /* 主要内容容器 - 使用弹性布局实现三栏布局 */
-    .qipao-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
+    /* 返回链接 - 响应式字体和交互效果，去掉背景 */
+    .nav-back-link {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      max-width: 1400px;
-      margin: 5vh auto;
-      padding: 3vh 0;
-      border-radius: 1.25rem;
+      justify-content: center;
+      width: 6vh;
+      height: 6vh;
+      font-size: 2.5vh;
+      color: #333333;
+      text-decoration: none;
+      line-height: 1;
+      transition: all 0.2s ease;
     }
     
-    /* 文本区域样式 - 文字改为垂直排列 */
-    .text-section {
-      flex: 1;
-      padding: 3vh 0 3vh 1vw;
-      position: relative;
-      max-width: 40%;
+    .nav-back-link:hover {
+      color: #666666;
+      transform: scale(1.05);
     }
     
-    /* 图片区域样式 - 占据右侧空间并居中显示 */
-    .image-section {
-      flex: 1;
-      text-align: center;
-      padding: 2vh 0;
-      max-width: 45%;
-      background: none;  /* 确保背景透明 */
-    }
-    
-    /* 旗袍图片样式 - 自适应大小 */
-    .qipao-image {
-      max-width: 100%;
-      height: 50vh;  /* 使用简单的vh单位 */
-      object-fit: contain;  /* 保持图片比例 */
-      border-radius: 1.5vmin;
-      transition: all 0.3s ease;
-    }
-    
-    /* 标题区域样式 - 固定在页面左上方 */
-    .title-section {
-      margin-bottom: 4vh;
-      position: fixed;
-      left: 8vw;
-      top: 8vh;
-      padding: 1vh 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+    /* 内容层 - 主要内容区域定位 */
+    .content-layer {
+      position: absolute;
+      top: 5vh;
+      left: 0;
+      width: 100vw;
+      height: 90vh;
       z-index: 5;
     }
     
-    /* 主标题样式 */
-    .main-title {
-      font-size: 3rem;
-      color: #333;
-      margin-bottom: 1vh;
+    /* 标题板块 - 固定在左上角的标题区 */
+    .title-block {
+      position: absolute;
+      top: 3vh;
+      left: 8vw;
+      z-index: 6;
     }
     
-    /* 年代标题样式 */
-    .era-title {
-      font-size: 2rem;
-      margin-bottom: 2vh;
-      color: #333;
+    /* 主标题文字 - 使用vh单位确保缩放 */
+    .title-primary {
+      font-size: 4.2vh;
+      font-weight: 700;
+      color: #333333;
+      margin: 0 0 1.2vh 0;
+      line-height: 1.2;
+      letter-spacing: 0.05em;
     }
     
-    /* 描述文本样式 - 设置合适的行高和边距，改为垂直排列 */
-    .description {
-      font-size: 1.5rem;
-      line-height: 1.8;
-      color: #333;
-      text-align: justify;
-      margin-bottom: 3vh;
-      margin-top: 15vh;
+    /* 副标题文字 - 年代标识 */
+    .title-secondary {
+      font-size: 2.5vh;
+      font-weight: 500;
+      color: #333333;
+      margin: 0;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+    }
+    
+    /* 主展示区 - 三栏布局的核心容器，调整布局 */
+    .main-showcase {
+      position: absolute;
+      top: 10vh;
+      left: 8vw;
+      width: 84vw;
+      height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    /* 文本展示区 - 左侧文字内容区域，调整宽度和位置 */
+    .text-showcase {
+      flex: 0 0 35vw;
+      height: 60vh;
+      position: relative;
+      padding-top: 8vh;
+    }
+    
+    /* 文本内容 - 垂直排列的主要文字，增大字体间距，右移 */
+    .text-content {
       writing-mode: vertical-lr;
       text-orientation: mixed;
-      height: 47vh;
-      overflow: auto;
-      max-height: 60vh;
+      font-size: 2.4vh;
+      line-height: 2.5;
+      letter-spacing: 0.5em;
+      color: #333333;
+      text-align: justify;
+      height: 50vh;
+      overflow-y: auto;
+      padding-right: 1vw;
+      padding-left: 6vw;
+      font-weight: 400;
     }
     
-    /* 装饰线条容器 - 垂直居中对齐 */
-    .decoration-line {
+    /* 中央装饰区 - 分隔线和装饰元素 */
+    .center-decoration {
+      flex: 0 0 8vw;
+      height: 30vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 0 1vw;
-      height: 30vh;
-      flex-shrink: 0;
+      gap: 1vh;
     }
     
-    /* 装饰线条样式 - 改为垂直方向 */
-    .decoration-line .line {
-      width: 0.125rem;
+    /* 装饰线条 - 垂直分隔线，减细 */
+    .decoration-line {
+      width: 0.1vw;
+      height: 3vh;
       background-color: #151616;
-      height: 3rem;
     }
     
-    /* 装饰圆点样式 */
-    .decoration-line .circle {
-      width: 0.75rem;
-      height: 0.75rem;
-      border: 0.125rem solid #151616;
+    /* 装饰圆点 - 中心装饰点 */
+    .decoration-dot {
+      width: 0.8vw;
+      height: 0.8vw;
+      border: 0.2vw solid #151616;
       border-radius: 50%;
-      margin: 1rem 0;
+      background-color: transparent;
     }
     
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-      .qipao-content {
-        flex-direction: column;
-        padding: 2vh 3vw;
-      }
-      
-      .text-section, .image-section {
-        width: 90%;
-        max-width: 100%;
-        padding: 2vh 0;
-      }
-      
-      .title-section {
-        position: fixed;
-        left: 5vw;
-        top: 5vh;
-        margin-bottom: 3vh;
-      }
-      
-      .main-title {
-        font-size: 2rem;
-      }
-      
-      .era-title {
-        font-size: 1.5rem;
-      }
-      
-      .description {
-        font-size: 1rem;
-        margin-top: 0;
-        writing-mode: horizontal-tb;
-        height: auto;
-        overflow: visible;
-      }
-      
-      .decoration-line {
-        flex-direction: row;
-        width: 80%;
-        height: auto;
-        margin: 2vh 0;
-      }
-      
-      .decoration-line .line {
-        width: 3rem;
-        height: 0.125rem;
-      }
-      
-      .decoration-line .circle {
-        margin: 0 1rem;
-      }
+    /* 图片展示区 - 右侧图片区域 */
+    .image-showcase {
+      flex: 0 0 35vw;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* 主展示图片 - 人物图片 */
+    .showcase-image {
+      max-width: 100%;
+      max-height: 50vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 1.5vw;
+      transition: transform 0.3s ease;
+    }
+    
+    .showcase-image:hover {
+      transform: scale(1.02);
+    }
+    
+    /* 滚动条美化 - 针对文本区域的滚动条 */
+    .text-content::-webkit-scrollbar {
+      width: 0.3vw;
+    }
+    
+    .text-content::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.1);
+      border-radius: 0.15vw;
+    }
+    
+    .text-content::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.3);
+      border-radius: 0.15vw;
+    }
+    
+    .text-content::-webkit-scrollbar-thumb:hover {
+      background: rgba(0,0,0,0.5);
     }
   </style>
 </head>
 <body>
-  <!-- 背景图片容器 -->
-  <div class="background-container">
-    <img src="../../../assets/images/stories/zal/background1.svg" alt="背景装饰1" class="background-1">
-    <img src="../../../assets/images/stories/zal/background2.svg" alt="背景装饰2" class="background-2">
-  </div>
-
-  <!-- 返回按钮 -->
-  <a href="time.html" class="back-button">&lt;</a>
-  
-  <!-- 主要内容区域 -->
-  <div class="content">
-    <div class="qipao-content">
-      <div class="text-section">
-        <div class="title-section">
-          <h1 class="main-title">时尚新风潮</h1>
-          <h2 class="era-title">20世纪20年代</h2>
-        </div>
-        <p class="description">
-          张爱玲是民国时期的传奇才女，她对旗袍情有独钟。她不仅在小说中细腻地描写旗袍，自己也常穿着旗袍出席，她喜欢用一些大胆的色彩和独特的图案，将自己的才情与个性融入其中，她所穿的旗袍也成为了当时海派时尚的代表，展现出民国女性追求自由与个性的精神。
-        </p>
-      </div>
-      
-      <!-- 垂直装饰线条 -->
-      <div class="decoration-line">
-        <div class="line"></div>
-        <div class="circle"></div>
-        <div class="line"></div>
-      </div>
-      
-      <div class="image-section">
-        <img src="../../../assets/images/stories/zal/character.svg" alt="人物图片" class="qipao-image">
-      </div>
+  <!-- 页面画布容器 -->
+  <div class="page-canvas">
+    
+    <!-- 背景装饰层 -->
+    <div class="background-layer">
+      <img src="../../../assets/images/stories/zal/background1.svg" 
+           alt="背景装饰1" 
+           class="bg-decoration-bottom">
+      <img src="../../../assets/images/stories/zal/background2.svg" 
+           alt="背景装饰2" 
+           class="bg-decoration-side">
     </div>
+    
+    <!-- 导航层 -->
+    <div class="navigation-layer">
+      <a href="time.html" class="nav-back-link">&lt;</a>
+    </div>
+    
+    <!-- 内容层 -->
+    <div class="content-layer">
+      
+      <!-- 标题板块 -->
+      <div class="title-block">
+        <h1 class="title-primary">时尚新风潮</h1>
+        <h2 class="title-secondary">20世纪20年代</h2>
+      </div>
+      
+      <!-- 主展示区域 -->
+      <div class="main-showcase">
+        
+        <!-- 文本展示区 -->
+        <div class="text-showcase">
+          <div class="text-content">
+            张爱玲是民国时期的传奇才女，她对旗袍情有独钟。她不仅在小说中细腻地描写旗袍，自己也常穿着旗袍出席，她喜欢用一些大胆的色彩和独特的图案，将自己的才情与个性融入其中，她所穿的旗袍也成为了当时海派时尚的代表，展现出民国女性追求自由与个性的精神。
+          </div>
+        </div>
+        
+        <!-- 中央装饰区 -->
+        <div class="center-decoration">
+          <div class="decoration-line"></div>
+          <div class="decoration-dot"></div>
+          <div class="decoration-line"></div>
+        </div>
+        
+        <!-- 图片展示区 -->
+        <div class="image-showcase">
+          <img src="../../../assets/images/stories/zal/character.svg" 
+               alt="人物图片" 
+               class="showcase-image">
+        </div>
+        
+      </div>
+      
+    </div>
+    
   </div>
 </body>
 </html>

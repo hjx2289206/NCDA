@@ -3,289 +3,258 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新风貌与新使命 - 20世纪50年代</title>
   <link rel="stylesheet" href="../css/global.css">
+  <title>新风貌与新使命 - 20世纪50年代</title>
   <style>
-    /* 页面特定样式 */
-    :root {
-      font-size: 16px;
-    }
-    
-    /* 响应式字体大小 */
-    @media (max-width: 1200px) {
-      :root {
-        font-size: 14px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      :root {
-        font-size: 12px;
-      }
-    }
-    
-    @media (min-width: 1600px) {
-      :root {
-        font-size: 18px;
-      }
-    }
-    
-    /* 页面基础样式设置 */
-    html {
-      height: 100%;
+    /* 全局字体设置 - 使用vw单位实现响应式字体 */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* HTML和Body基础设置 */
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden; /* 防止滚动条出现 */
     }
 
+    /* 页面主体样式 - 渐变背景固定 */
     body {
-      min-height: 100vh;
-      height: 100%;
-      margin: 0;
-      padding: 0;
       background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
-      background-attachment: fixed;  /* 固定背景，防止滚动时出现空白 */
-      overflow: hidden;  /* 防止出现滚动条 */
+      background-attachment: fixed;
       position: relative;
     }
     
-    /* 返回按钮样式 - 固定在左上角 */
-    .back-button {
+    /* 返回按钮 - 固定在左上角，使用vw/vh定位 */
+    .navigation-back {
       position: absolute;
       top: 5vh;
       left: 4vw;
-      font-size: 3rem;
+      font-size: 3vw; /* 响应式字体大小 */
       color: #333333;
       text-decoration: none;
       z-index: 10;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
     }
     
-    /* 背景图片容器 */
-    .background-container {
+    .navigation-back:hover {
+      opacity: 0.7;
+    }
+    
+    /* 背景装饰图片容器 */
+    .background-decorations {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       top: 0;
       left: 0;
       z-index: 1;
       pointer-events: none;
     }
     
-    /* 背景图片1 - 屏幕上方偏左 */
-    .background-1 {
+    /* 左上角背景装饰图 */
+    .decoration-top-left {
       position: absolute;
       top: 0;
-      left: 15vw;  /* 偏左位置 */
-      width: 30vw;  /* 图片大小 */
+      left: 15vw;
+      width: 30vw;
       height: auto;
       z-index: 1;
     }
     
-    /* 背景图片2 - 屏幕右侧 */
-    .background-2 {
+    /* 右侧背景装饰图 */
+    .decoration-right {
       position: absolute;
-      top: 50%;
+      top: 50vh;
       right: 0;
       transform: translateY(-50%);
       height: 100vh;
+      width: auto;
       z-index: 1;
     }
     
-    /* 主要内容容器 - 使用弹性布局实现两栏布局 */
-    .qipao-content {
+    /* 主内容容器 - 双栏布局 */
+    .main-container {
       position: relative;
       z-index: 2;
+      width: 90vw;
+      height: 90vh;
+      margin: 5vh auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 90vw;
-      margin: 5vh auto;
       padding: 3vh 3vw;
-      border-radius: 1.25rem;
-      background: none;  /* 确保背景透明 */
     }
     
-    /* 文本区域样式 - 占据左侧空间 */
-    .text-section {
+    /* 左侧文本内容区域 */
+    .content-text-area {
       flex: 1;
       padding: 3vh 3vw;
       position: relative;
+      height: 100%;
     }
     
-    /* 图片区域样式 - 占据右侧空间并居中显示 */
-    .image-section {
+    /* 右侧图片展示区域 */
+    .content-image-area {
       flex: 1;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 2vh 2vw;
-      background: none;  /* 确保背景透明 */
+      height: 100%;
     }
     
-    /* 旗袍图片样式 - 自适应大小 */
-    .qipao-image {
-      max-width: 100%;
-      height: 50vh;  /* 使用简单的vh单位 */
-      object-fit: contain;  /* 保持图片比例 */
-      border-radius: 1.5vmin;
-      transition: all 0.3s ease;
-    }
-    
-    /* 标题区域样式 - 固定在页面右上方，文字竖直排列，数字横向排列 */
-    .title-section {
-      margin-bottom: 4vh;
+    /* 标题组合区域 - 固定在右上角 */
+    .title-group {
       position: fixed;
       right: 8vw;
       top: 8vh;
-      padding: 1vh 0;
+      z-index: 5;
       display: flex;
       flex-direction: row;
       align-items: flex-start;
-      z-index: 5;
     }
     
-    /* 主标题样式 */
-    .main-title {
-      font-size: 3rem;
+    /* 主标题样式 - 竖直排列 */
+    .primary-title {
+      font-size: 3vw; /* 响应式字体 */
       color: #333;
       margin-right: 2vh;
       writing-mode: vertical-rl;
+      text-orientation: upright;
+      letter-spacing: 0.2em;
     }
     
-    /* 年代标题样式 */
+    /* 年代标题样式 - 竖直排列，数字横向 */
     .era-title {
-      font-size: 2rem;
+      font-size: 2vw; /* 响应式字体 */
       color: #333;
       writing-mode: vertical-rl;
     }
     
-    /* 年代数字样式 - 横向排列 */
+    /* 年代数字样式 - 强制横向显示 */
     .era-number {
       writing-mode: horizontal-tb;
       display: inline-block;
+      text-orientation: upright;
     }
     
-    /* 描述文本样式 - 设置合适的行高和边距 */
-    .description {
-      font-size: 1.5rem;
-      line-height: 1.8;
-      color: #333;
-      text-align: justify;
-      margin-bottom: 3vh;
-      margin-top: 18vh;
-    }
-    
-    /* 装饰线条容器 - 调整到文字介绍上方并与文本左侧对齐 */
-    .decoration-line {
+    /* 装饰线条组合 - 位于描述文本上方 */
+    .decorative-line-group {
+      position: absolute;
+      top: 16vh;
+      left: 3vw;
       display: flex;
       align-items: center;
       width: auto;
+    }
+    
+    /* 装饰线条元素 */
+    .decorative-line {
+      width: 3vw; /* 响应式宽度 */
+      height: 0.2vh; /* 响应式高度 */
+      background-color: #151616;
+    }
+    
+    /* 装饰圆点元素 */
+    .decorative-circle {
+      width: 0.8vw; /* 响应式尺寸 */
+      height: 0.8vw;
+      border: 0.1vh solid #151616;
+      border-radius: 50%;
+      margin: 0 1vw;
+    }
+    
+    /* 描述文本内容样式 */
+    .description-text {
       position: absolute;
       top: 18vh;
-      margin-top: -2vh;
-      left: 3vw; /* 确保与文本内容左侧对齐 */
+      left: 3vw;
+      right: 3vw;
+      font-size: 1.5vw; /* 响应式字体 */
+      line-height: 1.8;
+      color: #333;
+      text-align: justify;
+      letter-spacing: 0.05em;
     }
     
-    /* 装饰线条样式 */
-    .decoration-line .line {
-      height: 0.125rem;
-      background-color: #151616;
-      width: 3rem;
+    /* 人物图片样式 */
+    .character-image {
+      max-width: 100%;
+      height: 50vh;
+      object-fit: contain;
+      border-radius: 1.5vw; /* 响应式圆角 */
+      transition: transform 0.3s ease;
     }
     
-    /* 装饰圆点样式 */
-    .decoration-line .circle {
-      width: 0.75rem;
-      height: 0.75rem;
-      border: 0.125rem solid #151616;
-      border-radius: 50%;
-      margin: 0 1rem;
+    /* 图片悬停效果 */
+    .character-image:hover {
+      transform: scale(1.02);
     }
     
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-      .qipao-content {
-        flex-direction: column;
-        padding: 2vh 3vw;
+    /* 确保全局字体继承原有样式，不指定具体字体 */
+    h1, h2, p {
+      font-family: inherit; /* 继承全局字体设置 */
+    }
+    
+    /* 页面整体动画效果 */
+    .main-container {
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(2vh);
       }
-      
-      .text-section, .image-section {
-        width: 100%;
-        padding: 2vh 3vw;
-      }
-      
-      .title-section {
-        position: static;
-        writing-mode: horizontal-tb;
-        margin-bottom: 3vh;
-      }
-      
-      .main-title {
-        writing-mode: horizontal-tb;
-        margin: 0 0 1vh 0;
-      }
-      
-      @media (max-width: 768px) {
-        .era-title {
-          writing-mode: horizontal-tb;
-          margin: 0 0 1vh 0;
-        }
-        
-        .era-number {
-          writing-mode: horizontal-tb;
-        }
-      }
-      
-      .main-title {
-        font-size: 2rem;
-      }
-      
-      .era-title, .era-number {
-        font-size: 1.5rem;
-      }
-      
-      .description {
-        font-size: 1rem;
-        margin-top: 2vh;
-      }
-      
-      .decoration-line {
-        margin: 2vh 0;
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 <body>
-  <!-- 背景图片容器 -->
-  <div class="background-container">
-    <img src="../../../assets/images/stories/zmy/background1.svg" alt="背景装饰1" class="background-1">
-    <img src="../../../assets/images/stories/zmy/background2.svg" alt="背景装饰2" class="background-2">
+  <!-- 背景装饰图片容器 -->
+  <div class="background-decorations">
+    <img src="../../../assets/images/stories/zmy/background1.svg" alt="背景装饰1" class="decoration-top-left">
+    <img src="../../../assets/images/stories/zmy/background2.svg" alt="背景装饰2" class="decoration-right">
   </div>
 
-  <!-- 返回按钮 -->
-  <a href="time.html" class="back-button">&lt;</a>
+  <!-- 返回导航按钮 -->
+  <a href="time.html" class="navigation-back">&lt;</a>
   
-  <!-- 主要内容区域 -->
-  <div class="content">
-    <div class="qipao-content">
-      <div class="text-section">
-        <!-- 装饰线条放在文字介绍上方 -->
-        <div class="decoration-line">
-          <div class="line"></div>
-          <div class="circle"></div>
-        </div>
-        <div class="title-section">
-          <h1 class="main-title">黄金时代的传奇</h1>
-          <h2 class="era-title">
-            <span class="era-number">20</span>世纪<span class="era-number">30</span>年代
-          </h2>
-        </div>
-        <p class="description">
-          电影《花样年华》中，张曼玉饰演的苏丽珍身着多套旗袍，将旗袍的美展现得淋漓尽致。影片中的旗袍色彩鲜艳、图案精美，款式修身，凸显出女性的身材曲线。这部电影引发了人们对旗袍的关注和喜爱，掀起了一股旗袍热潮，让旗袍再次成为时尚界的宠儿，也让更多女性重新认识到旗袍所蕴含的独特魅力。
-        </p>
+  <!-- 页面主要内容区域 -->
+  <div class="main-container">
+    <!-- 左侧文本内容区域 -->
+    <div class="content-text-area">
+      <!-- 装饰线条组合 -->
+      <div class="decorative-line-group">
+        <div class="decorative-line"></div>
+        <div class="decorative-circle"></div>
       </div>
       
-      <div class="image-section">
-        <img src="../../../assets/images/stories/zmy/character.svg" alt="人物图片" class="qipao-image">
-      </div>
+      <!-- 描述文本内容 -->
+      <p class="description-text">
+        电影《花样年华》中，张曼玉饰演的苏丽珍身着多套旗袍，将旗袍的美展现得淋漓尽致。影片中的旗袍色彩鲜艳、图案精美，款式修身，凸显出女性的身材曲线。这部电影引发了人们对旗袍的关注和喜爱，掀起了一股旗袍热潮，让旗袍再次成为时尚界的宠儿，也让更多女性重新认识到旗袍所蕴含的独特魅力。
+      </p>
     </div>
+    
+    <!-- 右侧图片展示区域 -->
+    <div class="content-image-area">
+      <img src="../../../assets/images/stories/zmy/character.svg" alt="人物图片" class="character-image">
+    </div>
+  </div>
+  
+  <!-- 标题组合区域 -->
+  <div class="title-group">
+    <h1 class="primary-title">黄金时代的传奇</h1>
+    <h2 class="era-title">
+      <span class="era-number">20</span>世纪<span class="era-number">30</span>年代
+    </h2>
   </div>
 </body>
 </html>
