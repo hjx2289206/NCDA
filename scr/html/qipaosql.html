@@ -6,34 +6,22 @@
   <title>新风貌与新使命 - 20世纪50年代</title>
   <link rel="stylesheet" href="../css/global.css">
   <style>
-    /* 设计基准尺寸：1920x1080 */
-    :root {
-      --design-width: 1920;
-      --design-height: 1080;
-      font-size: 16px;
-    }
-    
-    /* 页面基础样式设置 */
-    html {
-      height: 100%;
+    /* 全局样式重置 */
+    html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-    }
-    
-    body {
       height: 100vh;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      width: 100vw;
       overflow: hidden;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     
-    /* 背景图片容器 - 独立于主容器，直接贴屏幕边缘 */
+    /* 页面主体样式 - 渐变背景 */
+    body {
+      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
+      position: relative;
+    }
+    
+    /* 背景图片容器 - 全屏覆盖 */
     .background-container {
       position: fixed;
       width: 100vw;
@@ -44,262 +32,195 @@
       pointer-events: none;
     }
     
-    /* 背景图片1 - 左上角 */
+    /* 背景装饰图1 - 左上角定位 */
     .background-1 {
       position: absolute;
       top: 0;
       left: 0;
-      width: 25vw;
-      min-width: 200px;
-      max-width: 400px;
+      width: 20vw; /* 背景图宽度占屏幕20% */
       height: auto;
       z-index: 1;
     }
     
-    /* 背景图片2 - 右下角 */
+    /* 背景装饰图2 - 右下角定位 */
     .background-2 {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 30vw;
-      min-width: 250px;
-      max-width: 500px;
+      width: 25vw; /* 背景图宽度占屏幕25% */
       height: auto;
       z-index: 1;
     }
     
-    /* 主容器 - 固定为设计尺寸，通过transform缩放 */
-    .main-container {
-      width: 1920px;
-      height: 1080px;
-      position: relative;
-      transform-origin: center center;
-      z-index: 2;
-    }
-    
-    /* 返回按钮样式 - 固定在屏幕左上角，不随主容器缩放 */
+    /* 返回按钮 - 左上角固定定位 */
     .back-button {
       position: fixed;
-      top: 5vh;
-      left: 4vw;
-      font-size: clamp(24px, 3vw, 48px);
+      top: 3vh; /* 距离顶部3%屏幕高度 */
+      left: 3vw; /* 距离左侧3%屏幕宽度 */
+      font-size: 2.5vw; /* 字体大小为屏幕宽度的2.5% */
       color: #333333;
       text-decoration: none;
       z-index: 10;
+      transition: color 0.3s ease;
     }
     
-    /* 主要内容容器 - 使用弹性布局实现两栏布局 */
-    .qipao-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      max-width: 1728px; /* 90% of 1920px */
-      margin: 54px auto; /* 5vh at 1080px */
-      padding: 32px 58px; /* 3vh 3vw converted */
-      border-radius: 20px;
-      background: none;
+    .back-button:hover {
+      color: #666666;
     }
     
-    /* 文本区域样式 - 占据左侧空间 */
-    .text-section {
-      flex: 1;
-      padding: 32px 58px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 540px; /* 50vh at 1080px */
-      max-height: 864px; /* 80vh at 1080px */
-    }
-    
-    /* 图片区域样式 - 占据右侧空间并居中显示 */
-    .image-section {
-      flex: 1;
-      text-align: center;
-      padding: 22px 38px; /* 2vh 2vw converted */
-      max-width: 45%;
-      background: none;
-    }
-    
-    /* 旗袍图片样式 - 自适应大小并添加圆角和阴影效果 */
-    .qipao-image {
-      max-width: 100%;
-      height: 540px; /* 50vh at 1080px */
-      object-fit: contain;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* 标题区域样式 - 固定在屏幕左侧，独立于主容器 */
+    /* 标题区域 - 左侧垂直排列 */
     .title-section {
       position: fixed;
-      left: 5vw;
-      top: 50%;
+      left: 5vw; /* 距离左侧5%屏幕宽度 */
+      top: 50%; /* 垂直居中 */
       transform: translateY(-50%);
-      writing-mode: vertical-lr;
-      text-orientation: upright;
+      writing-mode: vertical-lr; /* 垂直文字排列 */
+      text-orientation: upright; /* 文字方向 */
       z-index: 5;
-      width: auto;
-      letter-spacing: 0.2vw;
+      letter-spacing: 0.2vw; /* 字符间距 */
     }
     
     /* 主标题样式 */
     .main-title {
-      font-size: clamp(24px, 2.5vw, 40px);
+      font-size: 3vw; /* 主标题字体大小 */
       color: #333;
-      margin-bottom: 1vh;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1vh; /* 下边距 */
+      font-weight: bold;
     }
     
     /* 年代标题样式 */
     .era-title {
-      font-size: clamp(20px, 2vw, 32px);
-      margin-bottom: 2vh;
+      font-size: 2.5vw; /* 年代标题字体大小 */
+      margin-bottom: 2vh; /* 下边距 */
       color: #333;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      font-weight: normal;
     }
     
-    /* 描述文本样式 - 设置合适的行高和边距 */
-    .description {
-      font-size: 24px; /* 1.5rem at 16px base */
-      line-height: 1.8;
-      color: #333;
-      text-align: justify;
-      margin-bottom: 32px; /* 3vh at 1080px */
-      width: 100%;
-      max-width: 90%;
-      padding: 0 29px; /* 1.5vw at 1920px */
-    }
-    
-    /* 内容容器样式 */
-    .content {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
+    /* 主容器 - 居中显示 */
+    .main-container {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      z-index: 2;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: none;
     }
     
-    /* 装饰线条容器 - 水平居中对齐 */
+    /* 内容容器 - 两栏布局 */
+    .qipao-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 70vw; /* 内容区域宽度占屏幕70% */
+      height: 60vh; /* 内容区域高度占屏幕60% */
+      padding: 2vh 3vw; /* 内边距：上下2%屏幕高度，左右3%屏幕宽度 */
+      border-radius: 1vw; /* 圆角大小 */
+      background: transparent; /* 完全透明背景 */
+    }
+    
+    /* 文本区域 - 左侧内容 */
+    .text-section {
+      flex: 1;
+      padding: 2vh 3vw; /* 内边距 */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    /* 描述文本样式 */
+    .description {
+      font-size: 1.5vw;
+      line-height: 1.8; /* 行高 */
+      color: #333;
+      text-align: justify; /* 两端对齐 */
+      margin-bottom: 3vh; /* 下边距 */
+      width: 100%;
+      padding: 0 1vw; /* 左右内边距 */
+    }
+    
+    /* 装饰线条容器 */
     .decoration-line {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 32px 0;
+      margin: 2vh 0; /* 上下边距 */
       width: 100%;
     }
     
     /* 装饰线条样式 */
     .decoration-line .line {
-      height: 2px;
+      height: 0.15vh; /* 线条高度 */
       background-color: #151616;
-      width: 48px;
+      width: 3vw; /* 线条宽度 */
     }
     
     /* 装饰圆点样式 */
     .decoration-line .circle {
-      width: 12px;
-      height: 12px;
-      border: 2px solid #151616;
+      width: 0.8vw; /* 圆点宽度 */
+      height: 0.8vw; /* 圆点高度 */
+      border: 0.1vw solid #151616; /* 边框宽度 */
       border-radius: 50%;
-      margin: 0 16px;
+      margin: 0 1vw; /* 左右边距 */
     }
-
-    /* 小屏幕适配 */
-    @media (max-width: 768px) {
-      .background-1 {
-        width: 20vw;
-        min-width: 120px;
-        max-width: 200px;
-      }
-      
-      .background-2 {
-        width: 35vw;
-        min-width: 180px;
-        max-width: 300px;
-      }
-      
-      .back-button {
-        font-size: clamp(20px, 4vw, 36px);
-        top: 3vh;
-        left: 3vw;
-      }
-      
-      .title-section {
-        position: fixed;
-        left: 3vw;
-        top: 15vh;
-        transform: none;
-        writing-mode: horizontal-tb;
-        text-orientation: mixed;
-        letter-spacing: normal;
-        width: 90vw;
-        text-align: center;
-      }
-      
-      .main-container {
-        /* 小屏幕下调整布局 */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      
-      .qipao-content {
-        flex-direction: column;
-        width: 95%;
-        padding: 20px;
-      }
-      
-      .image-section, .text-section {
-        max-width: 100%;
-        width: 100%;
-        padding: 15px;
-      }
-      
-      .qipao-image {
-        height: auto;
-        max-height: 300px;
-        width: 80%;
-      }
-      
-      .description {
-        margin-top: 0;
-      }
+    
+    /* 图片区域 - 右侧内容 */
+    .image-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2vh 2vw; /* 内边距 */
+      height: 100%;
+    }
+    
+    /* 旗袍图片样式 */
+    .qipao-image {
+      max-width: 100%;
+      height: 50vh; /* 图片高度占屏幕高度50% */
+      object-fit: contain; /* 保持图片比例 */
+      border-radius: 1vw; /* 圆角 */
+    }
+    
+    /* 内容容器 */
+    .content {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
 <body>
-  <!-- 背景图片容器 - 独立定位，贴屏幕边缘 -->
+  <!-- 背景装饰图片容器 -->
   <div class="background-container">
     <img src="../../assets/images/stories/sql/background1.svg" alt="背景装饰1" class="background-1">
     <img src="../../assets/images/stories/sql/background2.svg" alt="背景装饰2" class="background-2">
   </div>
 
-  <!-- 返回按钮 - 固定在屏幕左上角 -->
+  <!-- 返回按钮 -->
   <a href="time.html" class="back-button">&lt;</a>
   
-  <!-- 标题区域 - 固定在屏幕左侧 -->
+  <!-- 标题区域 -->
   <div class="title-section">
     <h1 class="main-title">新风貌与新使命</h1>
     <h2 class="era-title">20世纪50年代</h2>
   </div>
 
-  <!-- 主容器 - 固定尺寸，通过JS控制缩放 -->
-  <div class="main-container" id="mainContainer">
+  <!-- 主容器 -->
+  <div class="main-container">
     <!-- 主要内容区域 -->
     <div class="content">
       <div class="qipao-content">
+        <!-- 文本内容区域 -->
         <div class="text-section">
           <p class="description">
             宋庆龄作为重要的外交人物，经常身着旗袍出席各类外交场合。她所穿的旗袍款式端庄、大气，色彩典雅与形展现了中国女性的优雅气质，又代表了中国传统文化的魅力，向世界展示了新中国女性的风采。旗袍在国际舞台上成为了中国女性的代表性服饰。
           </p>
-          <!-- 水平线-圆-水平线装饰 -->
+          
+          <!-- 装饰线条 -->
           <div class="decoration-line">
             <div class="line"></div>
             <div class="circle"></div>
@@ -307,37 +228,12 @@
           </div>
         </div>
         
+        <!-- 图片区域 -->
         <div class="image-section">
           <img src="../../assets/images/stories/sql/character.svg" alt="人物图片" class="qipao-image">
         </div>
       </div>
     </div>
   </div>
-
-  <script>
-    function updateScale() {
-      const container = document.getElementById('mainContainer');
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      
-      // 计算缩放比例，取宽高比例中的较小值以确保完整显示
-      const scaleX = windowWidth / 1920;
-      const scaleY = windowHeight / 1080;
-      const scale = Math.min(scaleX, scaleY);
-      
-      // 应用缩放
-      container.style.transform = `scale(${scale})`;
-    }
-
-    // 页面加载时执行
-    window.addEventListener('load', updateScale);
-    
-    // 防抖函数，避免频繁触发
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(updateScale, 100);
-    });
-  </script>
 </body>
 </html>

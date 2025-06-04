@@ -6,34 +6,17 @@
   <title>清末民初—觉醒的萌芽 - 20世纪20年代</title>
   <link rel="stylesheet" href="../css/global.css">
   <style>
-    /* 设计基准尺寸：1920x1080 */
-    :root {
-      --design-width: 1920;
-      --design-height: 1080;
-      font-size: 16px;
-    }
-    
     /* 页面基础样式设置 */
-    html {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-    }
-    
-    body {
+    html, body {
       height: 100vh;
+      width: 100vw;
       margin: 0;
       padding: 0;
-      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
       overflow: hidden;
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background: linear-gradient(180deg, #E5F6E6 0%, #E7F2F4 100%);
     }
     
-    /* 背景图片容器 - 独立于主容器，直接贴屏幕边缘 */
+    /* 背景图片容器 */
     .background-container {
       position: fixed;
       width: 100vw;
@@ -44,287 +27,166 @@
       pointer-events: none;
     }
 
-    /* 背景图片1 - 左侧竖直居中，贴屏幕左边 */
+    /* 背景图片1 - 左侧 */
     .background-1 {
       position: absolute;
-      top: 50%;
+      top: 50vh;
       left: 0;
       transform: translateY(-50%);
-      width: 10vw;
-      min-width: 120px;
-      max-width: 200px;
+      width: 10.4vw;
       height: auto;
-      z-index: 1;
     }
 
-    /* 背景图片2 - 中间偏上 */
+    /* 背景图片2 - 上方中间 */
     .background-2 {
       position: absolute;
-      top: 8vh;
-      left: 50%;
+      top: 7.4vh;
+      left: 50vw;
       transform: translateX(-50%);
-      width: 25vw;
-      min-width: 300px;
-      max-width: 500px;
+      width: 26vw;
       height: auto;
-      z-index: 1;
     }
 
-    /* 背景图片3 - 右下角，贴屏幕右下 */
+    /* 背景图片3 - 右下角 */
     .background-3 {
       position: absolute;
       bottom: 0;
       right: 0;
-      width: 35vw;
-      min-width: 400px;
-      max-width: 700px;
+      width: 36.5vw;
       height: auto;
-      z-index: 1;
     }
     
-    /* 主容器 - 固定为设计尺寸，通过transform缩放 */
-    .main-container {
-      width: 1920px;
-      height: 1080px;
-      position: relative;
-      transform-origin: center center;
-      z-index: 2;
-    }
-    
-    /* 返回按钮样式 - 固定在屏幕左上角，不随主容器缩放 */
+    /* 返回按钮 */
     .back-button {
       position: fixed;
       top: 5vh;
       left: 4vw;
-      font-size: clamp(24px, 3vw, 48px);
+      font-size: 4vh;
       color: #333333;
       text-decoration: none;
       z-index: 10;
     }
     
-    /* 主要内容容器 - 使用弹性布局实现两栏布局 */
-    .qipao-content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 90%;
-      max-width: 1728px; /* 90% of 1920px */
-      margin: 54px auto; /* 5vh at 1080px */
-      padding: 32px 58px; /* 3vh 3vw converted */
-      border-radius: 20px;
-      background: none;
-    }
-    
-    /* 文本区域样式 - 占据右侧空间并垂直居中 */
-    .text-section {
-      flex: 1;
-      padding: 32px 58px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      min-height: 540px; /* 50vh at 1080px */
-      max-height: 864px; /* 80vh at 1080px */
-      align-items: center;
-    }
-    
-    /* 图片区域样式 - 占据左侧空间并居中显示 */
-    .image-section {
-      flex: 1;
-      text-align: center;
-      padding: 22px 38px; /* 2vh 2vw converted */
-      order: -1;
-      max-width: 45%;
-      background: none;
-    }
-    
-    /* 人物图片样式 */
-    .qipao-image {
-      max-width: 100%;
-      height: 540px; /* 50vh at 1080px */
-      object-fit: contain;
-      border-radius: 16px;
-    }
-    
-    /* 标题区域样式 - 固定在屏幕左侧，独立于主容器 */
+    /* 标题区域 - 左侧竖直 */
     .title-section {
       position: fixed;
       left: 5vw;
-      top: 50%;
+      top: 50vh;
       transform: translateY(-50%);
       writing-mode: vertical-lr;
       text-orientation: upright;
       z-index: 5;
-      width: auto;
       letter-spacing: 0.2vw;
     }
     
-    /* 主标题样式 */
+    /* 主标题 */
     .main-title {
-      font-size: clamp(24px, 2.5vw, 40px);
+      font-size: 3.7vh;
       color: #333;
       margin-bottom: 1vh;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      text-shadow: 0.1vw 0.1vh 0.2vw rgba(0, 0, 0, 0.1);
     }
     
-    /* 年代标题样式 */
+    /* 年代标题 */
     .era-title {
-      font-size: clamp(20px, 2vw, 32px);
+      font-size: 3vh;
       margin-bottom: 2vh;
       color: #333;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      text-shadow: 0.1vw 0.1vh 0.2vw rgba(0, 0, 0, 0.1);
     }
     
-    /* 描述文本样式 - 设置合适的行高和边距 */
+    /* 主内容区域 */
+    .main-content {
+      position: absolute;
+      top: 50vh;
+      left: 50vw;
+      transform: translate(-50%, -50%);
+      width: 90vw;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    
+    /* 左侧图片区域 */
+    .image-container {
+      position: absolute;
+      left: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40vw;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* 人物图片 */
+    .character-image {
+      width: 35vw;
+      height: 50vh;
+      object-fit: contain;
+      border-radius: 0.8vw;
+    }
+    
+    /* 右侧文本区域 */
+    .text-container {
+      position: absolute;
+      right: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40vw;
+      height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3vh 3vw;
+      box-sizing: border-box;
+    }
+    
+    /* 描述文本 */
     .description {
-      font-size: 24px; /* 1.5rem at 16px base */
+      font-size: 2.2vh;
       line-height: 1.8;
       color: #333;
       text-align: justify;
-      margin-bottom: 32px; /* 3vh at 1080px */
       width: 100%;
-      max-width: 90%;
-      padding: 0 29px; /* 1.5vw at 1920px */
-    }
-    
-    /* 内容容器样式 */
-    .content {
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: none;
-    }
-
-    /* 小屏幕适配 */
-    @media (max-width: 768px) {
-      .background-1 {
-        width: 15vw;
-        min-width: 80px;
-        max-width: 120px;
-      }
-      
-      .background-2 {
-        width: 30vw;
-        min-width: 200px;
-        max-width: 300px;
-      }
-      
-      .background-3 {
-        width: 45vw;
-        min-width: 250px;
-        max-width: 400px;
-      }
-      
-      .back-button {
-        font-size: clamp(20px, 4vw, 36px);
-        top: 3vh;
-        left: 3vw;
-      }
-      
-      .title-section {
-        position: fixed;
-        left: 3vw;
-        top: 15vh;
-        transform: none;
-        writing-mode: horizontal-tb;
-        text-orientation: mixed;
-        letter-spacing: normal;
-        width: 90vw;
-        text-align: center;
-      }
-      
-      .main-container {
-        /* 小屏幕下调整布局 */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
-      
-      .qipao-content {
-        flex-direction: column;
-        width: 95%;
-        padding: 20px;
-      }
-      
-      .image-section, .text-section {
-        max-width: 100%;
-        width: 100%;
-        padding: 15px;
-      }
-      
-      .qipao-image {
-        height: auto;
-        max-height: 300px;
-        width: 80%;
-      }
+      padding: 2.5vh 1.5vw;
+      box-sizing: border-box;
     }
   </style>
 </head>
 <body>
-  <!-- 背景图片容器 - 独立定位，贴屏幕边缘 -->
+  <!-- 背景图片 -->
   <div class="background-container">
     <img src="../../assets/images/stories/qj/background1.svg" alt="背景装饰1" class="background-1">
     <img src="../../assets/images/stories/qj/background2.svg" alt="背景装饰2" class="background-2">
     <img src="../../assets/images/stories/qj/background3.svg" alt="背景装饰3" class="background-3">
   </div>
 
-  <!-- 返回按钮 - 固定在屏幕左上角 -->
+  <!-- 返回按钮 -->
   <a href="time.html" class="back-button">&lt;</a>
 
-  <!-- 标题区域 - 固定在屏幕左侧 -->
+  <!-- 左侧标题 -->
   <div class="title-section">
     <h1 class="main-title">清末民初—觉醒的萌芽</h1>
     <h2 class="era-title">20世纪20年代</h2>
   </div>
 
-  <!-- 主容器 - 固定尺寸，通过JS控制缩放 -->
-  <div class="main-container" id="mainContainer">
-    <!-- 主要内容区域 -->
-    <div class="content">
-      <div class="qipao-content">
-        <div class="image-section">
-          <img src="../../assets/images/stories/qj/character.svg" alt="人物图片" class="qipao-image">
-        </div>
-        
-        <div class="text-section">
-          <p class="description">
-            秋瑾是清末著名的女革命家。她虽常着男装以表达对封建礼教的反抗和追求男女平等的决心，但在一些场合也会穿着旗袍。秋瑾的旗袍多为素色，款式较为简洁，没有过多的装饰。对她来说，旗袍不仅是一种服饰，更象征着女性的觉醒和反抗精神。她穿着旗袍奔走于革命活动中，展现出了新时代女性的风采，激励着更多女性投身于革命事业和社会变革。
-          </p>
-        </div>
-      </div>
+  <!-- 主内容区域 -->
+  <div class="main-content">
+    <!-- 左侧图片 -->
+    <div class="image-container">
+      <img src="../../../assets/images/stories/qj/character.svg" alt="人物图片" class="character-image">
+    </div>
+    
+    <!-- 右侧文本 -->
+    <div class="text-container">
+      <p class="description">
+        秋瑾是清末著名的女革命家。她虽常着男装以表达对封建礼教的反抗和追求男女平等的决心，但在一些场合也会穿着旗袍。秋瑾的旗袍多为素色，款式较为简洁，没有过多的装饰。对她来说，旗袍不仅是一种服饰，更象征着女性的觉醒和反抗精神。她穿着旗袍奔走于革命活动中，展现出了新时代女性的风采，激励着更多女性投身于革命事业和社会变革。
+      </p>
     </div>
   </div>
-
-  <script>
-    function updateScale() {
-      const container = document.getElementById('mainContainer');
-      const windowWidth = window.innerWidth;
-      const windowHeight = window.innerHeight;
-      
-      // 计算缩放比例，取宽高比例中的较小值以确保完整显示
-      const scaleX = windowWidth / 1920;
-      const scaleY = windowHeight / 1080;
-      const scale = Math.min(scaleX, scaleY);
-      
-      // 应用缩放
-      container.style.transform = `scale(${scale})`;
-    }
-
-    // 页面加载时执行
-    // window.addEventListener('load', updateScale);
-    
-    // 防抖函数，避免频繁触发
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(updateScale, 100);
-    });
-  </script>
 </body>
 </html>

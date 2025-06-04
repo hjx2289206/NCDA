@@ -6,203 +6,165 @@
   <title>新风貌与新使命 - 20世纪50年代</title>
   <link rel="stylesheet" href="../css/global.css">
   <style>
-    /* 页面特定样式 */
-    :root {
-      font-size: 16px;
-    }
-    
-    /* 响应式字体大小 */
-    @media (max-width: 1200px) {
-      :root {
-        font-size: 14px;
-      }
-    }
-    
-    @media (max-width: 768px) {
-      :root {
-        font-size: 12px;
-      }
-    }
-    
-    @media (min-width: 1600px) {
-      :root {
-        font-size: 18px;
-      }
-    }
-    
-    /* 页面基础样式设置 */
-    html {
-      height: 100%;
+    /* 全局样式重置 */
+    html, body {
       margin: 0;
       padding: 0;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
     }
-
+    
+    /* 页面主体样式 - 渐变背景 */
     body {
-      min-height: 100vh;
-      height: 100%;
-      margin: 0;
-      padding: 0;
       background: linear-gradient(180deg, #FFFFFF 0%, #F2D6DF 83%);
-      background-attachment: fixed;  /* 固定背景，防止滚动时出现空白 */
-      overflow: hidden;  /* 防止出现滚动条 */
+      background-attachment: fixed;
       position: relative;
     }
-
-    /* 返回按钮样式 - 固定在左上角 */
+    
+    /* 返回按钮 - 左上角固定定位 */
     .back-button {
       position: absolute;
-      top: 5vh;
-      left: 4vw;
-      font-size: 3rem;
+      top: 3vh; /* 距离顶部3%屏幕高度 */
+      left: 3vw; /* 距离左侧3%屏幕宽度 */
+      font-size: 2.5vw; /* 字体大小为屏幕宽度的2.5% */
       color: #333333;
       text-decoration: none;
       z-index: 10;
+      transition: color 0.3s ease;
     }
     
-    /* 背景图片容器 */
+    .back-button:hover {
+      color: #666666;
+    }
+    
+    /* 背景图片容器 - 全屏覆盖 */
     .background-container {
       position: fixed;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       top: 0;
       left: 0;
       z-index: 1;
       pointer-events: none;
     }
-
-    /* 背景图片1 - 左上角 */
+    
+    /* 背景装饰图1 - 左上角定位 */
     .background-1 {
       position: absolute;
       top: 0;
       left: 0;
-      width: 35vw;  /* 图片大小 */
-      height: auto;
-      z-index: 1;
-    }
-
-    /* 背景图片2 - 右下角 */
-    .background-2 {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 30vw;  /* 图片大小 */
+      width: 25vw; /* 背景图宽度占屏幕25% */
       height: auto;
       z-index: 1;
     }
     
-    /* 主要内容容器 - 使用弹性布局实现两栏布局 */
+    /* 背景装饰图2 - 右下角定位 */
+    .background-2 {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 22vw; /* 背景图宽度占屏幕22% */
+      height: auto;
+      z-index: 1;
+    }
+    
+    /* 主要内容容器 - 两栏布局 */
     .qipao-content {
       position: relative;
       z-index: 2;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 90vw;
-      margin: 5vh auto;
-      padding: 3vh 3vw;
-      border-radius: 1.25rem;
-      background: none;  /* 确保背景透明 */
+      width: 75vw; /* 内容区域宽度占屏幕75% */
+      height: 80vh; /* 内容区域高度占屏幕80% */
+      margin: 10vh auto; /* 上下边距各10%屏幕高度，左右居中 */
+      padding: 2vh 3vw; /* 内边距：上下2%屏幕高度，左右3%屏幕宽度 */
+      border-radius: 1vw; /* 圆角大小 */
+      background: transparent; /* 完全透明背景 */
     }
     
-    /* 文本区域样式 - 占据左侧空间 */
-    .text-section {
-      flex: 1;
-      padding: 3vh 3vw;
-      position: relative;
-    }
-    
-    /* 图片区域样式 - 占据右侧空间并居中显示 */
+    /* 图片区域 - 左侧内容 */
     .image-section {
       flex: 1;
-      text-align: center;
-      padding: 2vh 2vw;
-      background: none;  /* 确保背景透明 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2vh 2vw; /* 内边距 */
+      height: 100%;
+      background: transparent; /* 透明背景 */
     }
     
-    /* 旗袍图片样式 - 自适应大小 */
+    /* 旗袍图片样式 */
     .qipao-image {
       max-width: 100%;
-      height: 50vh;  /* 使用简单的vh单位 */
-      object-fit: contain;  /* 保持图片比例 */
-      border-radius: 1.5vmin;
-      transition: all 0.3s ease;
+      height: 45vh; /* 图片高度占屏幕高度45% */
+      object-fit: contain; /* 保持图片比例 */
+      border-radius: 1vw; /* 圆角 */
     }
     
-    /* 标题区域样式 - 固定在页面左上方 */
+    /* 标题区域样式 - 固定在左上角 */
     .title-section {
-      margin-bottom: 4vh;
       position: fixed;
-      left: 8vw;
-      top: 8vh;
-      padding: 1vh 0;
+      left: 5vw; /* 距离左侧5%屏幕宽度 */
+      top: 8vh; /* 距离顶部8%屏幕高度 */
+      z-index: 5;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      z-index: 5;
     }
     
     /* 主标题样式 */
     .main-title {
-      font-size: 3rem;
+      font-size: 2.5vw; /* 主标题字体大小 */
       color: #333;
-      margin-bottom: 1vh;
+      margin-bottom: 1vh; /* 下边距 */
+      font-weight: bold;
     }
     
     /* 年代标题样式 */
     .era-title {
-      font-size: 2rem;
-      margin-bottom: 2vh;
+      font-size: 2vw; /* 年代标题字体大小 */
+      margin-bottom: 2vh; /* 下边距 */
       color: #333;
+      font-weight: normal;
     }
     
-    /* 描述文本样式 - 设置合适的行高和边距 */
+    /* 文本区域 - 右侧内容 */
+    .text-section {
+      flex: 1;
+      padding: 2vh 3vw; /* 内边距 */
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    /* 描述文本样式 */
     .description {
-      font-size: 1.5rem;
-      line-height: 1.8;
+      font-size: 1.4vw; /* 正文字体大小为屏幕宽度的1.4% */
+      line-height: 1.8; /* 行高 */
       color: #333;
-      text-align: justify;
-      margin-bottom: 3vh;
-      margin-top: 18vh;
+      text-align: justify; /* 两端对齐 */
+      margin-bottom: 3vh; /* 下边距 */
+      margin-top: 15vh; /* 上边距，为标题留出空间 */
+      width: 100%;
+      padding: 0 1vw; /* 左右内边距 */
     }
     
-    
-    
-    /* 响应式设计 */
-    @media (max-width: 768px) {
-      .qipao-content {
-        flex-direction: column;
-        padding: 2vh 3vw;
-      }
-      
-      .text-section, .image-section {
-        width: 100%;
-        padding: 2vh 3vw;
-      }
-      
-      .title-section {
-        position: fixed;
-        left: 5vw;
-        top: 5vh;
-        margin-bottom: 3vh;
-      }
-      
-      .main-title {
-        font-size: 2rem;
-      }
-      
-      .era-title {
-        font-size: 1.5rem;
-      }
-      
-      .description {
-        font-size: 1rem;
-        margin-top: 0;
-      }
+    /* 内容容器 */
+    .content {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   </style>
 </head>
 <body>
-  <!-- 背景图片容器 -->
+  <!-- 背景装饰图片容器 -->
   <div class="background-container">
     <img src="../../assets/images/stories/whm/background1.svg" alt="背景装饰1" class="background-1">
     <img src="../../assets/images/stories/whm/background2.svg" alt="背景装饰2" class="background-2">
@@ -214,21 +176,25 @@
   <!-- 主要内容区域 -->
   <div class="content">
     <div class="qipao-content">
+      <!-- 图片区域 -->
       <div class="image-section">
         <img src="../../assets/images/stories/whm/character.svg" alt="人物图片" class="qipao-image">
       </div>
       
+      <!-- 文本内容区域 -->
       <div class="text-section">
-        <div class="title-section">
-          <h1 class="main-title">传统与创新的交融</h1>
-          <h2 class="era-title">现代</h2>
-        </div>
+        <!-- 描述文本 -->
         <p class="description">
           伍红梅1997年就读服装学校时初见旗袍便心生热爱，20多年来一直从事旗袍制版工作。2019年"沙磁旗袍手工制作技艺"立项为非遗项目，2021年她成为代表性传承人。她将传统技艺与现代化数字工具结合，不断创新，使旗袍符合现代审美。她还开展传承制作工艺实践与课程，通过多种平台展示技艺，为外来务工、高校毕业生免费培训，带动创业就业，让旗袍制作传播到国外。
         </p>
-        
       </div>
     </div>
+  </div>
+
+  <!-- 标题区域 - 固定在左上角 -->
+  <div class="title-section">
+    <h1 class="main-title">传统与创新的交融</h1>
+    <h2 class="era-title">现代</h2>
   </div>
 </body>
 </html>
