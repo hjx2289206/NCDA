@@ -1,0 +1,311 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+:root {
+  --index: calc(1vw + 1vh);
+  --transition: cubic-bezier(0.1, 0.7, 0, 1);
+}
+body {
+  background: rgb(71, 72, 75);
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+  cursor: grab;
+}
+.wrapper:active {
+  cursor: grabbing;
+}
+
+.items {
+  display: flex;
+  gap: 0.4rem;
+  perspective: calc(var(--index) * 35);
+  transition: transform 0.3s ease;
+  transform: translateX(100vw);
+  animation: slideIn 1.5s ease-out forwards;
+}
+
+@keyframes slideIn {
+  to {
+      transform: translateX(50vw);
+  }
+}
+
+.item {
+  width: calc(var(--index) * 3);
+  height: calc(var(--index) * 12);
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  filter: grayscale(1) brightness(0.5);
+  transition: transform 1.25s var(--transition),
+      filter 3s var(--transition), width 1.25s var(--transition);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin: 0 -2px;
+}
+
+.item::before,
+.item::after {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 20px;
+  right: calc(var(--index) * -1);
+}
+.item::after {
+  left: calc(var(--index) * -1);
+}
+
+.items .item:hover {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 10));
+}
+
+.items .item:hover + * {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 8.5)) rotateY(35deg);
+  z-index: -1;
+}
+.items .item:hover + * + * {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 5.6)) rotateY(40deg);
+  z-index: -2;
+}
+.items .item:hover + * + * + * {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 2.5)) rotateY(30deg);
+  z-index: -3;
+}
+.items .item:hover + * + * + * + * {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 0.6)) rotateY(15deg);
+  z-index: -4;
+}
+
+.items .item:has(+ :hover) {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 8.5)) rotateY(-35deg);
+}
+.items .item:has(+ * + :hover) {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 5.6)) rotateY(-40deg);
+}
+.items .item:has(+ * + * + :hover) {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 2.5)) rotateY(-30deg);
+}
+.items .item:has(+ * + * + * + :hover) {
+  filter: inherit;
+  transform: translateZ(calc(var(--index) * 0.6)) rotateY(-15deg);
+}
+
+/* 特写模式样式 - 移除缩放效果 */
+.items.click-mode {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  perspective: 1000px;
+  animation: none;
+  transform: none !important;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.items.click-mode .item {
+  position: absolute;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+}
+
+/* 中心特写卡片 - 保持原始大小 */
+.items.click-mode .item.clicked {
+  width: 45vw;
+  height: 65vh;
+  opacity: 1;
+  filter: inherit;
+  z-index: 100;
+  transform: translateX(0) translateY(0) translateZ(0) rotateY(0deg);
+  border-radius: 12px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  left: 50%;
+  top: 50%;
+  margin-left: -22.5vw;
+  margin-top: -32.5vh;
+}
+
+/* 左侧卡片 */
+.items.click-mode .item.left-1 {
+  width: 18vw;
+  height: 45vh;
+  opacity: 0.9;
+  transform: translateX(-30vw) translateY(0) translateZ(0) rotateY(0deg);
+  filter: brightness(0.75);
+  z-index: 50;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  left: 50%;
+  top: 50%;
+  margin-left: -9vw;
+  margin-top: -22.5vh;
+}
+
+.items.click-mode .item.left-2 {
+  width: 14vw;
+  height: 35vh;
+  opacity: 0.7;
+  transform: translateX(-55vw) translateY(0) translateZ(0) rotateY(0deg);
+  filter: brightness(0.6);
+  z-index: 25;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  left: 50%;
+  top: 50%;
+  margin-left: -7vw;
+  margin-top: -17.5vh;
+}
+
+/* 右侧卡片 */
+.items.click-mode .item.right-1 {
+  width: 18vw;
+  height: 45vh;
+  opacity: 0.9;
+  transform: translateX(30vw) translateY(0) translateZ(0) rotateY(0deg);
+  filter: brightness(0.75);
+  z-index: 50;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  left: 50%;
+  top: 50%;
+  margin-left: -9vw;
+  margin-top: -22.5vh;
+}
+
+.items.click-mode .item.right-2 {
+  width: 14vw;
+  height: 35vh;
+  opacity: 0.7;
+  transform: translateX(55vw) translateY(0) translateZ(0) rotateY(0deg);
+  filter: brightness(0.6);
+  z-index: 25;
+  border-radius: 6px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  left: 50%;
+  top: 50%;
+  margin-left: -7vw;
+  margin-top: -17.5vh;
+}
+
+/* 隐藏的卡片 */
+.items.click-mode .item:not(.clicked):not(.left-1):not(.left-2):not(.right-1):not(.right-2) {
+  opacity: 0;
+  transform: translateX(0) translateY(0) translateZ(-100px) rotateY(0deg);
+  filter: brightness(0.3);
+  z-index: 1;
+}
+
+/* 特写模式背景覆盖层 */
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  opacity: 0;
+  z-index: 90;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.background-overlay.active {
+  opacity: 0.15;
+}
+
+/* 文字容器基础样式 */
+.text-container {
+  position: fixed;
+  z-index: 110;
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+
+.text-container.active {
+  opacity: 1;
+}
+
+/* 位置预设 */
+.position-bottom-center {
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+/* 简单文字预设 - 无边框无背景 */
+.simple-text {
+  padding: 20px;
+}
+
+/* 标题样式 - 简化版本 */
+.title-simple {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* 描述样式 - 简化版本 */
+.desc-simple {
+  font-size: 16px;
+  color: #e0e0e0;
+  line-height: 1.5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* 动画效果 */
+@keyframes fade-in-up {
+  from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(30px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
