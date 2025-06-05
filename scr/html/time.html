@@ -11,10 +11,8 @@
   <div class="divs">
     <div class="BG">
   <!-- 页面头部 -->
-  <header>
     <!-- 使用自定义导航栏Web组件 -->
     <arc-button-nav></arc-button-nav>
-  </header>
   
   <!-- 固定比例容器包装器 -->
   <div class="fixed-scale-wrapper">
@@ -110,6 +108,12 @@
   </div>
   </div>
   <style>
+    @font-face {
+  font-family: "S_1"; /* 定义字体名称 */
+  src: url("../../assets/fonts/S_1.ttf") format("truetype"); /* 指定字体文件路径和格式 */
+  font-weight: normal; /* 设置字体粗细 */
+  font-style: normal; /* 设置字体样式 */
+}
   .divs{
 width: 100%;
 height: 200vh;
@@ -397,7 +401,7 @@ background-repeat: no-repeat;
     }
     
     // 页面加载时调用
-    window.addEventListener('load', updateFixedScale);
+    // window.addEventListener('load', updateFixedScale);
     
     // 窗口大小改变时调用 - 添加防抖处理
     let resizeTimer;

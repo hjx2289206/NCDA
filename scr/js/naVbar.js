@@ -31,6 +31,7 @@ initEventListeners() {
         width: 100%;
         height: 15vh;
         position: relative;
+        top: 0;
 
     }
 
