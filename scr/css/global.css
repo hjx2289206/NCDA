@@ -10,11 +10,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap');
 
 /* 全局页面样式 */
-body {
+html,body {
   font-family: "S_1", "Noto Serif SC", serif; /* 使用自定义字体，如果不可用则使用Noto Serif SC或衬线字体 */
   margin: 0; /* 移除默认外边距 */
   padding: 0; /* 移除默认内边距 */
   background-color: #f8f8f8; /* 设置浅灰色背景 */
+ font-display: swap;
 }
 
 /* 内容区域样式 */
