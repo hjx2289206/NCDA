@@ -4,15 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>3D图片手风琴</title>
-    <link rel="stylesheet" href="./scr/css/accordion.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../../scr/css/accordion.css">
+    <script src="../js/naVbar.js"></script><!-- 引入导航栏Web组件 -->
   </head>
   <body>
+    <header style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;">
+      <!-- 使用自定义导航栏Web组件 -->
+      <arc-button-nav></arc-button-nav>
+    </header>
+
     <div class="background-overlay" id="backgroundOverlay"></div>
 
-    <div class="wrapper" id="wrapper">
+    <div class="wrapper" id="wrapper" style="position: absolute; top: 0; left: 0; width: 100%; height: 100vh;">
       <div class="items" id="items"></div>
     </div>
 
-    <script src="./scr/js/accordion-data.js"></script>
+    <script src="../../scr/js/accordion-data.js"></script>
   </body>
 </html>
