@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盘扣</title>
+    <script src="../js/naVbar.js"></script>
+</head>
+ <style>
+    body,
+    html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .main {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(180deg, #F6FFF6 12%, #B7E3D7 100%);
+    }
+
+    #bg-right {
+        position: absolute;
+        bottom: 0;
+        width: 30%;
+        height: 60%;
+        right: 0;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    #bg-left {
+        position: absolute;
+        top: 5vh;
+        left: 0;
+        width: 30%;
+        height: 100%;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    /* header {
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        height: 15vh;
+        position: relative;
+
+    }
+
+    .nav-title {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+        font-size:1rem;
+    }
+    .header {
+        background-image: url(../../assets/images/show/nav.svg);
+        background-position: center;
+        background-size: 100% 100%;
+        width: 80%;
+        height: 100%;
+        position: relative;
+        opacity: 1;
+        transform: translate(0, 0);
+        transition: all 0.5s ease-in-out;
+ 
+    }
+
+.ja{
+    position: absolute;
+    top: 110%; 
+    left: 50%;
+    transform: translateX(-50%);
+cursor: pointer;
+transition: all 0.5s ease-in-out;
+}
+.xian{
+position: absolute;
+top: 10%;
+left: 10%;
+
+}
+.fang{
+position: absolute;
+top: 40%;
+left: 30%;
+}
+
+.co{
+position: absolute;
+
+top: 40%;
+right: 30%;
+}
+.zhan{
+position: absolute; 
+top: 10%;
+right: 10%;
+
+}
+
+img {
+        width: 100%;
+        height: 100%;
+    }
+    #logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+.ACTIVE {
+ opacity: 0;
+ transform: translate(0, -100%);
+}
+.JA {
+    top: 10%;
+    transform: rotate(180deg);
+} */
+
+
+</style> 
+
+<body>
+    <div class="main">
+        <arc-button-nav></arc-button-nav>
+         <!-- <header>
+            <div class="ja"><img src="../../assets/images/show/Vector (1).svg" alt=""></div>
+            <div class="header">
+               
+                <div id="logo"><img src="../../assets/images/show/logo 2 (1).svg" alt=""></div>
+                
+                <a href="#" class="nav-title xian">
+                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame.svg" alt=""></div>
+                    <div>线</div>
+                </a>
+                <a class="nav-title fang">
+                    <div style="width: 40px; height: 40px;"> <img src="../../assets/images/show/Frame (3).svg" alt=""></div>
+                    <div>坊</div>
+                </a>
+                <a class="nav-title co">
+                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Vector.svg" alt=""></div>
+                    <div>扣</div>
+                </a>
+                <a class="nav-title zhan">
+                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame (1).svg" alt=""></div>
+                    <div>展</div>
+                </a>
+
+            </div>
+        </header> -->
+        <div id="bg-left">
+            <img src="../../assets/images/show/sj2.svg" alt="">
+        </div>
+        <div id="bg-right">
+            <img src="../../assets/images/show/sj 1.svg" alt="">
+        </div>
+
+    </div>
+</body>
+
+</html>
+
+
+<!-- <script>
+const ja = document.querySelector('.ja');
+const header = document.querySelector('.header');
+ja.addEventListener('click', function() {
+
+    if(header.classList.contains('ACTIVE')&&ja.classList.contains('JA')) {
+        header.classList.remove('ACTIVE');
+        ja.classList.remove('JA');
+    } else {
+        header.classList.add('ACTIVE');
+        ja.classList.add('JA');
+    }
+});
+
+
+
+
+</script> -->
