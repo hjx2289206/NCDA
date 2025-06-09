@@ -15,7 +15,7 @@ html,body {
   margin: 0; /* 移除默认外边距 */
   padding: 0; /* 移除默认内边距 */
   background-color: #f8f8f8; /* 设置浅灰色背景 */
- font-display: swap;
+  font-display: swap;
 }
 
 /* 内容区域样式 */
