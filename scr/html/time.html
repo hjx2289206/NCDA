@@ -263,7 +263,7 @@ background-repeat: no-repeat;
     body {
       margin: 0;
       padding: 0;
-      overflow-x: auto; /* 允许水平滚动 */
+      overflow-x: hidden; /* 禁用水平滚动条 */
       overflow-y: auto; /* 允许垂直滚动 */
       min-height: 100vh;
     }
@@ -401,7 +401,7 @@ background-repeat: no-repeat;
     }
     
     // 页面加载时调用
-    // window.addEventListener('load', updateFixedScale);
+    window.addEventListener('load', updateFixedScale);
     
     // 窗口大小改变时调用 - 添加防抖处理
     let resizeTimer;
@@ -409,6 +409,9 @@ background-repeat: no-repeat;
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(updateFixedScale, 100);
     });
+
+    // 立即执行一次以确保初始化正确
+    updateFixedScale();
   </script>
 </body>
 </html>
