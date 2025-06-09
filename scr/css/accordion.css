@@ -266,7 +266,7 @@ body {
 
 /* 位置预设 */
 .position-bottom-center {
-  bottom: 15%;
+  bottom: 10%; /* 向下移动一点，从15%改为10% */
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
@@ -279,19 +279,21 @@ body {
 
 /* 标题样式 - 简化版本 */
 .title-simple {
-  font-size: 28px;
+  font-size: 2vw;
   font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 10px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  color: #000000; /* 改为黑色 */
+  margin-bottom: 2vh;
+  font-family: "S_1", "Noto Serif SC", serif; /* 使用全局字体 */
+  text-shadow: none; /* 移除文字阴影 */
 }
 
 /* 描述样式 - 简化版本 */
 .desc-simple {
-  font-size: 16px;
-  color: #e0e0e0;
+  font-size: 1.5vw;
+  color: #000000; /* 改为黑色 */
   line-height: 1.5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  font-family: "S_1", "Noto Serif SC", serif; /* 使用全局字体 */
+  text-shadow: none; /* 移除文字阴影 */
 }
 
 /* 动画效果 */

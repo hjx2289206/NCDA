@@ -1,8 +1,6 @@
 // 28张图片数据，包含标题、描述、背景色和文字位置
 const imageData = [
   {
-      title: "山峦之美",
-      desc: "雄伟壮丽的自然风光",
       bg: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       // 可以使用 SVG 数据URL、外部SVG链接或普通图片
       imageUrl: "https://picsum.photos/400/600?random=1", // 或者 "data:image/svg+xml;base64,..." 或 "path/to/your.svg"
@@ -10,7 +8,6 @@ const imageData = [
           type: "simple-text",
           position: "bottom-center",
           elements: [
-              { type: "title", text: "山峦之美", style: "simple" },
               { type: "description", text: "雄伟壮丽的自然风光", style: "simple" }
           ],
           animation: "fade-in-up",
@@ -18,15 +15,12 @@ const imageData = [
       }
   },
   {
-      title: "海洋奇观",
-      desc: "深邃蔚蓝的海洋世界",
       bg: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
       imageUrl: "https://picsum.photos/400/600?random=2",
       textConfig: {
           type: "simple-text",
           position: "bottom-center",
           elements: [
-              { type: "title", text: "海洋奇观", style: "simple" },
               { type: "description", text: "深邃蔚蓝的海洋世界", style: "simple" }
           ],
           animation: "fade-in-up",
@@ -34,15 +28,12 @@ const imageData = [
       }
   },
   {
-      title: "森林秘境",
-      desc: "神秘幽深的绿色天堂",
       bg: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
       imageUrl: "https://picsum.photos/400/600?random=3",
       textConfig: {
           type: "simple-text",
           position: "bottom-center",
           elements: [
-              { type: "title", text: "森林秘境", style: "simple" },
               { type: "description", text: "神秘幽深的绿色天堂", style: "simple" }
           ],
           animation: "fade-in-up",
@@ -50,15 +41,12 @@ const imageData = [
       }
   },
   {
-      title: "沙漠风情",
-      desc: "金色沙海的无尽魅力",
       bg: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
       imageUrl: "https://picsum.photos/400/600?random=4",
       textConfig: {
           type: "simple-text",
           position: "bottom-center",
           elements: [
-              { type: "title", text: "沙漠风情", style: "simple" },
               { type: "description", text: "金色沙海的无尽魅力", style: "simple" }
           ],
           animation: "fade-in-up",
@@ -66,22 +54,19 @@ const imageData = [
       }
   },
   {
-      title: "城市夜景",
-      desc: "霓虹闪烁的都市之光",
       bg: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
       imageUrl: "https://picsum.photos/400/600?random=5",
       textConfig: {
           type: "simple-text",
           position: "bottom-center",
           elements: [
-              { type: "title", text: "城市夜景", style: "simple" },
               { type: "description", text: "霓虹闪烁的都市之光", style: "simple" }
           ],
           animation: "fade-in-up",
           delay: 0.3
       }
   }
-  // 可以继续添加更多图片...
+  
 ];
 
 // 初始化函数
@@ -373,7 +358,14 @@ function initAccordion() {
     if (e.target.closest(".item")) return;
     isDragging = true;
     startX = e.clientX;
-    items.style.cssText = "transition: none; animation: none;";
+    // 保存当前transform值，避免重置位置
+    const matrix = getComputedStyle(items).transform;
+    if (matrix !== "none") {
+      currentTransform = parseFloat(
+        matrix.match(/matrix.*\((.+)\)/)[1].split(", ")[4]
+      );
+    }
+    items.style.cssText = `transition: none; animation: none; transform: translateX(${currentTransform}px);`;
     wrapper.style.cursor = "grabbing";
     setMovingState(true);
   });
@@ -444,7 +436,14 @@ function initAccordion() {
         if (e.target.closest(".item")) return;
         isDragging = true;
         startX = e.touches[0].clientX;
-        items.style.cssText = "transition: none; animation: none;";
+        // 保存当前transform值，避免重置位置
+        const matrix = getComputedStyle(items).transform;
+        if (matrix !== "none") {
+          currentTransform = parseFloat(
+            matrix.match(/matrix.*\((.+)\)/)[1].split(", ")[4]
+          );
+        }
+        items.style.cssText = `transition: none; animation: none; transform: translateX(${currentTransform}px);`;
         setMovingState(true);
       } else if (i === 1 && isDragging && !isClickMode) {
         // touchmove
