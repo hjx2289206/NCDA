@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>盘扣</title>
     <script src="../js/naVbar.js"></script>
+    <link rel="stylesheet" href="../css/global.css">
 </head>
  <style>
     body,
@@ -49,150 +50,269 @@
             height: 100%;
         }
     }
+svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-    /* header {
-        justify-content: center;
-        display: flex;
+    .stroke-path {
+      fill: none;
+      stroke: #FFD6DC;
+      stroke-width: 2;
+      stroke-dasharray: 3000;
+      stroke-dashoffset: 3000;
+      animation: draw 3s ease forwards;
+    }
+
+    .fill-path {
+      fill: #FFD6DC;
+      fill-opacity: 0.93;
+      mask: url(#revealMask);
+    }
+
+    /* 描边动画 */
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* 遮罩动画 */
+    @keyframes mask-reveal {
+      0% {
+        width: 0%;
+      }
+      100% {
         width: 100%;
-        height: 15vh;
+      }
+    }
+
+    /* 延迟 1 秒开始填充 */
+    #revealRect {
+      animation: mask-reveal 3s ease 1s forwards;
+    }
+    .wrapper_BG{
         position: relative;
-
+        width: 60%;
+        height: 60%;
+        transform: translate(-50%,-50%);
+        top: 45%;
+        left: 52%;
+        z-index: 1;
     }
+/* 轮播效果*/
+.carousel {
+  position: absolute;
+  width: 40%;
+  height: 40%;
+  /* overflow: hidden; */
+  z-index: 2;
+  transform: translate(-50%,-50%);
+  left:45%;
+  top: 40%;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 3s;
 
-    .nav-title {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-        font-size:1rem;
-    }
-    .header {
-        background-image: url(../../assets/images/show/nav.svg);
-        background-position: center;
-        background-size: 100% 100%;
-        width: 80%;
-        height: 100%;
-        position: relative;
-        opacity: 1;
-        transform: translate(0, 0);
-        transition: all 0.5s ease-in-out;
- 
-    }
-
-.ja{
-    position: absolute;
-    top: 110%; 
-    left: 50%;
-    transform: translateX(-50%);
-cursor: pointer;
-transition: all 0.5s ease-in-out;
 }
-.xian{
+
+.carouselContent .item {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+display: flex;
+justify-content: space-around;
+flex-direction: row;
+align-items: center;
+
+}
+
+.carouselContent .item.active {
+  opacity: 1;
+}
+ .item .img{
+  width: 100%;
+  height: 100%;
+img{
+  width: 100%;
+  height: 100%;
+}
+
+
+ }
+.carousel-controls {
+    
+  position: absolute;
+  top: 50%;
+  left: -20%;
+  width: 140%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+.button {
+   cursor: pointer;
+    width:50px;
+    height: 50px;
+    img{
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+     }
+
+}
+
+.carouselContent{
+   background: linear-gradient( 180deg,hsla(162, 33%, 76%, 1),hsla(124, 49%, 93%, 1) 100%);
+   width: 100%;
+   height: 100%;
+    border-radius: 10px;
+}
+#text-bg{
+    font-family: "S_1";
+    font-size: 40px;
+writing-mode:vertical-lr;
+text-align: center;
+width: 20%;
+height: 80%;
+background-image: url(../../assets/images/show/text-bg.svg);
+background-position: center;
+background-repeat: no-repeat;
+background-size: 100% 100%;
+ display: flex;             /* 开启 flex 布局 */
+  justify-content: center;   /* 主轴居中（writing-mode: vertical-lr 时为“垂直方向”） */
+  align-items: center;   
+   letter-spacing: 0.5em; 
+}
+@media  (width<=1000px),(height<=1000px) {
+    #text-bg{
+        font-size: 20px;
+    }
+    #entr{
+      font-size: 20px;
+    }
+}
+#entr{
+font-size: 40px;
 position: absolute;
-top: 10%;
-left: 10%;
-
+top: 85%;
+left: 50%;
+transform: translate(-50%,-50%);
+letter-spacing: 10px;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+   animation-delay: 3s;
 }
-.fang{
-position: absolute;
-top: 40%;
-left: 30%;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
-.co{
-position: absolute;
-
-top: 40%;
-right: 30%;
-}
-.zhan{
-position: absolute; 
-top: 10%;
-right: 10%;
-
-}
-
-img {
-        width: 100%;
-        height: 100%;
-    }
-    #logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-.ACTIVE {
- opacity: 0;
- transform: translate(0, -100%);
-}
-.JA {
-    top: 10%;
-    transform: rotate(180deg);
-} */
-
-
 </style> 
 
 <body>
     <div class="main">
         <arc-button-nav></arc-button-nav>
-         <!-- <header>
-            <div class="ja"><img src="../../assets/images/show/Vector (1).svg" alt=""></div>
-            <div class="header">
-               
-                <div id="logo"><img src="../../assets/images/show/logo 2 (1).svg" alt=""></div>
-                
-                <a href="#" class="nav-title xian">
-                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame.svg" alt=""></div>
-                    <div>线</div>
-                </a>
-                <a class="nav-title fang">
-                    <div style="width: 40px; height: 40px;"> <img src="../../assets/images/show/Frame (3).svg" alt=""></div>
-                    <div>坊</div>
-                </a>
-                <a class="nav-title co">
-                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Vector.svg" alt=""></div>
-                    <div>扣</div>
-                </a>
-                <a class="nav-title zhan">
-                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame (1).svg" alt=""></div>
-                    <div>展</div>
-                </a>
+<div class="wrapper_BG">
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <mask id="revealMask">
+      <rect id="revealRect" x="0" y="0" height="100%" width="0%" fill="white" />
+    </mask>
+  </defs>
 
-            </div>
-        </header> -->
+  <!-- 填充路径 -->
+  <path
+    class="fill-path"
+    d="M214.43 469.905L238.256 453.449L228.726 435.817L234.682 429.94L228.726 418.186C220.361 418.039 281.142 398.203 281.142 398.203C281.142 398.203 336.639 382.776 343.089 385.273C352.552 380.647 396.891 377.025 428.861 378.221C468.354 378.118 490.516 379.893 530.12 389.975C562.545 397.721 580.985 404.689 614.7 421.712L607.553 432.291L614.7 435.817C611.921 442.87 605.885 456.975 603.979 456.975C602.073 456.975 621.451 465.595 631.378 469.905L643.291 453.449H650.439L843.426 125.502L837.47 121.975L847 109.045L820.792 87.8875L802.923 109.045L796.966 105.519L789.819 121.975C766.832 104.156 751.867 94.6574 721.916 78.484C687.4 59.2285 664.578 49.2203 618.274 32.6419C574.868 20.4005 553.174 14.7085 519.398 6.78222C472.332 1.48179 449.006 0.931391 408.609 0.905029C331.915 1.74235 310.821 6.47694 273.679 14.8136L272.803 15.0103C205.287 33.6557 188.006 43.0049 157.249 59.677C92.4852 93.3333 82.2558 100.709 53.6076 118.449L45.2686 107.87L35.7384 110.221L26.2082 90.2384L0 103.168L8.33896 123.151L0 132.554L188.222 453.449L197.752 449.923L214.43 469.905Z"
+  />
+
+  <!-- 描边路径 -->
+  <path
+    class="stroke-path"
+    d="M214.43 469.905L238.256 453.449L228.726 435.817L234.682 429.94L228.726 418.186C220.361 418.039 281.142 398.203 281.142 398.203C281.142 398.203 336.639 382.776 343.089 385.273C352.552 380.647 396.891 377.025 428.861 378.221C468.354 378.118 490.516 379.893 530.12 389.975C562.545 397.721 580.985 404.689 614.7 421.712L607.553 432.291L614.7 435.817C611.921 442.87 605.885 456.975 603.979 456.975C602.073 456.975 621.451 465.595 631.378 469.905L643.291 453.449H650.439L843.426 125.502L837.47 121.975L847 109.045L820.792 87.8875L802.923 109.045L796.966 105.519L789.819 121.975C766.832 104.156 751.867 94.6574 721.916 78.484C687.4 59.2285 664.578 49.2203 618.274 32.6419C574.868 20.4005 553.174 14.7085 519.398 6.78222C472.332 1.48179 449.006 0.931391 408.609 0.905029C331.915 1.74235 310.821 6.47694 273.679 14.8136L272.803 15.0103C205.287 33.6557 188.006 43.0049 157.249 59.677C92.4852 93.3333 82.2558 100.709 53.6076 118.449L45.2686 107.87L35.7384 110.221L26.2082 90.2384L0 103.168L8.33896 123.151L0 132.554L188.222 453.449L197.752 449.923L214.43 469.905Z"
+  />
+</svg>
+<div class="carousel">
+  <div class="carouselContent">
+    <div class="item"><div id="text-bg">雪花扣</div><div class="img" style="width: 50%;height: 50%;"><img src="../../assets/images/show/xue.svg" class="active" alt="1"></div></div>
+    <div class="item"><div id="text-bg">扇子扣</div><div class="img" style="width: 50%;height: 80%;"><img src="../../assets/images/show/san.svg" class="active" alt="1"></div></div>
+    <div class="item"><div id="text-bg">鱼尾扣</div><div class="img" style="width: 50%;height: 80%;"><img src="../../assets/images/show/yu.svg" class="active" alt="1"></div></div>
+    <div class="item"><div id="text-bg">铜钱扣</div><div class="img" style="width: 50%;height: 50%;"><img src="../../assets/images/show/tong.svg" class="active" alt="1"></div></div>
+    <div class="item"><div id="text-bg">蝴蝶扣</div><div class="img" style="width: 50%;height: 50%;"><img src="../../assets/images/show/hu.svg" class="active" alt="1"></div></div>
+    <div class="item"><div id="text-bg">一字扣</div><div class="img" style="width: 50%;height: 50%;"><img src="../../assets/images/show/yi.svg" class="active" alt="1"></div></div>
+    <div class="item"><div id="text-bg">盘香扣</div><div class="img" style="width: 50%;height: 50%;"><img src="../../assets/images/show/pan.svg" class="active" alt="1"></div></div>
+  </div>
+  <div class="carousel-controls">
+    <div id="prev" class="button"><img src="../../assets/images/show/Vector (2).svg" alt=""></div>
+    <div id="next" class="button"><img src="../../assets/images/show/Vector (3).svg" alt=""></div>
+  </div>
+</div>
+</div>
         <div id="bg-left">
             <img src="../../assets/images/show/sj2.svg" alt="">
         </div>
         <div id="bg-right">
             <img src="../../assets/images/show/sj 1.svg" alt="">
         </div>
-
+          <div id="entr">查看详情</div>
     </div>
 </body>
+<script>
+  const images = document.querySelectorAll(".carouselContent .item");
+const prevBtn = document.getElementById("prev");
+const nextBtn = document.getElementById("next");
+let current = 0;
+let timer;
+
+function showImage(index) {
+  images.forEach((img, i) => {
+    img.classList.toggle("active", i === index);
+  });
+}
+
+function nextImage() {
+  current = (current + 1) % images.length;
+  showImage(current);
+}
+
+function prevImage() {
+  current = (current - 1 + images.length) % images.length;
+  showImage(current);
+}
+
+function startAutoSlide() {
+  timer = setInterval(nextImage, 2500);
+}
+
+function stopAutoSlide() {
+  clearInterval(timer);
+}
+
+prevBtn.addEventListener("click", () => {
+  stopAutoSlide();
+  prevImage();
+  startAutoSlide();
+});
+
+nextBtn.addEventListener("click", () => {
+  stopAutoSlide();
+  nextImage();
+  startAutoSlide();
+});
+
+// 启动轮播
+startAutoSlide();
+
+</script>
 
 </html>
 
-
-<!-- <script>
-const ja = document.querySelector('.ja');
-const header = document.querySelector('.header');
-ja.addEventListener('click', function() {
-
-    if(header.classList.contains('ACTIVE')&&ja.classList.contains('JA')) {
-        header.classList.remove('ACTIVE');
-        ja.classList.remove('JA');
-    } else {
-        header.classList.add('ACTIVE');
-        ja.classList.add('JA');
-    }
-});
-
-
-
-
-</script> -->
