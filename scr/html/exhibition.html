@@ -94,6 +94,74 @@
     ];
 
     let currentIndex = 0;
+    let imagesLoaded = false;
+    let loadedImages = {}; // 存储已加载的图片
+    
+    // 改进的预加载函数
+    function preloadImages() {
+      return new Promise((resolve) => {
+        let loadedCount = 0;
+        const totalImages = slides.length;
+        
+        console.log('开始预加载图片...');
+        
+        slides.forEach((slide, index) => {
+          const img = new Image();
+          
+          img.onload = () => {
+            loadedCount++;
+            loadedImages[slide.image] = img; // 缓存已加载的图片
+            console.log(`图片 ${index + 1} 加载成功: ${slide.image}`);
+            
+            if (loadedCount === totalImages) {
+              imagesLoaded = true;
+              console.log('所有图片预加载完成');
+              resolve();
+            }
+          };
+          
+          img.onerror = (error) => {
+            loadedCount++;
+            console.warn(`图片 ${index + 1} 加载失败: ${slide.image}`, error);
+            
+            if (loadedCount === totalImages) {
+              imagesLoaded = true;
+              console.log('预加载完成（部分图片可能失败）');
+              resolve();
+            }
+          };
+          
+          // 设置src开始加载
+          img.src = slide.image;
+        });
+        
+        // 设置超时机制，防止无限等待
+        setTimeout(() => {
+          if (!imagesLoaded) {
+            imagesLoaded = true;
+            console.log('预加载超时，继续执行');
+            resolve();
+          }
+        }, 5000); // 5秒超时
+      });
+    }
+    
+    // 页面加载完成后预加载图片
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM加载完成，开始预加载');
+      preloadImages().then(() => {
+        // 预加载完成后，为所有图片设置src
+        const imageBoxes = document.querySelectorAll('.image-box');
+        imageBoxes.forEach((box, index) => {
+          const img = box.querySelector('img');
+          if (slides[index]) {
+            img.src = slides[index].image;
+          }
+        });
+        // 然后初始化轮播
+        updateSlides();
+      });
+    });
 
     function updateSlides() {
       const imageBoxes = document.querySelectorAll('.image-box');
@@ -131,10 +199,8 @@
 
       // 更新图片和类名
       imageBoxes.forEach((box, index) => {
-        const img = box.querySelector('img');
         if (index === currentIndex) {
           box.className = 'image-box active';
-          img.src = slides[currentIndex].image;
         } else if (index < currentIndex) {
           box.className = 'image-box prev';
         } else {
@@ -152,9 +218,6 @@
       currentIndex = (currentIndex - 1 + slides.length) % slides.length;
       updateSlides();
     }
-
-    // 初始化轮播图
-    updateSlides();
   </script>
 </body>
 
