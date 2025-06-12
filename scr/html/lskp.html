@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蕾丝旗袍页面</title>
+    <link rel="stylesheet" href="../../scr/css/global.css">
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* 防止出现滚动条 */
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg, #F2D6DF 0%, #E7F8EF 36%);
+            /* 使用全局样式字体 */
+        }
+
+        /* 背景1：覆盖整个页面 */
+        .background1 {
+            position: fixed; /* 使用 fixed 确保完全覆盖 */
+            width: 100vw; /* 覆盖整个页面宽度 */
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1; /* 最底层 */
+            object-fit: cover; /* 确保图片覆盖整个区域 */
+        }
+
+        /* 背景2：放中间，上下紧贴屏幕边缘 */
+        .background2 {
+            position: absolute;
+            width: 50vw; /* 宽度 */
+            height: 100vh;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2;
+        }
+
+        /* 背景3：定位在屏幕中间 */
+        .background3 {
+            position: absolute;
+            width: 28vw; /* 可根据需要调整宽度 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 3;
+        }
+
+        /* 背景4：在屏幕中间偏右的位置 */
+        .background4 {
+            position: absolute;
+            width: 30vw; /* 可根据需要调整宽度 */
+            height: 60vh; /* 可根据需要调整高度 */
+            top: 16%;
+            right: 19%; /* 偏右位置，可调整 */
+            transform: translate(50%, -50%); /* 居中定位 */
+            z-index: 4;
+        }
+
+        /* 背景5：紧贴屏幕下边缘 */
+        .background5 {
+            position: absolute;
+            width: 100vw;
+            height: 40vh; /* 调整高度只覆盖底部 */
+            bottom: 0;
+            left: 0;
+            z-index: 1.5; /* 在背景1之上，其他背景之下 */
+            opacity: 0.42; /* 半透明效果 */
+        }
+
+        /* ls1：在屏幕中心 */
+        .ls1 {
+            position: absolute;
+            width: 27vw; /* 可根据需要调整宽度 */
+            top: 37%;
+            left: 47%;
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 最上层 */
+        }
+
+        /* 横向标题，定位在偏右上角 */
+        .horizontal-title {
+            position: absolute;
+            top: 10vh;
+            right: 15vw;
+            z-index: 6;
+            font-size: 2.5vw;
+        }
+
+        /* 信息区域样式重置 */
+        .info-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+            pointer-events: none; /* 允许点击穿透到下层元素 */
+        }
+
+        /* 各个信息块 - 单独绝对定位 */
+        .info-block {
+            position: absolute;
+            pointer-events: auto; /* 恢复该块的点击事件 */
+        }
+
+        /* 面料信息块位置 - 左侧上方 */
+        .info-block.fabric-info {
+            top: 20vh;
+            left: 5vw;
+            width: 30vw;
+        }
+
+        /* 注意事项块位置 - 左侧下方 */
+        .info-block.care-instructions {
+            top: 55vh;
+            left: 5vw;
+            width: 30vw;
+        }
+
+        /* 面料特点块位置 - 右侧，调窄宽度 */
+        .info-block.fabric-features {
+            top: 45vh;
+            right: 8vw;
+            width: 25vw; /* 从37vw调窄到25vw */
+        }
+
+        /* 左侧标题样式 */
+        .info-block.fabric-info .info-title,
+        .info-block.care-instructions .info-title {
+            position: relative;
+            font-size: 1.8vw;
+            margin-bottom: 1vh;
+            background-image: url('../../assets/images/kp/ls/Rectangle53.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: left center; /* 左侧对齐 */
+            padding: 0.5vh 0.5vw;
+            height: 3vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* 标题文字左对齐 */
+            transform: scaleX(-1); /* 水平翻转背景 */
+        }
+
+        /* 左侧标题文字反向翻转 */
+        .info-block.fabric-info .info-title span,
+        .info-block.care-instructions .info-title span {
+            transform: scaleX(-1); /* 文字反向翻转回来 */
+        }
+
+        /* 面料特点标题样式 - 左对齐，不翻转背景 */
+        .info-block.fabric-features .info-title {
+            position: relative;
+            font-size: 1.8vw;
+            margin-bottom: 1vh;
+            background-image: url('../../assets/images/kp/ls/Rectangle53.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: left center; /* 左侧对齐 */
+            padding: 0.5vh 0.5vw;
+            height: 3vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* 标题文字左对齐 */
+            /* 不翻转背景 */
+        }
+
+        /* 左侧内容样式 */
+        .info-block.fabric-info .info-content,
+        .info-block.care-instructions .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            margin-right: 2vw; /* 文本距离标题的距离 */
+            line-height: 1.6;
+            padding-top: 0.5vh;
+            text-align: left; /* 文本左对齐 */
+        }
+
+        /* 面料特点内容样式 - 距离标题左侧一段距离 */
+        .info-block.fabric-features .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            margin-left: 2vw; /* 距离标题左侧2vw */
+            line-height: 1.6;
+            padding-top: 0.5vh;
+            text-align: left; /* 文本左对齐 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景1：覆盖整个页面 -->
+    <img src="../../assets/images/kp/ls/background1.svg" alt="背景1" class="background1">
+    
+    <!-- 背景2：放中间，上下紧贴屏幕边缘 -->
+    <img src="../../assets/images/kp/ls/background2.svg" alt="背景2" class="background2">
+    
+    <!-- 背景3：定位在屏幕中间 -->
+    <img src="../../assets/images/kp/ls/background3.svg" alt="背景3" class="background3">
+    
+    <!-- 背景4：在屏幕中间偏右的位置 -->
+    <img src="../../assets/images/kp/ls/background4.svg" alt="背景4" class="background4">
+    
+    <!-- ls1：在屏幕中心 -->
+    <img src="../../assets/images/kp/ls/ls1.svg" alt="ls1" class="ls1">
+
+    <!-- 横向标题，定位在偏右上角 -->
+    <div class="horizontal-title">
+        蕾丝旗袍
+    </div>
+
+    <!-- 信息区域 -->
+    <div class="info-section">
+        <!-- 面料信息 - 左侧上方 -->
+        <div class="info-block fabric-info">
+            <div class="info-title"><span>面料</span></div>
+            <div class="info-content">
+                蕾丝，以锦纶、涤纶等化纤或棉混纺制成，通过镂空、刺绣等工艺形成精致立体花纹，质地通透轻盈、柔软有弹性
+            </div>
+        </div>
+
+        <!-- 注意事项 - 左侧下方 -->
+        <div class="info-block care-instructions">
+            <div class="info-title"><span>注意事项</span></div>
+            <div class="info-content">
+                避尖锐物防勾丝，内搭光滑防染色；轻柔手洗 / 冷水机洗（洗衣袋），深浅分洗，忌搓揉、漂白、热水；阴干 / 低温烘干，宽衣架挂放；低温垫布熨烫；清洁后单独存放，通风防潮。
+            </div>
+        </div>
+
+        <!-- 面料特点 - 右侧 -->
+        <div class="info-block fabric-features">
+            <div class="info-title">面料特点</div>
+            <div class="info-content">
+                多为锦纶、涤纶等化纤或棉混纺（含氨纶增弹性），通透轻盈、花纹精致立体，触感柔软顺滑且弹性好，贴合身形显曲线，通过镂空、刺绣等工艺营造柔美层次，轻薄款适合春夏及炎热环境，厚款（如加衬）可适配秋冬，常用于晚宴、婚礼等场合，风格浪漫优雅。
+            </div>
+        </div>
+    </div>
+</body>
+</html>

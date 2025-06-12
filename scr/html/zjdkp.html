@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>织锦缎旗袍页面</title>
+    <link rel="stylesheet" href="../../scr/css/global.css">
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* 防止出现滚动条 */
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            /* 移除自定义字体，使用全局样式 */
+        }
+
+        /* 背景1：覆盖整个页面 */
+        .background1 {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1; /* 最底层 */
+        }
+
+        /* 背景2：放中间，上下紧贴屏幕边缘 */
+        .background2 {
+            position: absolute;
+            width: 50vw; /* 宽度 */
+            height: 100vh;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2;
+        }
+
+        /* 背景3：紧贴屏幕中间上方 */
+        .background3 {
+            position: absolute;
+            width: 28vw; /* 可根据需要调整宽度 */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 3;
+        }
+
+        /* 背景4：在屏幕中间偏左的位置 */
+        .background4 {
+            position: absolute;
+            width: 30vw; /* 可根据需要调整宽度 */
+            height: 60vh; /* 可根据需要调整高度 */
+            top: 50%;
+            left: 23%; /* 偏左位置，可调整 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 4;
+        }
+
+        /* zjd1：在屏幕中心 */
+        .zjd1 {
+            position: absolute;
+            width: 27vw; /* 可根据需要调整宽度 */
+            top: 37%;
+            left: 47%;
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 最上层 */
+        }
+
+        /* 背景4上的竖向标题 */
+        .vertical-title {
+            position: absolute;
+            top: 40vh;
+            left: 23.5vw;
+            transform: translateX(-50%);
+            z-index: 6;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-size: 2.5vw;
+        }
+
+        /* 右侧信息区域样式重置 */
+        .info-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+            pointer-events: none; /* 允许点击穿透到下层元素 */
+        }
+
+        /* 各个信息块 - 单独绝对定位 */
+        .info-block {
+            position: absolute;
+            pointer-events: auto; /* 恢复该块的点击事件 */
+        }
+
+        /* 面料信息块位置 */
+        .info-block.fabric-info {
+            top: 10vh;
+            right: 12vw;
+            width: 30vw;
+        }
+
+        /* 面料特点块位置 */
+        .info-block.fabric-features {
+            top: 45vh;
+            right: 5vw;
+            width: 30vw;
+        }
+
+        /* 注意事项块位置 */
+        .info-block.care-instructions {
+            top: 75vh;
+            right: 8vw;
+            width: 37vw;
+        }
+
+        .info-title {
+            position: relative;
+            font-size: 1.8vw;
+            margin-bottom: 1vh;
+            background-image: url('../../assets/images/kp/zjd/Rectangle53.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: left center;
+            padding: 0.5vh 0.5vw; /* 将右内边距从3vw减少到2vw，使标题向左移动 */
+            height: 3vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            margin-left: 3vw; /* 文本距离标题左侧的距离 */
+            line-height: 1.6;
+            padding-top: 0.5vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景1：覆盖整个页面 -->
+    <img src="../../assets/images/kp/zjd/background1.svg" alt="背景1" class="background1">
+    
+    <!-- 背景2：放中间，上下紧贴屏幕边缘 -->
+    <img src="../../assets/images/kp/zjd/background2.svg" alt="背景2" class="background2">
+    
+    <!-- 背景3：紧贴屏幕中间上方 -->
+    <img src="../../assets/images/kp/zjd/background3.svg" alt="背景3" class="background3">
+    
+    <!-- 背景4：在屏幕中间偏左的位置 -->
+    <img src="../../assets/images/kp/zjd/background4.svg" alt="背景4" class="background4">
+    
+    <!-- zjd1：在屏幕中心 -->
+    <img src="../../assets/images/kp/zjd/zjd1.svg" alt="zjd1" class="zjd1">
+
+    <!-- 背景4上的竖向标题 -->
+    <div class="vertical-title">
+        织锦缎旗袍
+    </div>
+
+    <!-- 右侧信息区域 -->
+    <div class="info-section">
+        <!-- 面料信息 -->
+        <div class="info-block fabric-info">
+            <div class="info-title">面料</div>
+            <div class="info-content">
+                织锦缎，传统丝织面料，以缎纹为地、多色丝纬提花织造，花纹精致、色泽绚丽、质地紧密挺括，尽显高贵华丽
+            </div>
+        </div>
+
+        <!-- 面料特点 -->
+        <div class="info-block fabric-features">
+            <div class="info-title">面料特点</div>
+            <div class="info-content">
+                多色丝纬提花织造，花纹精细、色彩绚丽、光泽感强，具民族风格；质地紧密挺括、色牢度好，尽显高贵；原料多样；工艺复杂价高，需避碱、高温及细心养护。
+            </div>
+        </div>
+
+        <!-- 注意事项 -->
+        <div class="info-block care-instructions">
+            <div class="info-title">注意事项</div>
+            <div class="info-content">
+                宜干洗，手洗用中性洗涤剂低温轻搓、忌机洗 / 碱 / 高温，深浅分洗；阴干 / 低温烘干、避暴晒；低温垫布熨烫；避油渍、动作轻防钩丝；清洁后单独悬挂 / 防尘袋存放于干燥处、防潮。
+            </div>
+        </div>
+    </div>
+</body>
+</html>

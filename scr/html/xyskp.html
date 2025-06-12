@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香云纱旗袍页面</title>
+    <link rel="stylesheet" href="../../scr/css/global.css">
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* 防止出现滚动条 */
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg, rgba(242,214,223,0.4) 0%, rgba(191,231,219,0.62) 36%);
+            /* 使用全局样式字体 */
+        }
+
+        /* 背景1：紧贴屏幕左边 */
+        .background1 {
+            position: absolute;
+            width: 50vw; /* 调整宽度只覆盖左半部分 */
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1; /* 最底层 */
+        }
+
+        /* 背景2：放中间，上下紧贴屏幕边缘 */
+        .background2 {
+            position: absolute;
+            width: 50vw; /* 宽度 */
+            height: 100vh;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2;
+        }
+
+        /* 背景3：紧贴屏幕中间上方 */
+        .background3 {
+            position: absolute;
+            width: 28vw; /* 可根据需要调整宽度 */
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 3;
+        }
+
+        /* 背景4：在屏幕中间偏右的位置 */
+        .background4 {
+            position: absolute;
+            width: 30vw; /* 可根据需要调整宽度 */
+            height: 60vh; /* 可根据需要调整高度 */
+            top: 50%;
+            right: 23%; /* 偏右位置，可调整 */
+            transform: translate(50%, -50%); /* 居中定位 */
+            z-index: 4;
+        }
+
+        /* 背景5：紧贴屏幕下边缘 */
+        .background5 {
+            position: absolute;
+            width: 100vw;
+            height: 40vh; /* 调整高度只覆盖底部 */
+            bottom: 0;
+            left: 0;
+            z-index: 1.5; /* 在背景1之上，其他背景之下 */
+            opacity: 0.42; /* 半透明效果 */
+        }
+
+        /* xys1：在屏幕中心 */
+        .xys1 {
+            position: absolute;
+            width: 27vw; /* 可根据需要调整宽度 */
+            top: 37%;
+            left: 47%;
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 最上层 */
+        }
+
+        /* 背景4上的竖向标题 */
+        .vertical-title {
+            position: absolute;
+            top: 40vh;
+            right: 22.5vw;
+            transform: translateX(50%);
+            z-index: 6;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-size: 2.5vw;
+        }
+
+        /* 右侧信息区域样式重置 */
+        .info-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+            pointer-events: none; /* 允许点击穿透到下层元素 */
+        }
+
+        /* 各个信息块 - 单独绝对定位 */
+        .info-block {
+            position: absolute;
+            pointer-events: auto; /* 恢复该块的点击事件 */
+        }
+
+        /* 面料信息块位置 */
+        .info-block.fabric-info {
+            top: 10vh;
+            right: 12vw;
+            width: 30vw;
+        }
+
+        /* 面料特点块位置 - 移到左侧 */
+        .info-block.fabric-features {
+            top: 45vh;
+            left: 5vw;
+            width: 30vw;
+        }
+
+        /* 注意事项块位置 */
+        .info-block.care-instructions {
+            top: 75vh;
+            right: 8vw;
+            width: 37vw;
+        }
+
+        .info-title {
+            position: relative;
+            font-size: 1.8vw;
+            margin-bottom: 1vh;
+            background-image: url('../../assets/images/kp/xys/Rectangle53.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: left center;
+            padding: 0.5vh 0.5vw; /* 标题左侧内边距 */
+            height: 3vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 面料特点标题样式调整 - 图片方向左右翻转 */
+        .info-block.fabric-features .info-title {
+            background-position: left center;
+            text-align: left;
+            padding: 0.5vh 0.5vw; /* 左侧内边距 */
+            justify-content: flex-start;
+            transform: scaleX(-1); /* 水平翻转背景图片 */
+        }
+
+        /* 面料特点标题文字恢复正常方向 */
+        .info-block.fabric-features .info-title span {
+            transform: scaleX(-1); /* 再次翻转文字，使其恢复正常 */
+            display: inline-block;
+        }
+
+        .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            margin-left: 3vw; /* 文本距离标题左侧的距离 */
+            line-height: 1.6;
+            padding-top: 0.5vh;
+        }
+
+        /* 面料特点内容样式调整 - 距离标题右侧一段距离 */
+        .info-block.fabric-features .info-content {
+            text-align: left;
+            margin-left: 0; /* 重置左边距 */
+            margin-right: 3vw; /* 距离标题右侧的距离 */
+            padding-left: 3vw; /* 内容左侧填充 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景1：覆盖整个页面 -->
+    <img src="../../assets/images/kp/xys/background1.svg" alt="背景1" class="background1">
+    
+    <!-- 背景5：半透明覆盖层 -->
+    <img src="../../assets/images/kp/xys/background5.svg" alt="背景5" class="background5">
+    
+    <!-- 背景2：放中间，上下紧贴屏幕边缘 -->
+    <img src="../../assets/images/kp/xys/background2.svg" alt="背景2" class="background2">
+    
+    <!-- 背景3：紧贴屏幕中间上方 -->
+    <img src="../../assets/images/kp/xys/background3.svg" alt="背景3" class="background3">
+    
+    <!-- 背景4：在屏幕中间偏左的位置 -->
+    <img src="../../assets/images/kp/xys/background4.svg" alt="背景4" class="background4">
+    
+    <!-- xys1：在屏幕中心 -->
+    <img src="../../assets/images/kp/xys/xys1.svg" alt="xys1" class="xys1">
+
+    <!-- 背景4上的竖向标题 -->
+    <div class="vertical-title">
+        香云纱旗袍
+    </div>
+
+    <!-- 右侧信息区域 -->
+    <div class="info-section">
+        <!-- 面料信息 -->
+        <div class="info-block fabric-info">
+            <div class="info-title">面料</div>
+            <div class="info-content">
+              香云纱是经薯莨汁液浸染、河泥涂层等传统工艺制成的丝绸面料，表面乌黑油亮、纹理独特，质地挺括爽滑、透气耐穿，兼具古朴韵味与凉爽特性，是岭南特色高端面料
+            </div>
+        </div>
+
+        <!-- 面料特点 -->
+        <div class="info-block fabric-features">
+            <div class="info-title"><span>面料特点</span></div>
+            <div class="info-content">
+              香云纱质地挺括透气，穿着凉爽舒适且越穿越柔软，经传统工艺赋予独特乌亮纹理，耐穿不易褪色，兼具古朴韵味与地域特色，适配典雅复古风格。
+            </div>
+        </div>
+
+        <!-- 注意事项 -->
+        <div class="info-block care-instructions">
+            <div class="info-title">注意事项</div>
+            <div class="info-content">
+              手洗 / 轻柔机洗，中性洗涤剂冷水短浸、忌搓揉漂白；阴干 / 低温烘干、避暴晒，宽衣架防变形；中温垫布熨烫、顺纹轻压；干燥通风单独存放、防摩擦潮湿；避尖锐物、及时拭污，忌暴晒及剧烈运动。
+            </div>
+        </div>
+    </div>
+</body>
+</html>
