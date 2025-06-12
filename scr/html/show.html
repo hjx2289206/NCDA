@@ -174,8 +174,8 @@ img{
     border-radius: 10px;
 }
 #text-bg{
-    font-family: "S_1";
-    font-size: 40px;
+  font-family: "S_1";
+  font-size: 40px;
 writing-mode:vertical-lr;
 text-align: center;
 width: 20%;
@@ -189,17 +189,20 @@ background-size: 100% 100%;
   align-items: center;   
    letter-spacing: 0.5em; 
 }
-@media  (width<=1000px),(height<=1000px) {
-    #text-bg{
-        font-size: 20px;
-    }
-    #entr{
-      font-size: 20px;
-    }
-}
 #entr{
-font-size: 40px;
-position: absolute;
+  z-index: 1000;
+  cursor: pointer;
+  font-family: "S_1";
+  text-align: center;
+  line-height: 4vh;
+  width: 10vw;
+  height: 5vh;
+  background-image: url(../../assets/images/show/image\ 14.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 40px;
+  position: absolute;
 top: 85%;
 left: 50%;
 transform: translate(-50%,-50%);
@@ -215,6 +218,21 @@ letter-spacing: 10px;
   100% {
     opacity: 1;
   }
+}
+@media (width<=1400px){
+    #text-bg{
+        font-size: 20px;
+    }
+    #entr{
+      font-size: 16px;
+    }
+}
+a{
+  cursor: pointer !important;
+text-decoration-color: none;
+text-decoration-line: none;
+color: #000;
+
 }
 </style> 
 
@@ -263,7 +281,7 @@ letter-spacing: 10px;
         <div id="bg-right">
             <img src="../../assets/images/show/sj 1.svg" alt="">
         </div>
-          <div id="entr">查看详情</div>
+          <div id="entr"><a href="../html/exhibition.html">查看详情</a></div>
     </div>
 </body>
 <script>
