@@ -22,7 +22,6 @@ initEventListeners() {
   });
 }
   render() {
-
     this.shadowRoot.innerHTML = `
         <style>
       header {
@@ -143,27 +142,26 @@ opacity: 0;
                
                 <div id="logo"><img src="../../assets/images/show/logo 2 (1).svg" alt=""></div>
                 
-                <a href="#" class="nav-title xian">
+                <a href="../html/time.html" class="nav-title xian">
                     <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame.svg" alt=""></div>
                     <div>线</div>
                 </a>
-                <a class="nav-title fang">
+                <a href="../html/time.html" class="nav-title fang">
                     <div style="width: 40px; height: 40px;"> <img src="../../assets/images/show/Frame (3).svg" alt=""></div>
                     <div>坊</div>
                 </a>
-                <a class="nav-title co">
+                <a href="../html/show.html" class="nav-title co">
                     <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Vector.svg" alt=""></div>
                     <div>扣</div>
                 </a>
-                <a class="nav-title zhan">
+                <a href="../html/sfq.html" class="nav-title zhan">
                     <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame (1).svg" alt=""></div>
                     <div>展</div>
                 </a>
 
             </div>
         </header>
-
-    `;
+ `;
   }
 }
 
