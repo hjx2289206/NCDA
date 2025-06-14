@@ -1,224 +1,237 @@
 <!DOCTYPE html>
 <html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>兰花展览介绍</title>
+    <link rel="stylesheet" href="../css/exhibition.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>兰花展览介绍</title>
-  <link rel="stylesheet" href="../css/exhibition.css">
-</head>
-
-<body>
-   <div id="back"><a href="../html/show.html"><img src="../../assets/images/exhibition/Vector (4).svg" alt=""></a></div>
-  <div class="container">
-    <div class="boxes-wrapper">
-      <div class="image-box active">
-        <img src="" alt="图片">
+  <body>
+    <div id="back">
+      <a href="../html/show.html"
+        ><img src="../../assets/images/exhibition/Vector (4).svg" alt=""
+      /></a>
+    </div>
+    <div class="container">
+      <div class="boxes-wrapper">
+        <div class="image-box active">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="image-box next">
+          <img src="" alt="图片" />
+        </div>
+        <div class="intro-box">
+          <h1 class="exhibition-title">展览</h1>
+          <h2 class="flower-title">兰花扣</h2>
+          <p class="flower-desc">
+            开花时不与百花争艳，独自绽放的兰花寓意是典雅、高洁、爱国、坚贞不渝，象征崇高的友情、手足情谊和爱国民族之情
+          </p>
+        </div>
       </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="image-box next">
-        <img src="" alt="图片">
-      </div>
-      <div class="intro-box">
-        <h1 class="exhibition-title">展览</h1>
-        <h2 class="flower-title">兰花扣</h2>
-        <p class="flower-desc">开花时不与百花争艳，独自绽放的兰花寓意是典雅、高洁、爱国、坚贞不渝，象征崇高的友情、手足情谊和爱国民族之情</p>
+      <div class="carousel-nav">
+        <button class="carousel-btn" onclick="prevSlide()">&lt;</button>
+        <span class="carousel-indicator">1/8</span>
+        <button class="carousel-btn" onclick="nextSlide()">&gt;</button>
       </div>
     </div>
-    <div class="carousel-nav">
-      <button class="carousel-btn" onclick="prevSlide()">&lt;</button>
-      <span class="carousel-indicator">1/8</span>
-      <button class="carousel-btn" onclick="nextSlide()">&gt;</button>
-    </div>
-  </div>
 
-  <script>
-    const slides = [
-      {
-        image: '../../assets/images/exhibition/1.svg',
-        title: '兰花扣',
-        desc: '开花时不与百花争艳，独自绽放的兰花寓意是典雅、高洁、爱国、坚贞不渝，象征崇高的友情、手足情谊和爱国民族之情'
-      },
-      {
-        image: '../../assets/images/exhibition/2.svg',
-        title: '铜钱扣',
-        desc: '铜钱扣出自"贯钱纹"又称古钱、铜钱。中国传统装饰纹样的原始符号之一具有阴阳交合之意'
-      },
-      {
-        image: '../../assets/images/exhibition/3.svg',
-        title: '蝴蝶扣',
-        desc: '寓意比翼双飞，蝴蝶盘扣中"蝴"的发音与"福"相同，寄托福运跌至的美好意愿，寓意自由、和平和幸福象征自由美丽、勇气和追求眞理'
-      },
-      {
-        image: '../../assets/images/exhibition/4.svg',
-        title: '一字扣',
-        desc: '传统服饰最常用的扣型。尤其是男装，多以直扣为主，造型整体呈一字型，一字扣不但简单大方，还有一心一意、一帆风顺等寓意'
-      },
-      {
-        image: '../../assets/images/exhibition/5.svg',
-        title: '盘香扣',
-        desc: '兰花象征着君子盘香是指香品的一种形状，环形盘香，环环相扣，寓意团圆美满、阖家欢乐饱含中国传统文化的韵味'
-      },
-      {
-        image: '../../assets/images/exhibition/6.svg',
-        title: '鱼尾扣',
-        desc: '鱼尾扣中"鱼"则是与"余"的谐音有金玉良缘的意思，寓意着自由金鱼扣中"金鱼"与"金玉"读音相似，寓意金玉满堂。"鱼"本身在中国传统文化中被队为连年有余'
-      },
-      {
-        image: '../../assets/images/exhibition/7.svg',
-        title: '扇子扣',
-        desc: '扇子被视为吉祥物有驱妖逐邪之意，因与"善"谐音象征善良、善行也象征 智慧、文化和品格'
-      },
-      {
-        image: '../../assets/images/exhibition/8.svg',
-        title: '雪花扣',
-        desc: '中国人常说"瑞雪兆丰年"，其实雪花代表了一种幸运和祝福也代表纯眞，纤尘不染'
+    <script>
+      const slides = [
+        {
+          image: "../../assets/images/exhibition/1.svg",
+          title: "兰花扣",
+          desc: "开花时不与百花争艳，独自绽放的兰花寓意是典雅、高洁、爱国、坚贞不渝，象征崇高的友情、手足情谊和爱国民族之情",
+        },
+        {
+          image: "../../assets/images/exhibition/2.svg",
+          title: "铜钱扣",
+          desc: '铜钱扣出自"贯钱纹"又称古钱、铜钱。中国传统装饰纹样的原始符号之一具有阴阳交合之意',
+        },
+        {
+          image: "../../assets/images/exhibition/3.svg",
+          title: "蝴蝶扣",
+          desc: '寓意比翼双飞，蝴蝶盘扣中"蝴"的发音与"福"相同，寄托福运跌至的美好意愿，寓意自由、和平和幸福象征自由美丽、勇气和追求眞理',
+        },
+        {
+          image: "../../assets/images/exhibition/4.svg",
+          title: "一字扣",
+          desc: "传统服饰最常用的扣型。尤其是男装，多以直扣为主，造型整体呈一字型，一字扣不但简单大方，还有一心一意、一帆风顺等寓意",
+        },
+        {
+          image: "../../assets/images/exhibition/5.svg",
+          title: "盘香扣",
+          desc: "兰花象征着君子盘香是指香品的一种形状，环形盘香，环环相扣，寓意团圆美满、阖家欢乐饱含中国传统文化的韵味",
+        },
+        {
+          image: "../../assets/images/exhibition/6.svg",
+          title: "鱼尾扣",
+          desc: '鱼尾扣中"鱼"则是与"余"的谐音有金玉良缘的意思，寓意着自由金鱼扣中"金鱼"与"金玉"读音相似，寓意金玉满堂。"鱼"本身在中国传统文化中被队为连年有余',
+        },
+        {
+          image: "../../assets/images/exhibition/7.svg",
+          title: "扇子扣",
+          desc: '扇子被视为吉祥物有驱妖逐邪之意，因与"善"谐音象征善良、善行也象征 智慧、文化和品格',
+        },
+        {
+          image: "../../assets/images/exhibition/8.svg",
+          title: "雪花扣",
+          desc: '中国人常说"瑞雪兆丰年"，其实雪花代表了一种幸运和祝福也代表纯眞，纤尘不染',
+        },
+      ];
+
+      let currentIndex = 0;
+      let imagesLoaded = false;
+      let loadedImages = {}; // 存储已加载的图片
+
+      // 改进的预加载函数
+      function preloadImages() {
+        return new Promise((resolve) => {
+          let loadedCount = 0;
+          const totalImages = slides.length;
+
+          console.log("开始预加载图片...");
+
+          slides.forEach((slide, index) => {
+            const img = new Image();
+
+            img.onload = () => {
+              loadedCount++;
+              loadedImages[slide.image] = img; // 缓存已加载的图片
+              console.log(`图片 ${index + 1} 加载成功: ${slide.image}`);
+
+              if (loadedCount === totalImages) {
+                imagesLoaded = true;
+                console.log("所有图片预加载完成");
+                resolve();
+              }
+            };
+
+            img.onerror = (error) => {
+              loadedCount++;
+              console.warn(`图片 ${index + 1} 加载失败: ${slide.image}`, error);
+
+              if (loadedCount === totalImages) {
+                imagesLoaded = true;
+                console.log("预加载完成（部分图片可能失败）");
+                resolve();
+              }
+            };
+
+            // 设置src开始加载
+            img.src = slide.image;
+          });
+
+          // 设置超时机制，防止无限等待
+          setTimeout(() => {
+            if (!imagesLoaded) {
+              imagesLoaded = true;
+              console.log("预加载超时，继续执行");
+              resolve();
+            }
+          }, 5000); // 5秒超时
+        });
       }
-    ];
 
-    let currentIndex = 0;
-    let imagesLoaded = false;
-    let loadedImages = {}; // 存储已加载的图片
-    
-    // 改进的预加载函数
-    function preloadImages() {
-      return new Promise((resolve) => {
-        let loadedCount = 0;
-        const totalImages = slides.length;
-        
-        console.log('开始预加载图片...');
-        
-        slides.forEach((slide, index) => {
-          const img = new Image();
-          
-          img.onload = () => {
-            loadedCount++;
-            loadedImages[slide.image] = img; // 缓存已加载的图片
-            console.log(`图片 ${index + 1} 加载成功: ${slide.image}`);
-            
-            if (loadedCount === totalImages) {
-              imagesLoaded = true;
-              console.log('所有图片预加载完成');
-              resolve();
+      // 页面加载完成后预加载图片
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM加载完成，开始预加载");
+        preloadImages().then(() => {
+          // 预加载完成后，为所有图片设置src
+          const imageBoxes = document.querySelectorAll(".image-box");
+          imageBoxes.forEach((box, index) => {
+            const img = box.querySelector("img");
+            if (slides[index]) {
+              img.src = slides[index].image;
             }
-          };
-          
-          img.onerror = (error) => {
-            loadedCount++;
-            console.warn(`图片 ${index + 1} 加载失败: ${slide.image}`, error);
-            
-            if (loadedCount === totalImages) {
-              imagesLoaded = true;
-              console.log('预加载完成（部分图片可能失败）');
-              resolve();
-            }
-          };
-          
-          // 设置src开始加载
-          img.src = slide.image;
+          });
+          // 然后初始化轮播
+          updateSlides();
         });
-        
-        // 设置超时机制，防止无限等待
+      });
+
+      function updateSlides() {
+        const imageBoxes = document.querySelectorAll(".image-box");
+        const indicator = document.querySelector(".carousel-indicator");
+        const title = document.querySelector(".flower-title");
+        const desc = document.querySelector(".flower-desc");
+        const exhibitionTitle = document.querySelector(".exhibition-title");
+        const introBox = document.querySelector(".intro-box");
+
+        // 先让内容和介绍框淡出
+        introBox.style.opacity = "0";
+        introBox.style.transform = "translateX(-50px)";
+        [title, desc, exhibitionTitle].forEach((el) => {
+          el.style.opacity = "0";
+          el.style.transform = "translateY(-10px)";
+        });
+
+        // 更新指示器
+        indicator.textContent = `${currentIndex + 1}/8`;
+
+        // 延迟更新内容，等待图片轮播完成
         setTimeout(() => {
-          if (!imagesLoaded) {
-            imagesLoaded = true;
-            console.log('预加载超时，继续执行');
-            resolve();
-          }
-        }, 5000); // 5秒超时
-      });
-    }
-    
-    // 页面加载完成后预加载图片
-    document.addEventListener('DOMContentLoaded', () => {
-      console.log('DOM加载完成，开始预加载');
-      preloadImages().then(() => {
-        // 预加载完成后，为所有图片设置src
-        const imageBoxes = document.querySelectorAll('.image-box');
+          // 更新标题和描述
+          title.textContent = slides[currentIndex].title;
+          desc.textContent = slides[currentIndex].desc;
+
+          // 让介绍框和内容淡入
+          introBox.style.opacity = "1";
+          introBox.style.transform = "translateX(0)";
+          [title, desc, exhibitionTitle].forEach((el) => {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          });
+        }, 500);
+
+        // 更新图片和类名，同时设置z-index
         imageBoxes.forEach((box, index) => {
-          const img = box.querySelector('img');
-          if (slides[index]) {
-            img.src = slides[index].image;
+          if (index === currentIndex) {
+            box.className = "image-box active";
+            box.style.zIndex = "10"; // 当前图片最高层级
+          } else if (index < currentIndex) {
+            box.className = "image-box prev";
+            box.style.zIndex = "1";
+          } else {
+            box.className = "image-box next";
+            // 下一个要轮播的图片(currentIndex + 1)层级最高，其他依次递减
+            const nextIndex = (currentIndex + 1) % slides.length;
+            if (index === nextIndex) {
+              box.style.zIndex = "9"; // 下一个图片次高层级
+            } else {
+              box.style.zIndex = Math.max(1, 8 - Math.abs(index - nextIndex)); // 其他图片根据距离设置层级
+            }
           }
         });
-        // 然后初始化轮播
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
         updateSlides();
-      });
-    });
+      }
 
-    function updateSlides() {
-      const imageBoxes = document.querySelectorAll('.image-box');
-      const indicator = document.querySelector('.carousel-indicator');
-      const title = document.querySelector('.flower-title');
-      const desc = document.querySelector('.flower-desc');
-      const exhibitionTitle = document.querySelector('.exhibition-title');
-      const introBox = document.querySelector('.intro-box');
-
-      // 先让内容和介绍框淡出
-      introBox.style.opacity = '0';
-      introBox.style.transform = 'translateX(-50px)';
-      [title, desc, exhibitionTitle].forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(-10px)';
-      });
-
-      // 更新指示器
-      indicator.textContent = `${currentIndex + 1}/8`;
-
-      // 延迟更新内容，等待图片轮播完成
-      setTimeout(() => {
-        // 更新标题和描述
-        title.textContent = slides[currentIndex].title;
-        desc.textContent = slides[currentIndex].desc;
-
-        // 让介绍框和内容淡入
-        introBox.style.opacity = '1';
-        introBox.style.transform = 'translateX(0)';
-        [title, desc, exhibitionTitle].forEach(el => {
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        });
-      }, 500);
-
-      // 更新图片和类名
-      imageBoxes.forEach((box, index) => {
-        if (index === currentIndex) {
-          box.className = 'image-box active';
-        } else if (index < currentIndex) {
-          box.className = 'image-box prev';
-        } else {
-          box.className = 'image-box next';
-        }
-      });
-    }
-
-    function nextSlide() {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateSlides();
-    }
-
-    function prevSlide() {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateSlides();
-    }
-  </script>
-</body>
-
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlides();
+      }
+    </script>
+  </body>
 </html>

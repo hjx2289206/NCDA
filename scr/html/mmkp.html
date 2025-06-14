@@ -63,15 +63,14 @@
             z-index: 3;
         }
 
-        /* 背景5：原背景4，在屏幕中间偏右的位置 */
+        /* 背景5：作为棉麻旗袍标题的文本框背景 */
         .background5 {
             position: absolute;
-            width: 30vw; /* 可根据需要调整宽度 */
-            height: 60vh; /* 可根据需要调整高度 */
-            top: 16%;
-            right: 19%; /* 偏右位置，可调整 */
-            transform: translate(50%, -50%); /* 居中定位 */
-            z-index: 4;
+            width: 20vw; /* 调大文本框宽度 */
+            top: 50%;
+            left: 6vw; /* 与标题同一位置 */
+            transform: translateY(-50%); /* 垂直居中对齐 */
+            z-index: 4; /* 在标题下方 */
         }
 
         /* mm1：在屏幕中心 */
@@ -84,13 +83,18 @@
             z-index: 5; /* 最上层 */
         }
 
-        /* 横向标题，定位在偏右上角 */
-        .horizontal-title {
+        /* 竖向标题，定位在页面中间偏右 */
+        .vertical-title {
             position: absolute;
-            top: 10vh;
-            right: 15vw;
+            top: 50%; /* 垂直居中 */
+            left: 15vw; /* 位置 */
+            transform: translateY(-50%); /* 垂直居中对齐 */
             z-index: 6;
             font-size: 2.5vw;
+            writing-mode: vertical-rl; /* 竖向排列，从右到左 */
+            text-orientation: upright; /* 字符保持正向 */
+            letter-spacing: 0.3em; /* 调整字符间距 */
+            line-height: 1.2;
         }
 
         /* 信息区域样式重置 */
@@ -112,39 +116,47 @@
 
         /* 面料信息块位置 - 右侧上方 */
         .info-block.fabric-info {
-            top: 20vh;
-            right: 5vw;
+            top: 40vh;
+            right: 10vw;
             width: 30vw;
         }
 
         /* 注意事项块位置 - 右侧下方 */
         .info-block.care-instructions {
-            top: 55vh;
+            top: 70vh;
             right: 5vw;
             width: 30vw;
         }
 
-        /* 面料特点块位置 - 左侧偏上 */
+        /* 面料特点块位置 - 恢复到左侧偏上 */
         .info-block.fabric-features {
-            top: 25vh;
-            left: 8vw;
-            width: 37vw;
+            top: 15vh;
+            left: 15vw;
+            width: 30vw;
         }
 
-        /* 左侧标题样式 */
+        /* 面料特点标题样式 - 定位在内容区域右上角 */
         .info-block.fabric-features .info-title {
-            position: relative;
+            position: absolute;
+            top: -2vh; /* 在内容区域上方 */
+            right: 0; /* 右上角位置 */
             font-size: 1.8vw;
-            margin-bottom: 1vh;
             background-image: url('../../assets/images/kp/mm/Rectangle53.svg');
             background-repeat: no-repeat;
             background-size: contain;
-            background-position: left center; /* 左侧对齐 */
+            background-position: right center; /* 右侧对齐 */
             padding: 0.5vh 0.5vw;
             height: 3vh;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* 标题文字左对齐 */
+            justify-content: flex-end; /* 标题文字右对齐 */
+            transform: scaleX(-1); /* 水平翻转背景 */
+            z-index: 7;
+        }
+
+        /* 面料特点标题文字反向翻转 */
+        .info-block.fabric-features .info-title span {
+            transform: scaleX(-1); /* 文字反向翻转回来 */
         }
 
         /* 右侧标题样式 */
@@ -171,13 +183,13 @@
             transform: scaleX(-1); /* 文字反向翻转回来 */
         }
 
-        /* 左侧内容样式 */
+        /* 面料特点内容样式 - 恢复为左侧样式 */
         .info-block.fabric-features .info-content {
             position: relative;
             font-size: 1.2vw;
-            margin-right: 2vw; /* 文本距离标题的距离 */
+            margin-right: 2vw; /* 文本距离右边的距离 */
             line-height: 1.6;
-            padding-top: 0.5vh;
+            padding-top: 1vh; /* 增加顶部间距为标题留空间 */
             text-align: left; /* 文本左对齐 */
         }
 
@@ -206,24 +218,24 @@
     <!-- 背景4：原背景3，定位在屏幕中间 -->
     <img src="../../assets/images/kp/mm/background4.svg" alt="背景4" class="background4">
     
-    <!-- 背景5：原背景4，在屏幕中间偏右的位置 -->
+    <!-- 背景5：作为棉麻旗袍标题的文本框背景 -->
     <img src="../../assets/images/kp/mm/background5.svg" alt="背景5" class="background5">
     
     <!-- mm1：在屏幕中心 -->
     <img src="../../assets/images/kp/mm/mm1.svg" alt="mm1" class="mm1">
 
-    <!-- 横向标题，定位在偏右上角 -->
-    <div class="horizontal-title">
+    <!-- 竖向标题，定位在页面中间偏右 -->
+    <div class="vertical-title">
         棉麻旗袍
     </div>
 
     <!-- 信息区域 -->
     <div class="info-section">
-        <!-- 面料特点 - 左侧偏上 -->
+        <!-- 面料特点 - 右上角 -->
         <div class="info-block fabric-features">
-            <div class="info-title">面料特点</div>
+            <div class="info-title"><span>面料特点</span></div>
             <div class="info-content">
-                棉麻面料透气性好，吸湿排汗，触感自然柔软；棉提供舒适度和柔软性，麻增加挺括感和清凉感；质地轻薄适合春夏穿着，保持身体凉爽；环保可持续，生物可降解；色彩多为自然色调，呈现朴素典雅风格；易于染色，可制作多种色彩；随着穿着和洗涤会变得更加柔软舒适。
+                 棉麻旗袍特点：天然棉麻面料，透气吸湿亲肤；麻料挺括、棉料柔软，混纺款质朴文艺；夏季凉爽排汗，厚款保暖；弹性低易皱缩（选购留余量），洗涤后更柔软，深色需防褪色；风格简约雅致，适合日常及中式场景。
             </div>
         </div>
 
@@ -231,7 +243,7 @@
         <div class="info-block fabric-info">
             <div class="info-title"><span>面料</span></div>
             <div class="info-content">
-                棉麻混纺面料，结合了棉的柔软舒适和麻的挺括透气特性，质地自然，手感清爽，透气性好，适合春夏季节穿着。
+                棉麻，由棉和麻纤维混纺而成，兼具棉质柔软舒适与麻质透气挺括的特性，纹理自然质朴，吸湿排汗性好
             </div>
         </div>
 
@@ -239,7 +251,7 @@
         <div class="info-block care-instructions">
             <div class="info-title"><span>注意事项</span></div>
             <div class="info-content">
-                冷水手洗或机洗（轻柔模式），避免长时间浸泡；不可漂白；阴凉处平铺晾干，避免阳光直射；熨烫时温度不宜过高，最好垫一层薄布；存放时保持干燥通风，避免与粗糙物品摩擦；新衣物首次穿着前建议先洗涤。
+                 棉麻旗袍穿着保养需注意：避免拉扯、选柔软内搭防染色，轻坐防皱；冷水手洗或轻柔机洗，深浅分开，勿搓拧漂白，阴干通风忌暴晒；低温垫布熨烫；清洁后悬挂或透气收纳，防蛀防霉。
             </div>
         </div>
     </div>

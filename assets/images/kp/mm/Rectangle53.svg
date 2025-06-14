@@ -1,9 +1,9 @@
 <svg width="139" height="36" viewBox="0 0 139 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect id="Rectangle 53" width="139" height="36" rx="18" transform="matrix(-1 0 0 1 139 0)" fill="url(#paint0_linear_443_227)" fill-opacity="0.8"/>
+<rect id="Rectangle 55" width="139" height="36" rx="18" transform="matrix(-1 0 0 1 139 0)" fill="url(#paint0_linear_442_139)" fill-opacity="0.8"/>
 <defs>
-<linearGradient id="paint0_linear_443_227" x1="0" y1="18" x2="139" y2="18" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_442_139" x1="0" y1="18" x2="139" y2="18" gradientUnits="userSpaceOnUse">
 <stop stop-color="white" stop-opacity="0"/>
-<stop offset="0.692308" stop-color="#8CD1BE"/>
+<stop offset="0.692308" stop-color="#DABCCD"/>
 </linearGradient>
 </defs>
 </svg>

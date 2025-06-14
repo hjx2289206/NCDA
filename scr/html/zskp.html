@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真丝旗袍页面</title>
+    <link rel="stylesheet" href="../../scr/css/global.css">
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* 防止出现滚动条 */
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background: linear-gradient(180deg, #E7F8EF 51%, #F2D6DF 100%);
+            /* 使用全局样式字体 */
+        }
+
+        /* 背景1：贴紧左边，占满上下 */
+        .background1 {
+            position: absolute;
+            width: 40vw; /* 调整宽度 */
+            height: 100vh; /* 占满整个屏幕高度 */
+            top: 0;
+            left: 0;
+            z-index: 1; /* 底层 */
+        }
+
+        /* 背景2：贴紧右下角 */
+        .background2 {
+            position: absolute;
+            width: 40vw; /* 调整宽度 */
+            height: 50vh;
+            bottom: 0;
+            right: 0;
+            z-index: 1; /* 底层 */
+            object-fit: cover; /* 确保图片填满容器 */
+        }
+
+        /* 背景3：放中间，上下紧贴屏幕边缘 */
+        .background3 {
+            position: absolute;
+            width: 50vw; /* 宽度 */
+            height: 100vh;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2;
+        }
+
+        /* 背景4：原背景3，定位在屏幕中间 */
+        .background4 {
+            position: absolute;
+            width: 28vw; /* 可根据需要调整宽度 */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 3;
+        }
+
+        /* 背景5：作为真丝旗袍标题的文本框背景 */
+        .background5 {
+            position: absolute;
+            width: 20vw; /* 调大文本框宽度 */
+            top: 50%;
+            left: 6vw; /* 与标题同一位置 */
+            transform: translateY(-50%); /* 垂直居中对齐 */
+            z-index: 4; /* 在标题下方 */
+        }
+
+        /* zs1：在屏幕中心 */
+        .zs1 {
+            position: absolute;
+            width: 27vw; /* 可根据需要调整宽度 */
+            top: 37%;
+            left: 47%;
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 最上层 */
+        }
+
+        /* 竖向标题，定位在页面中间偏右 */
+        .vertical-title {
+            position: absolute;
+            top: 50%; /* 垂直居中 */
+            left: 15vw; /* 位置 */
+            transform: translateY(-50%); /* 垂直居中对齐 */
+            z-index: 6;
+            font-size: 2.5vw;
+            writing-mode: vertical-rl; /* 竖向排列，从右到左 */
+            text-orientation: upright; /* 字符保持正向 */
+            letter-spacing: 0.3em; /* 调整字符间距 */
+            line-height: 1.2;
+        }
+
+        /* 信息区域样式重置 */
+        .info-section {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 6;
+            pointer-events: none; /* 允许点击穿透到下层元素 */
+        }
+
+        /* 各个信息块 - 单独绝对定位 */
+        .info-block {
+            position: absolute;
+            pointer-events: auto; /* 恢复该块的点击事件 */
+        }
+
+        /* 面料信息块位置 - 右侧上方 */
+        .info-block.fabric-info {
+            top: 40vh;
+            right: 10vw;
+            width: 30vw;
+        }
+
+        /* 面料特点块位置 - 左侧上方 */
+        .info-block.fabric-features {
+            top: 15vh;
+            left: 15vw;
+            width: 30vw;
+            position: relative; /* 为标题绝对定位提供参考 */
+        }
+
+        /* 注意事项块位置 - 左侧下方 */
+        .info-block.care-instructions {
+            top: 70vh;
+            left: 5vw;
+            width: 30vw;
+            position: relative; /* 为标题绝对定位提供参考 */
+        }
+
+        /* 左侧标题样式 - 面料特点和注意事项 - 修改为右上角定位 */
+        .info-block.fabric-features .info-title,
+        .info-block.care-instructions .info-title {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 1.8vw;
+            background-image: url('../../assets/images/kp/zs/Rectangle 53.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            padding: 0.5vh 0.5vw;
+            height: 3vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10; /* 确保标题在内容之上 */
+        }
+
+        /* 右侧标题样式 - 面料信息 */
+        .info-block.fabric-info .info-title {
+            position: relative;
+            font-size: 1.8vw;
+            margin-bottom: 1vh;
+            background-image: url('../../assets/images/kp/zs/Rectangle 53.svg');
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: right center; /* 右侧对齐 */
+            padding: 0.5vh 0.5vw;
+            height: 3vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* 标题文字右对齐 */
+            transform: scaleX(-1); /* 水平翻转背景 */
+        }
+
+        /* 右侧标题文字反向翻转 */
+        .info-block.fabric-info .info-title span {
+            transform: scaleX(-1); /* 文字反向翻转回来 */
+        }
+
+        /* 左侧内容样式 - 面料特点和注意事项 - 调整为给标题留出空间 */
+        .info-block.fabric-features .info-content,
+        .info-block.care-instructions .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            margin-left: 2vw;
+            margin-right: 2vw; /* 右侧留出标题空间 */
+            line-height: 1.6;
+            padding-top: 4vh; /* 顶部留出标题空间 */
+            text-align: left;
+        }
+
+        /* 右侧内容样式 - 面料信息 */
+        .info-block.fabric-info .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            margin-left: 3vw; /* 文本距离标题右侧的距离 */
+            line-height: 1.6;
+            padding-top: 0.5vh;
+            text-align: right; /* 文本右对齐 */
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景1：放左下 -->
+    <img src="../../assets/images/kp/zs/background1.svg" alt="背景1" class="background1">
+    
+    <!-- 背景2：放右上 -->
+    <img src="../../assets/images/kp/zs/background2.svg" alt="背景2" class="background2">
+    
+    <!-- 背景3：放中间，上下紧贴屏幕边缘 -->
+    <img src="../../assets/images/kp/zs/background3.svg" alt="背景3" class="background3">
+    
+    <!-- 背景4：原背景3，定位在屏幕中间 -->
+    <img src="../../assets/images/kp/zs/background4.svg" alt="背景4" class="background4">
+    
+    <!-- 背景5：作为真丝旗袍标题的文本框背景 -->
+    <img src="../../assets/images/kp/zs/background5.svg" alt="背景5" class="background5">
+    
+    <!-- zs1：在屏幕中心 -->
+    <img src="../../assets/images/kp/zs/zs1.svg" alt="zs1" class="zs1">
+
+    <!-- 竖向标题，定位在页面中间偏右 -->
+    <div class="vertical-title">
+        真丝旗袍
+    </div>
+
+    <!-- 信息区域 -->
+    <div class="info-section">
+        <!-- 面料特点 - 左侧上方 -->
+        <div class="info-block fabric-features">
+            <div class="info-title">面料特点</div>
+            <div class="info-content">
+                 真丝旗袍特点：100%天然蚕丝，质地柔软顺滑，光泽华丽；透气性佳，冬暖夏凉；亲肤舒适，不易起静电；弹性适中，悬垂感好；色彩鲜艳持久；高档奢华，适合正式场合；需精细保养，避免水洗和暴晒；价格较高但品质优越。
+            </div>
+        </div>
+
+        <!-- 面料信息 - 右侧上方 -->
+        <div class="info-block fabric-info">
+            <div class="info-title"><span>面料</span></div>
+            <div class="info-content">
+                真丝，又称蚕丝，是由蚕茧抽丝制成的天然蛋白质纤维，质地柔软光滑，具有优良的吸湿性和透气性，光泽华丽自然，是高档面料的代表
+            </div>
+        </div>
+
+        <!-- 注意事项 - 左侧下方 -->
+        <div class="info-block care-instructions">
+            <div class="info-title">注意事项</div>
+            <div class="info-content">
+                 真丝旗袍保养：避免长时间阳光直射；防汗渍、香水直接接触；穿着时避免尖锐物刮擦；专业干洗或手洗（中性皂液、冷水、轻柔揉搓）；湿时不拧扭，阴凉处平铺晾干；低温熨烫（垫布、反面熨）；悬挂存放于通风处，避免与粗糙物接触；定期通风。
+            </div>
+        </div>
+    </div>
+</body>
+</html>

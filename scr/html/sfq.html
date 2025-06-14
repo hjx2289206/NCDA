@@ -7,12 +7,48 @@
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../../scr/css/accordion.css">
     <script src="../js/naVbar.js"></script><!-- 引入导航栏Web组件 -->
+    <style>
+      /* 背景图片样式 */
+      .bg-image {
+        position: absolute;
+        z-index: 1; /* 确保背景在内容下方 */
+        pointer-events: none; /* 添加点击穿透效果 */
+      }
+      
+      /* 背景1：放左下角 */
+      .bg-image-1 {
+        bottom: 0;
+        left: 0;
+        width: 40vw; /* 设置合适的宽度 */
+        height: auto;
+      }
+      
+      /* 背景2：也放左下角，可以稍微错开位置 */
+      .bg-image-2 {
+        bottom: 0;
+        width: 25vw;
+        height: auto;
+      }
+      
+      /* 背景3：放屏幕右边紧贴屏幕 */
+      .bg-image-3 {
+        top: 0;
+        right: 0;
+        height: 100vh; /* 高度占满屏幕 */
+        width: auto;
+      }
+    </style>
   </head>
   <body>
     <header style="position: absolute; top: 0; left: 0; width: 100%; z-index: 1000;">
       <!-- 使用自定义导航栏Web组件 -->
       <arc-button-nav></arc-button-nav>
     </header>
+
+    <!-- 添加背景图片 -->
+    <img src="../../assets/images/sfq/background1.svg" alt="背景1" class="bg-image bg-image-1">
+    <img src="../../assets/images/sfq/background2.svg" alt="背景2" class="bg-image bg-image-2">
+    <img src="../../assets/images/sfq/background3.svg" alt="背景3" class="bg-image bg-image-3">
 
     <div class="background-overlay" id="backgroundOverlay"></div>
 
