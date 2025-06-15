@@ -147,15 +147,15 @@ opacity: 0;
                     <div>线</div>
                 </a>
                 <a href="../html/time.html" class="nav-title fang">
-                    <div style="width: 40px; height: 40px;"> <img src="../../assets/images/show/Frame (3).svg" alt=""></div>
+                    <div style="width: 40px; height: 40px;"> <img src="../../assets/images/show/Group 26608.svg" alt=""></div>
                     <div>坊</div>
                 </a>
                 <a href="../html/show.html" class="nav-title co">
-                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Vector.svg" alt=""></div>
+                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Vector (5).svg" alt=""></div>
                     <div>扣</div>
                 </a>
                 <a href="../html/sfq.html" class="nav-title zhan">
-                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Frame (1).svg" alt=""></div>
+                    <div style="width: 40px; height: 40px;"><img src="../../assets/images/show/Group 26609.svg" alt=""></div>
                     <div>展</div>
                 </a>
 
