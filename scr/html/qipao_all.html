@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旗袍面料大全</title>
+    <link rel="stylesheet" href="../../scr/css/global.css">
+    <style>
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 500vh; /* 5个区域，每个100vh */
+            background: linear-gradient(180deg, #E7F8EF 0%, #F2DAE1 100%);
+            /* 使用全局字体 */
+            position: relative;
+        }
+
+        /* 每个旗袍区域的容器 - 每个区域占满一个屏幕高度 */
+        .qipao-section {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* 背景图片通用样式 */
+        .background1 {
+            position: absolute;
+            width: 80vw; /* 宽度占满页面 */
+            top: 0; /* 顶部对齐 */
+            z-index: 0; /* 降低背景层级，确保不会遮挡其他元素 */
+        }
+
+        .background2 {
+            position: absolute;
+            width: 80vw; /* 宽度占满页面 */
+            top: 150vh; /* 距离顶部20% */
+            z-index: 0;
+        }
+
+        .background3 {
+            position: absolute;
+            width: 80vw; /* 宽度占满页面 */
+            top: 40vh; /* 距离顶部40% */
+            z-index: 0;
+        }
+
+        .background4 {
+            position: absolute;
+            width: 40vw; /* 宽度为40vw */
+            left: 0; /* 左侧 */
+            top: 0; /* 顶部对齐 */
+            z-index: 0;
+        }
+
+        .background5 {
+            position: absolute;
+            width: 40vw; /* 宽度为40vw */
+            right: 0; /* 右侧 */
+            top: 0; /* 顶部对齐 */
+            z-index: 0;
+        }
+
+        .background6 {
+            position: absolute;
+            width: 100vw; /* 宽度占满页面 */
+            top: 100vh; /* 距离顶部60% */
+            z-index: 0;
+        }
+
+        .background7 {
+            position: absolute;
+            width: 40vw; /* 宽度为30vw */
+            left: 0; /* 左侧 */
+            top: 200vh; /* 距离顶部20% */
+            z-index: 0;
+        }
+
+        .background8 {
+            position: absolute;
+            width: 40vw; /* 宽度为30vw */
+            right: 0; /* 右侧 */
+            top: 200vh; /* 距离顶部20% */
+            z-index: 0;
+        }
+
+        .background9 {
+            position: absolute;
+            width: 100vw; /* 宽度占满页面 */
+            top: 200vh; /* 距离顶部80% */
+            z-index: 0;
+        }
+
+        .background10 {
+            position: absolute;
+            width: 30vw; /* 宽度为30vw */
+            right: 0; /* 贴紧右侧 */
+            top: 300vh; /* 距离顶部40% */
+            z-index: 0;
+        }
+
+        .background11 {
+            position: absolute;
+            width: 30vw; /* 宽度为30vw */
+            left: 0; /* 贴紧左侧 */
+            top: 40vh; /* 距离顶部40% */
+            z-index: 0;
+        }
+
+        .background12 {
+            position: absolute;
+            width: 100vw; /* 宽度占满页面 */
+            bottom: 0; /* 贴紧页面最下面 */
+            z-index: 0;
+        }
+
+        .huawen1 {
+            position: absolute;
+            width: 30vw; /* 宽度为30vw */
+            right: 0; /* 放右侧 */
+            top: 100vh; /* 距离顶部60% */
+            z-index: 0;
+        }
+ 
+        /* ==================== 真丝旗袍样式 ==================== */
+
+        /* 真丝旗袍 - 中间背景装饰 */
+        .silk-section .background3 {
+            position: absolute;
+            width: 50vw; /* 宽度为屏幕的50% */
+            height: 100vh; /* 高度占满整个区域 */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2; /* 层级2 */
+        }
+
+        /* 真丝旗袍 - 中心装饰背景 */
+        .silk-section .background4 {
+            position: absolute;
+            width: 28vw; /* 宽度为屏幕的28% */
+            top: 50%; /* 垂直50%位置 */
+            left: 50%; /* 水平50%位置 */
+            transform: translate(-50%, -50%); /* 完全居中 */
+            z-index: 3; /* 层级3 */
+        }
+
+        /* 真丝旗袍 - 标题背景装饰 */
+        .silk-section .background5 {
+            position: absolute;
+            width: 20vw; /* 宽度为屏幕的20% */
+            top: 50%; /* 垂直50%位置 */
+            left: 6vw; /* 左侧6%位置 */
+            transform: translateY(-50%); /* 垂直居中 */
+            z-index: 4; /* 层级4 */
+        }
+
+        /* 真丝旗袍 - 主图 */
+        .silk-section .zs1 {
+            position: absolute;
+            width: 27vw; /* 宽度为屏幕的27% */
+            top: 37%; /* 垂直37%位置 */
+            left: 47%; /* 水平47%位置 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 层级5 - 最上层 */
+        }
+
+        /* ==================== 棉麻旗袍样式 ==================== */
+
+        /* 棉麻旗袍 - 中间背景装饰 */
+        .cotton-section .background3 {
+            position: absolute;
+            width: 50vw; /* 宽度为屏幕的50% */
+            height: 100vh; /* 高度占满整个区域 */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2; /* 层级2 */
+        }
+
+        /* 棉麻旗袍 - 中心装饰背景 */
+        .cotton-section .background4 {
+            position: absolute;
+            width: 28vw; /* 宽度为屏幕的28% */
+            top: 50%; /* 垂直50%位置 */
+            left: 50%; /* 水平50%位置 */
+            transform: translate(-50%, -50%); /* 完全居中 */
+            z-index: 3; /* 层级3 */
+        }
+
+        /* 棉麻旗袍 - 标题背景装饰 */
+        .cotton-section .background5 {
+            position: absolute;
+            width: 20vw; /* 宽度为屏幕的20% */
+            top: 50%; /* 垂直50%位置 */
+            left: 6vw; /* 左侧6%位置 */
+            transform: translateY(-50%); /* 垂直居中 */
+            z-index: 4; /* 层级4 */
+        }
+
+        /* 棉麻旗袍 - 主图 */
+        .cotton-section .mm1 {
+            position: absolute;
+            width: 27vw; /* 宽度为屏幕的27% */
+            top: 37%; /* 垂直37%位置 */
+            left: 47%; /* 水平47%位置 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 层级5 - 最上层 */
+        }
+
+        /* ==================== 香云纱旗袍样式 ==================== */
+
+        /* 香云纱旗袍 - 中间背景装饰 */
+        .xiangyunsha-section .background2 {
+            position: absolute;
+            width: 50vw; /* 宽度为屏幕的50% */
+            height: 100vh; /* 高度占满整个区域 */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2; /* 层级2 */
+        }
+
+        /* 香云纱旗袍 - 上方装饰背景 */
+        .xiangyunsha-section .background3 {
+            position: absolute;
+            width: 28vw; /* 宽度为屏幕的28% */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 3; /* 层级3 */
+        }
+
+        /* 香云纱旗袍 - 右侧装饰背景 */
+        .xiangyunsha-section .background4 {
+            position: absolute;
+            width: 30vw; /* 宽度为屏幕的30% */
+            height: 60vh; /* 高度为屏幕的60% */
+            top: 50%; /* 垂直50%位置 */
+            right: 23%; /* 右侧23%位置 */
+            transform: translate(50%, -50%); /* 居中定位 */
+            z-index: 4; /* 层级4 */
+        }
+
+        /* 香云纱旗袍 - 底部装饰背景 */
+        .xiangyunsha-section .background5 {
+            position: absolute;
+            width: 100vw; /* 宽度占满整个屏幕 */
+            height: 40vh; /* 高度为屏幕的40% */
+            bottom: 0; /* 底部对齐 */
+            left: 0; /* 左侧对齐 */
+            z-index: 1.5; /* 层级1.5 - 半透明效果 */
+            opacity: 0.42; /* 透明度42% */
+        }
+
+        /* 香云纱旗袍 - 主图 */
+        .xiangyunsha-section .xys1 {
+            position: absolute;
+            width: 27vw; /* 宽度为屏幕的27% */
+            top: 37%; /* 垂直37%位置 */
+            left: 47%; /* 水平47%位置 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 层级5 - 最上层 */
+        }
+
+        /* ==================== 织锦缎旗袍样式 ==================== */
+
+        /* 织锦缎旗袍 - 中间背景装饰 */
+        .brocade-section .background2 {
+            position: absolute;
+            width: 50vw; /* 宽度为屏幕的50% */
+            height: 100vh; /* 高度占满整个区域 */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2; /* 层级2 */
+        }
+
+        /* 织锦缎旗袍 - 上方装饰背景 */
+        .brocade-section .background3 {
+            position: absolute;
+            width: 28vw; /* 宽度为屏幕的28% */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 3; /* 层级3 */
+        }
+
+        /* 织锦缎旗袍 - 左侧装饰背景 */
+        .brocade-section .background4 {
+            position: absolute;
+            width: 30vw; /* 宽度为屏幕的30% */
+            height: 60vh; /* 高度为屏幕的60% */
+            top: 50%; /* 垂直50%位置 */
+            left: 23%; /* 左侧23%位置 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 4; /* 层级4 */
+        }
+
+        /* 织锦缎旗袍 - 主图 */
+        .brocade-section .zjd1 {
+            position: absolute;
+            width: 27vw; /* 宽度为屏幕的27% */
+            top: 37%; /* 垂直37%位置 */
+            left: 47%; /* 水平47%位置 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 层级5 - 最上层 */
+        }
+
+        /* ==================== 蕾丝旗袍样式 ==================== */
+
+        /* 蕾丝旗袍 - 中间背景装饰 */
+        .lace-section .background2 {
+            position: absolute;
+            width: 50vw; /* 宽度为屏幕的50% */
+            height: 100vh; /* 高度占满整个区域 */
+            top: 0; /* 顶部对齐 */
+            left: 50%; /* 左侧50%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+            z-index: 2; /* 层级2 */
+        }
+
+        /* 蕾丝旗袍 - 中心装饰背景 */
+        .lace-section .background3 {
+            position: absolute;
+            width: 28vw; /* 宽度为屏幕的28% */
+            top: 50%; /* 垂直50%位置 */
+            left: 50%; /* 水平50%位置 */
+            transform: translate(-50%, -50%); /* 完全居中 */
+            z-index: 3; /* 层级3 */
+        }
+
+        /* 蕾丝旗袍 - 右侧装饰背景 */
+        .lace-section .background4 {
+            position: absolute;
+            width: 30vw; /* 宽度为屏幕的30% */
+            height: 60vh; /* 高度为屏幕的60% */
+            top: 16%; /* 垂直16%位置 */
+            right: 19%; /* 右侧19%位置 */
+            transform: translate(50%, -50%); /* 居中定位 */
+            z-index: 4; /* 层级4 */
+        }
+
+        /* 蕾丝旗袍 - 底部装饰背景 */
+        .lace-section .background5 {
+            position: absolute;
+            width: 100vw; /* 宽度占满整个屏幕 */
+            height: 40vh; /* 高度为屏幕的40% */
+            bottom: 0; /* 底部对齐 */
+            left: 0; /* 左侧对齐 */
+            z-index: 1.5; /* 层级1.5 - 半透明效果 */
+            opacity: 0.42; /* 透明度42% */
+        }
+
+        /* 蕾丝旗袍 - 主图 */
+        .lace-section .ls1 {
+            position: absolute;
+            width: 27vw; /* 宽度为屏幕的27% */
+            top: 37%; /* 垂直37%位置 */
+            left: 47%; /* 水平47%位置 */
+            transform: translate(-50%, -50%); /* 居中定位 */
+            z-index: 5; /* 层级5 - 最上层 */
+        }
+
+        /* 标题样式 */
+        .vertical-title {
+            position: absolute;
+            top: 50%; /* 垂直居中 */
+            left: 15vw; /* 左侧15%位置 */
+            transform: translateY(-50%); /* 垂直居中对齐 */
+            z-index: 6; /* 层级6 - 在装饰元素之上 */
+            font-size: 2.5vw; /* 字体大小为屏幕宽度的2.5% */
+            writing-mode: vertical-rl; /* 竖向排列，从右到左 */
+            text-orientation: upright; /* 字符保持正向 */
+            letter-spacing: 0.3em; /* 字符间距 */
+            line-height: 1.2; /* 行高 */
+        }
+
+        .horizontal-title {
+            position: absolute;
+            top: 10vh; /* 顶部10%位置 */
+            right: 15vw; /* 右侧15%位置 */
+            z-index: 6; /* 层级6 - 在装饰元素之上 */
+            font-size: 2.5vw; /* 字体大小为屏幕宽度的2.5% */
+        }
+
+        /* 特殊标题定位 */
+        .xiangyunsha-section .vertical-title {
+            top: 40vh; /* 垂直40%位置 */
+            right: 22.5vw; /* 右侧22.5%位置 */
+            left: auto; /* 取消左侧定位 */
+            transform: translateX(50%); /* 水平居中 */
+        }
+
+        .brocade-section .vertical-title {
+            top: 40vh; /* 垂直40%位置 */
+            left: 23.5vw; /* 左侧23.5%位置 */
+            transform: translateX(-50%); /* 水平居中 */
+        }
+
+        /* 信息区域样式 */
+        .info-section {
+            position: absolute;
+            top: 0; /* 顶部对齐 */
+            right: 0; /* 右侧对齐 */
+            width: 100%; /* 宽度100% */
+            height: 100%; /* 高度100% */
+            z-index: 6; /* 层级6 - 在装饰元素之上 */
+            pointer-events: none; /* 允许点击穿透到下层元素 */
+        }
+
+        .info-block {
+            position: absolute;
+            pointer-events: auto; /* 恢复该块的点击事件 */
+        }
+
+        /* ==================== 真丝旗袍信息块定位 ==================== */
+        .silk-section .fabric-info {
+            top: 40vh; /* 垂直40%位置 */
+            right: 10vw; /* 右侧10%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .silk-section .fabric-features {
+            top: 15vh; /* 垂直15%位置 */
+            left: 15vw; /* 左侧15%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .silk-section .care-instructions {
+            top: 70vh; /* 垂直70%位置 */
+            left: 5vw; /* 左侧5%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        /* ==================== 棉麻旗袍信息块定位 ==================== */
+        .cotton-section .fabric-info {
+            top: 40vh; /* 垂直40%位置 */
+            right: 10vw; /* 右侧10%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .cotton-section .fabric-features {
+            top: 15vh; /* 垂直15%位置 */
+            left: 15vw; /* 左侧15%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .cotton-section .care-instructions {
+            top: 70vh; /* 垂直70%位置 */
+            right: 5vw; /* 右侧5%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        /* ==================== 香云纱旗袍信息块定位 ==================== */
+        .xiangyunsha-section .fabric-info {
+            top: 10vh; /* 垂直10%位置 */
+            right: 12vw; /* 右侧12%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .xiangyunsha-section .fabric-features {
+            top: 45vh; /* 垂直45%位置 */
+            left: 5vw; /* 左侧5%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .xiangyunsha-section .care-instructions {
+            top: 75vh; /* 垂直75%位置 */
+            right: 8vw; /* 右侧8%位置 */
+            width: 37vw; /* 宽度为屏幕的37% */
+        }
+
+        /* ==================== 织锦缎旗袍信息块定位 ==================== */
+        .brocade-section .fabric-info {
+            top: 10vh; /* 垂直10%位置 */
+            right: 12vw; /* 右侧12%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .brocade-section .fabric-features {
+            top: 45vh; /* 垂直45%位置 */
+            right: 5vw; /* 右侧5%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .brocade-section .care-instructions {
+            top: 75vh; /* 垂直75%位置 */
+            right: 8vw; /* 右侧8%位置 */
+            width: 37vw; /* 宽度为屏幕的37% */
+        }
+
+        /* ==================== 蕾丝旗袍信息块定位 ==================== */
+        .lace-section .fabric-info {
+            top: 20vh; /* 垂直20%位置 */
+            left: 5vw; /* 左侧5%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        .lace-section .fabric-features {
+            top: 45vh; /* 垂直45%位置 */
+            right: 8vw; /* 右侧8%位置 */
+            width: 25vw; /* 宽度为屏幕的25% */
+        }
+
+        .lace-section .care-instructions {
+            top: 55vh; /* 垂直55%位置 */
+            left: 5vw; /* 左侧5%位置 */
+            width: 30vw; /* 宽度为屏幕的30% */
+        }
+
+        /* 标题样式 */
+        .info-title {
+            position: relative;
+            font-size: 1.8vw;
+            margin-bottom: 1vh;
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding: 0.5vh 0.5vw;
+            height: 3vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 真丝旗袍标题样式 */
+        .silk-section .fabric-features .info-title,
+        .silk-section .care-instructions .info-title {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-image: url('../../assets/images/kp/zs/Rectangle 53.svg');
+            background-position: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .silk-section .fabric-info .info-title {
+            background-image: url('../../assets/images/kp/zs/Rectangle 53.svg');
+            background-position: right center;
+            justify-content: flex-end;
+            transform: scaleX(-1);
+        }
+
+        .silk-section .fabric-info .info-title span {
+            transform: scaleX(-1);
+        }
+
+        /* 棉麻旗袍标题样式 */
+        .cotton-section .fabric-features .info-title {
+            position: absolute;
+            top: -2vh;
+            right: 0;
+            background-image: url('../../assets/images/kp/mm/Rectangle53.svg');
+            background-position: right center;
+            justify-content: flex-end;
+            transform: scaleX(-1);
+            z-index: 7;
+        }
+
+        .cotton-section .fabric-features .info-title span {
+            transform: scaleX(-1);
+        }
+
+        .cotton-section .fabric-info .info-title,
+        .cotton-section .care-instructions .info-title {
+            background-image: url('../../assets/images/kp/mm/Rectangle53.svg');
+            background-position: right center;
+            justify-content: flex-end;
+            transform: scaleX(-1);
+        }
+
+        .cotton-section .fabric-info .info-title span,
+        .cotton-section .care-instructions .info-title span {
+            transform: scaleX(-1);
+        }
+
+        /* 香云纱旗袍标题样式 */
+        .xiangyunsha-section .info-title {
+            background-image: url('../../assets/images/kp/xys/Rectangle53.svg');
+            background-position: left center;
+        }
+
+        .xiangyunsha-section .fabric-features .info-title {
+            transform: scaleX(-1);
+        }
+
+        .xiangyunsha-section .fabric-features .info-title span {
+            transform: scaleX(-1);
+            display: inline-block;
+        }
+
+        /* 织锦缎旗袍标题样式 */
+        .brocade-section .info-title {
+            background-image: url('../../assets/images/kp/zjd/Rectangle53.svg');
+            background-position: left center;
+        }
+
+        /* 蕾丝旗袍标题样式 */
+        .lace-section .fabric-info .info-title,
+        .lace-section .care-instructions .info-title {
+            background-image: url('../../assets/images/kp/ls/Rectangle53.svg');
+            background-position: left center;
+            justify-content: flex-start;
+            transform: scaleX(-1);
+        }
+
+        .lace-section .fabric-info .info-title span,
+        .lace-section .care-instructions .info-title span {
+            transform: scaleX(-1);
+        }
+
+        .lace-section .fabric-features .info-title {
+            background-image: url('../../assets/images/kp/ls/Rectangle53.svg');
+            background-position: left center;
+            justify-content: flex-start;
+        }
+
+        /* 内容样式 */
+        .info-content {
+            position: relative;
+            font-size: 1.2vw;
+            line-height: 1.6;
+            padding-top: 0.5vh;
+        }
+
+        /* 真丝旗袍内容样式 */
+        .silk-section .fabric-features .info-content,
+        .silk-section .care-instructions .info-content {
+            margin-left: 2vw;
+            margin-right: 2vw;
+            padding-top: 4vh;
+            text-align: left;
+        }
+
+        .silk-section .fabric-info .info-content {
+            margin-left: 3vw;
+            text-align: right;
+        }
+
+        /* 棉麻旗袍内容样式 */
+        .cotton-section .fabric-features .info-content {
+            margin-right: 2vw;
+            padding-top: 1vh;
+            text-align: left;
+        }
+
+        .cotton-section .fabric-info .info-content,
+        .cotton-section .care-instructions .info-content {
+            margin-left: 3vw;
+            text-align: right;
+        }
+
+        /* 香云纱旗袍内容样式 */
+        .xiangyunsha-section .info-content {
+            margin-left: 3vw;
+        }
+
+        .xiangyunsha-section .fabric-features .info-content {
+            text-align: left;
+            margin-left: 0;
+            margin-right: 3vw;
+            padding-left: 3vw;
+        }
+
+        /* 织锦缎旗袍内容样式 */
+        .brocade-section .info-content {
+            margin-left: 3vw;
+        }
+
+        /* 蕾丝旗袍内容样式 */
+        .lace-section .fabric-info .info-content,
+        .lace-section .care-instructions .info-content {
+            margin-right: 2vw;
+            text-align: left;
+        }
+
+        .lace-section .fabric-features .info-content {
+            margin-left: 2vw;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景图片 -->
+    <img src="../../assets/images/kp/background1.svg" alt="背景1" class="background1">
+    <img src="../../assets/images/kp/background2.svg" alt="背景2" class="background2">
+    <img src="../../assets/images/kp/background3.svg" alt="背景3" class="background3">
+    <img src="../../assets/images/kp/background4.svg" alt="背景4" class="background4">
+    <img src="../../assets/images/kp/background5.svg" alt="背景5" class="background5">
+    <img src="../../assets/images/kp/background6.svg" alt="背景6" class="background6">
+    <img src="../../assets/images/kp/background7.svg" alt="背景7" class="background7">
+    <img src="../../assets/images/kp/background8.svg" alt="背景8" class="background8">
+    <img src="../../assets/images/kp/background9.svg" alt="背景9" class="background9">
+    <img src="../../assets/images/kp/background10.svg" alt="背景10" class="background10">
+    <img src="../../assets/images/kp/background11.svg" alt="背景11" class="background11">
+    <img src="../../assets/images/kp/background12.svg" alt="背景12" class="background12">
+    <img src="../../assets/images/kp/huawen 1.svg" alt="花纹1" class="huawen1">
+
+    <!-- ==================== 真丝旗袍区域 ==================== -->
+    <div class="qipao-section silk-section">
+        
+        <!-- 真丝旗袍 - 中心装饰背景 -->
+        <img src="../../assets/images/kp/zs/background4.svg" alt="背景4" class="background4">
+        
+        <!-- 真丝旗袍 - 标题背景装饰 -->
+        <img src="../../assets/images/kp/zs/background5.svg" alt="背景5" class="background5">
+        
+        <!-- 真丝旗袍 - 主图 -->
+        <img src="../../assets/images/kp/zs/zs1.svg" alt="zs1" class="zs1">
+
+        <!-- 真丝旗袍 - 竖向标题 -->
+        <div class="vertical-title">真丝旗袍</div>
+
+        <!-- 真丝旗袍 - 信息区域 -->
+        <div class="info-section">
+            <!-- 真丝旗袍 - 面料特点 - 左侧上方 -->
+            <div class="info-block fabric-features">
+                <div class="info-title">面料特点</div>
+                <div class="info-content">
+                    真丝旗袍特点：100%天然蚕丝，质地柔软顺滑，光泽华丽；透气性佳，冬暖夏凉；亲肤舒适，不易起静电；弹性适中，悬垂感好；色彩鲜艳持久；高档奢华，适合正式场合；需精细保养，避免水洗和暴晒；价格较高但品质优越。
+                </div>
+            </div>
+
+            <!-- 真丝旗袍 - 面料信息 - 右侧上方 -->
+            <div class="info-block fabric-info">
+                <div class="info-title"><span>面料</span></div>
+                <div class="info-content">
+                    真丝，alachis，是由蚕茧抽丝制成的天然蛋白质纤维，质地柔软光滑，具有优良的吸湿性和透气性，光泽华丽自然，是高档面料的代表
+                </div>
+            </div>
+
+            <!-- 真丝旗袍 - 注意事项 - 左侧下方 -->
+            <div class="info-block care-instructions">
+                <div class="info-title">注意事项</div>
+                <div class="info-content">
+                    真丝旗袍保养：避免长时间阳光直射；防汗渍、香水直接接触；穿着时避免尖锐物刮擦；专业干洗或手洗（中性皂液、冷水、轻柔揉搓）；湿时不拧扭，阴凉处平铺晾干；低温熨烫（垫布、反面熨）；悬挂存放于通风处，避免与粗糙物接触；定期通风。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 棉麻旗袍区域 ==================== -->
+    <div class="qipao-section cotton-section">
+        <!-- 棉麻旗袍 - 中心装饰背景 -->
+        <img src="../../assets/images/kp/mm/background4.svg" alt="背景4" class="background4">
+        
+        <!-- 棉麻旗袍 - 标题背景装饰 -->
+        <img src="../../assets/images/kp/mm/background5.svg" alt="背景5" class="background5">
+        
+        <!-- 棉麻旗袍 - 主图 -->
+        <img src="../../assets/images/kp/mm/mm1.svg" alt="mm1" class="mm1">
+
+        <!-- 棉麻旗袍 - 竖向标题 -->
+        <div class="vertical-title">棉麻旗袍</div>
+
+        <!-- 棉麻旗袍 - 信息区域 -->
+        <div class="info-section">
+            <!-- 棉麻旗袍 - 面料特点 - 右上角 -->
+            <div class="info-block fabric-features">
+                <div class="info-title"><span>面料特点</span></div>
+                <div class="info-content">
+                    棉麻旗袍特点：天然棉麻面料，透气吸湿亲肤；麻料挺括、棉料柔软，混纺款质朴文艺；夏季凉爽排汗，厚款保暖；弹性低易皱缩（选购留余量），洗涤后更柔软，深色需防褪色；风格简约雅致，适合日常及中式场景。
+                </div>
+            </div>
+
+            <!-- 棉麻旗袍 - 面料信息 - 右侧上方 -->
+            <div class="info-block fabric-info">
+                <div class="info-title"><span>面料</span></div>
+                <div class="info-content">
+                    棉麻，由棉和麻纤维混纺而成，兼具棉质柔软舒适与麻质透气挺括的特性，纹理自然质朴，吸湿排汗性好
+                </div>
+            </div>
+
+            <!-- 棉麻旗袍 - 注意事项 - 右侧下方 -->
+            <div class="info-block care-instructions">
+                <div class="info-title"><span>注意事项</span></div>
+                <div class="info-content">
+                    棉麻旗袍穿着保养需注意：避免拉扯、选柔软内搭防染色，轻坐防皱；冷水手洗或轻柔机洗，深浅分开，勿搓拧漂白，阴干通风忌暴晒；低温垫布熨烫；清洁后悬挂或透气收纳，防蛀防霉。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 香云纱旗袍区域 ==================== -->
+    <div class="qipao-section xiangyunsha-section">
+        <!-- 香云纱旗袍 - 上方装饰背景 -->
+        <img src="../../assets/images/kp/xys/background3.svg" alt="背景3" class="background3">
+        
+        <!-- 香云纱旗袍 - 右侧装饰背景 -->
+        <img src="../../assets/images/kp/xys/background4.svg" alt="背景4" class="background4">
+        
+        <!-- 香云纱旗袍 - 主图 -->
+        <img src="../../assets/images/kp/xys/xys1.svg" alt="xys1" class="xys1">
+
+        <!-- 香云纱旗袍 - 竖向标题 -->
+        <div class="vertical-title">香云纱旗袍</div>
+
+        <!-- 香云纱旗袍 - 信息区域 -->
+        <div class="info-section">
+            <!-- 香云纱旗袍 - 面料信息 -->
+            <div class="info-block fabric-info">
+                <div class="info-title">面料</div>
+                <div class="info-content">
+                    香云纱是经薯莨汁液浸染、河泥涂层等传统工艺制成的丝绸面料，表面乌黑油亮、纹理独特，质地挺括爽滑、透气耐穿，兼具古朴风味与凉爽特性，是岭南特色高端面料
+                </div>
+            </div>
+
+            <!-- 香云纱旗袍 - 面料特点 -->
+            <div class="info-block fabric-features">
+                <div class="info-title"><span>面料特点</span></div>
+                <div class="info-content">
+                    香云纱质地挺括透气，穿着凉爽舒适且越穿越柔软，经传统工艺赋予独特乌亮纹理，耐穿不易褪色，兼具古朴风味与地域特色，适配典雅复古风格。
+                </div>
+            </div>
+
+            <!-- 香云纱旗袍 - 注意事项 -->
+            <div class="info-block care-instructions">
+                <div class="info-title">注意事项</div>
+                <div class="info-content">
+                    手洗 / 轻柔机洗，中性洗涤剂冷水短浸、忌搓揉漂白；阴干 / 低温烘干、避暴晒，宽衣架防变形；中温垫布熨烫、顺纹轻压；干燥通风单独存放、防摩擦潮湿；避尖锐物、及时拭污，忌暴晒及剧烈运动。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 织锦缎旗袍区域 ==================== -->
+    <div class="qipao-section brocade-section">
+        
+        <!-- 织锦缎旗袍 - 上方装饰背景 -->
+        <img src="../../assets/images/kp/zjd/background3.svg" alt="背景3" class="background3">
+        
+        <!-- 织锦缎旗袍 - 左侧装饰背景 -->
+        <img src="../../assets/images/kp/zjd/background4.svg" alt="背景4" class="background4">
+        
+        <!-- 织锦缎旗袍 - 主图 -->
+        <img src="../../assets/images/kp/zjd/zjd1.svg" alt="zjd1" class="zjd1">
+
+        <!-- 织锦缎旗袍 - 竖向标题 -->
+        <div class="vertical-title">织锦缎旗袍</div>
+
+        <!-- 织锦缎旗袍 - 信息区域 -->
+        <div class="info-section">
+            <!-- 织锦缎旗袍 - 面料信息 -->
+            <div class="info-block fabric-info">
+                <div class="info-title">面料</div>
+                <div class="info-content">
+                    织锦缎，传统丝织面料，以缎纹为地、多色丝纬提花织造，花纹精致、色泽绚丽、质地紧密挺括，尽显高贵华丽
+                </div>
+            </div>
+
+            <!-- 织锦缎旗袍 - 面料特点 -->
+            <div class="info-block fabric-features">
+                <div class="info-title">面料特点</div>
+                <div class="info-content">
+                    多色丝纬提花织造，花纹精细、色彩绚丽、光泽感强，具民族风格；质地紧密挺括、色牢度好，尽显高贵；原料多样；工艺复杂价高，需避碱、高温及细心养护。
+                </div>
+            </div>
+
+            <!-- 织锦缎旗袍 - 注意事项 -->
+            <div class="info-block care-instructions">
+                <div class="info-title">注意事项</div>
+                <div class="info-content">
+                    宜干洗，手洗用中性洗涤剂低温轻搓、忌机洗 / 碱 / 高温，深浅分洗；阴干 / 低温烘干、避暴晒；低温垫布熨烫；避油渍、动作轻防钩丝；清洁后单独悬挂 / 防尘袋存放于干燥处、防潮。
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 蕾丝旗袍区域 ==================== -->
+    <div class="qipao-section lace-section">
+        <!-- 蕾丝旗袍 - 中心装饰背景 -->
+        <img src="../../assets/images/kp/ls/background3.svg" alt="背景3" class="background3">
+        
+        <!-- 蕾丝旗袍 - 右侧装饰背景 -->
+        <img src="../../assets/images/kp/ls/background4.svg" alt="背景4" class="background4">
+        
+        <!-- 蕾丝旗袍 - 主图 -->
+        <img src="../../assets/images/kp/ls/ls1.svg" alt="ls1" class="ls1">
+
+        <!-- 蕾丝旗袍 - 横向标题 -->
+        <div class="horizontal-title">蕾丝旗袍</div>
+
+        <!-- 蕾丝旗袍 - 信息区域 -->
+        <div class="info-section">
+            <!-- 蕾丝旗袍 - 面料信息 - 左侧上方 -->
+            <div class="info-block fabric-info">
+                <div class="info-title"><span>面料</span></div>
+                <div class="info-content">
+                    蕾丝，以锦纶、涤纶等化纤或棉混纺制成，通过镂空、刺绣等工艺形成精致立体花纹，质地通透轻盈、柔软有弹性
+                </div>
+            </div>
+
+            <!-- 蕾丝旗袍 - 注意事项 - 左侧下方 -->
+            <div class="info-block care-instructions">
+                <div class="info-title"><span>注意事项</span></div>
+                <div class="info-content">
+                    避尖锐物防勾丝，内搭光滑防染色；轻柔手洗 / 冷水机洗（洗衣袋），深浅分洗，忌搓揉、漂白、热水；阴干 / 低温烘干，宽衣架挂放；低温垫布熨烫；清洁后单独存放，通风防潮。
+                </div>
+            </div>
+
+            <!-- 蕾丝旗袍 - 面料特点 - 右侧 -->
+            <div class="info-block fabric-features">
+                <div class="info-title">面料特点</div>
+                <div class="info-content">
+                    多为锦纶、涤纶等化纤或棉混纺（含氨纶增弹性），通透轻盈、花纹精致立体，触感柔软顺滑且弹性好，贴合身形显曲线，通过镂空、刺绣等工艺营造柔美层次，轻薄款适合春夏及炎热环境，厚款（如加衬）可适配秋冬，常用于晚宴、婚礼等场合，风格浪漫优雅。
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
