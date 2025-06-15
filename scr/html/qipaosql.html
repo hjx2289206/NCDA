@@ -173,6 +173,7 @@
       align-items: center;
       padding: 2vh 2vw; /* 内边距 */
       height: 100%;
+      transition: transform 0.3s ease;
     }
     
     /* 旗袍图片样式 */
@@ -184,12 +185,37 @@
     }
     
     /* 内容容器 */
-    .content {
+    .main-container{
       height: 100%;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+       /* 图片悬停效果 */
+    .image-section:hover {
+      transform: scale(1.02);
+    }
+    
+    /* 确保全局字体继承原有样式，不指定具体字体 */
+    h1, h2, p {
+      font-family: inherit; /* 继承全局字体设置 */
+    }
+    
+    /* 页面整体动画效果 */
+    .main-container{
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(2vh);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
