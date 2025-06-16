@@ -250,6 +250,7 @@ img{
   margin: 0 0.69vw; /* 水平边距，基于设计稿10px/1440px计算 */
   /* 0 10px / 1440px * 100% */
 }
+<<<<<<< HEAD
 .bg-1{
 right: -5%;
 top: 0;
@@ -274,4 +275,32 @@ bottom: 0;
   background-position:0;
 
 
+=======
+
+/* 背景图片样式 */
+.background-image {
+  position: fixed;
+  z-index: -1; /* 确保背景在内容后面 */
+  pointer-events: none; /* 允许点击穿透背景 */
+}
+
+.background-image img {
+  max-width: 100%;
+  height: auto;
+  opacity: 0.6; /* 设置透明度，使背景不那么突兀 */
+}
+
+/* 左下角背景 */
+.left-bottom {
+  left: 0;
+  bottom: 0;
+  width: 50vw; /* 控制图片大小 */
+}
+
+/* 右上角背景 */
+.right-top {
+  right: 0;
+  top: 0;
+  width: 50vw; /* 控制图片大小 */
+>>>>>>> dc1a1045e46679f2273f1ac93c6408ef912bbbf5
 }
