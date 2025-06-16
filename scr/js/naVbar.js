@@ -7,6 +7,7 @@ class ArcButtonNav extends HTMLElement {
   connectedCallback() {
     this.render();
     this.initEventListeners();
+    this.highlightActiveLink();
   }
 initEventListeners() {
   const ja = this.shadowRoot.querySelector('.ja');
@@ -21,6 +22,19 @@ initEventListeners() {
     }
   });
 }
+highlightActiveLink() {
+  const links = this.shadowRoot.querySelectorAll('.nav-title');
+  const currentPage = window.location.pathname.split('/').pop(); // 获取当前页面文件名
+
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.includes(currentPage)) {
+      link.classList.add('active-link');
+    }
+  });
+}
+
+
   render() {
     this.shadowRoot.innerHTML = `
         <style>
@@ -33,6 +47,12 @@ initEventListeners() {
         top: 0;
 
     }
+.active-link {
+  color:#ff1f0082 !important; /* 可以换成主题色 */
+  font-weight: bold;
+  text-decoration: underline;
+  transform:scale(1.2)
+}
 
     .nav-title {
         display: flex;

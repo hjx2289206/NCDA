@@ -250,3 +250,28 @@ img{
   margin: 0 0.69vw; /* 水平边距，基于设计稿10px/1440px计算 */
   /* 0 10px / 1440px * 100% */
 }
+.bg-1{
+right: -5%;
+top: 0;
+  position: absolute;
+  background-image: url(../../assets/images/exhibition/b8ce7669b85ce6df4b968b6dd3a49ae37dd9e04adc542-y4PJ9m_fw1200\ 1.svg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  width: 50%;
+  height: 50%;
+  background-position:0;
+}
+.bg-2{
+
+left: -5%;
+bottom: 0;
+  position: absolute;
+  background-image: url(../../assets/images/exhibition/b8ce7669b85ce6df4b968b6dd3a49ae37dd9e04adc542-y4PJ9m_fw1200\ 2.svg);
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  width: 50%;
+  height: 80%;
+  background-position:0;
+
+
+}
