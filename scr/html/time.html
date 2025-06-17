@@ -8,11 +8,11 @@
   <script src="../js/naVbar.js"></script><!-- 引入导航栏Web组件 -->
 </head>
 <body>
+     <arc-button-nav></arc-button-nav>
   <div class="divs">
     <div class="BG">
   <!-- 页面头部 -->
     <!-- 使用自定义导航栏Web组件 -->
-    <arc-button-nav></arc-button-nav>
   
   <!-- 固定比例容器包装器 -->
   <div class="fixed-scale-wrapper">
@@ -115,6 +115,7 @@
   font-style: normal; /* 设置字体样式 */
 }
   .divs{
+    position:absolute;
 width: 100%;
 height: 200vh;
 background: linear-gradient( 180deg, #E0F3ED 0%, #57B296 84%);
@@ -126,6 +127,7 @@ background-image: url("../../assets/images/exhibition/image\ 6.svg");
 background-size:100% 100%;
 background-position:0 0;
 background-repeat: no-repeat;
+position: absolute;
 
   }
     /* 固定比例容器样式 */
@@ -266,6 +268,7 @@ background-repeat: no-repeat;
       overflow-x: hidden; /* 禁用水平滚动条 */
       overflow-y: auto; /* 允许垂直滚动 */
       min-height: 100vh;
+      position: relative;
     }
     
     /* 文本框公共样式 */
