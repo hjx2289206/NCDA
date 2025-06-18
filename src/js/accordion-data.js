@@ -47,7 +47,8 @@ const imageData = [
           type: "simple-text",
           position: "bottom-center",
           elements: [
-              { type: "description", text: "神秘幽深的绿色天堂", style: "simple" }
+              { type: "description", text: "将传统直纹改为斜纹，油纸伞、折扇作为秀场道具，", style: "simple" },
+              { type: "description", text: "让秀场增加了一丝天马行空的浪漫主义的氛围", style: "simple" }
           ],
           animation: "fade-in-up",
           delay: 0.3
