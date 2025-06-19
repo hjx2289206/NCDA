@@ -65,6 +65,7 @@
             height: 60vh;
             width: auto;
             z-index: 0;
+            max-height: 90vh; /* 限制最大高度，避免在某些分辨率下溢出 */
         }
         
         /* Vector 14样式 - 位于页面下方偏左 */
@@ -180,9 +181,9 @@
         /* 旖袍录文本 - 相对于Vector 13定位 */
         .text-vector13 {
             position: absolute;
-            right: calc(8vw + clamp(0.5vw, 1.5vw, 3vw));
-            top: calc(20vh + clamp(8vh, 13vh, 18vh));
-            font-size: 6.5vw;
+            right: 10vw; /* 固定相对于右侧的距离 */
+            top: 35vh; /* 固定相对于顶部的距离 */
+            font-size: min(6.5vw, 10vh); /* 响应式字体大小，防止在极端分辨率下过大或过小 */
             color: #333; /* 文字颜色 */
             z-index: 1; /* 确保文字在图片上层 */
             transform-origin: center; /* 设置缩放中心点 */

@@ -52,20 +52,18 @@
       z-index: 1;
     }
     
-    /* 返回按钮 - 左上角固定定位 */
-    .back-button {
-      position: fixed;
-      top: 3vh; /* 距离顶部3%屏幕高度 */
-      left: 3vw; /* 距离左侧3%屏幕宽度 */
-      font-size: 2.5vw; /* 字体大小为屏幕宽度的2.5% */
-      color: #333333;
-      text-decoration: none;
-      z-index: 10;
-      transition: color 0.3s ease;
+    /* 返回按钮 */
+    #back {
+      position: absolute;
+      top: 8vh;
+      left: 5vw;
+      width: 40px;
+      height: 40px;
+      z-index: 100;
     }
-    
-    .back-button:hover {
-      color: #666666;
+    #back img {
+      width: 100%;
+      height: 100%;
     }
     
     /* 标题区域 - 左侧垂直排列 */
@@ -227,7 +225,9 @@
   </div>
 
   <!-- 返回按钮 -->
-  <a href="time.html" class="back-button">&lt;</a>
+  <div id="back">
+    <a href="time.html"><img src="../../assets/images/exhibition/Vector (4).svg" alt=""/></a>
+  </div>
   
   <!-- 标题区域 -->
   <div class="title-section">
