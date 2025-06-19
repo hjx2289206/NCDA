@@ -70,15 +70,16 @@ class ArcButtonNav extends HTMLElement {
           color: black;
           text-decoration: none;
           cursor: pointer;
-          font-size: 1rem;
+        font-size: clamp(0.8rem, 1.5vw, 1.5rem); /* 动态调整 */
           border: none;
         }
 
         .header {
           background-image: url(../../assets/images/show/nav.svg);
           background-position: center;
-          background-size: 100% 100%;
-          width: 80%;
+          background-size:100% 100%;
+          background-repeat: no-repeat;
+          width: 70%;
           height: 100%;
           position: relative;
           opacity: 1;
@@ -90,6 +91,16 @@ class ArcButtonNav extends HTMLElement {
           animation: move 1.5s ease-in-out;
         }
 
+@media (min-width: 1684px) {
+  .header {
+    width: 1684px;
+  }
+}
+@media (max-height: 1284px) {
+  .header {
+    height: 186px;
+  }
+}
         .ja {
           position: absolute;
           top: 10%;
@@ -103,8 +114,8 @@ class ArcButtonNav extends HTMLElement {
 
         .xian {
           position: absolute;
-          top: 10%;
-          left: 10%;
+          top: 5%;
+          left: 11%;
         }
 
         .fang {
@@ -121,8 +132,8 @@ class ArcButtonNav extends HTMLElement {
 
         .zhan {
           position: absolute;
-          top: 10%;
-          right: 10%;
+          top: 5%;
+          right: 11%;
         }
 
         img {
